@@ -1,0 +1,58 @@
+age":"Archive …
+[e683zl] POST /api/admin/logs/archive 200 in 41ms
+🧹 Admin ea01cd7f-2db7-4237-a46e-3827441affcd initiating clean data with backup...
+📦 Admin ea01cd7f-2db7-4237-a46e-3827441affcd creating isolated archive: Backup Before Clean 08-15-2025 03-36
+✅ Archive schema initialized successfully
+📦 Creating isolated archive: Backup Before Clean 08-15-2025 03-36
+📊 Archiving data to isolated schema...
+📊 Querying customers for archival...
+📦 Found 503 records in customers to archive
+  ✅ customers: 503 records archived to isolated schema
+📊 Querying customer_identifiers for archival...
+ℹ️ No data found in customer_identifiers for archival
+  ✅ customer_identifiers: 0 records archived to isolated schema
+📊 Querying customer_events for archival...
+ℹ️ No data found in customer_events for archival
+  ✅ customer_events: 0 records archived to isolated schema
+📊 Querying segments for archival...
+ℹ️ No data found in segments for archival
+  ✅ segments: 0 records archived to isolated schema
+📊 Querying customer_segments for archival...
+ℹ️ No data found in customer_segments for archival
+  ✅ customer_segments: 0 records archived to isolated schema
+📊 Querying data_imports for archival...
+📦 Found 2 records in data_imports to archive
+❌ Error archiving data_imports: error: relation "archive.data_imports" does not exist
+    at file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1345:74
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async IsolatedArchiveService.archiveTableToIsolatedSchema (/home/runner/workspace/server/services/isolated-archive-service.ts:268:7)
+    at async IsolatedArchiveService.createArchive (/home/runner/workspace/server/services/isolated-archive-service.ts:148:23)
+    at async <anonymous> (/home/runner/workspace/server/routes/archive-routes.ts:324:27) {
+  length: 119,
+  severity: 'ERROR',
+  code: '42P01',
+  detail: undefined,
+  hint: undefined,
+  position: '13',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '1428',
+  routine: 'parserOpenTable'
+}
+❌ Isolated archive creation failed: Error: Failed to archive data_imports: relation "archive.data_imports" does not exist
+    at IsolatedArchiveService.archiveTableToIsolatedSchema (/home/runner/workspace/server/services/isolated-archive-service.ts:275:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async IsolatedArchiveService.createArchive (/home/runner/workspace/server/services/isolated-archive-service.ts:148:23)
+    at async <anonymous> (/home/runner/workspace/server/routes/archive-routes.ts:324:27)
+Clean data operation error: Error: Failed to create isolated archive: Failed to archive data_imports: relation "archive.data_imports" does not exist
+    at IsolatedArchiveService.createArchive (/home/runner/workspace/server/services/isolated-archive-service.ts:211:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes/archive-routes.ts:324:27)
+3:36:23 AM [express] POST /api/archives/clean 500 in 946ms :: {"success":false,"error":"Failed to cl…

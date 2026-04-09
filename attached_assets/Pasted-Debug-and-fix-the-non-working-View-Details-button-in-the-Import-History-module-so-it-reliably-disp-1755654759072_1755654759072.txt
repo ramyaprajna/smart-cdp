@@ -1,0 +1,113 @@
+Debug and fix the non-working “View Details” button in the Import History module so it reliably displays the detailed import history log for each imported file, without altering existing features or business logic.
+
+Context Artifacts:
+
+Screenshot reference: /mnt/data/1527d115-0391-4ed3-881f-f9b3f3d3b6a3.png (shows Import History UI and the “View Details” button).
+
+Environment (Replit/Cline):
+
+Work entirely within the current repo. Use the Replit shell, console, and package manager as needed.
+
+Do not introduce new external services. Only add dependencies if strictly necessary and justify in a CHANGELOG.
+
+What to Investigate:
+
+Locate the Import History UI component(s) rendering the list and the “View Details” action.
+
+Trace the click handler → controller/route/API client → backend endpoint/query → data model for import logs.
+
+Check for:
+
+Missing/incorrect onClick bindings, event propagation issues, or disabled state.
+
+Wrong identifiers (e.g., using row index vs. import ID) passed to the details fetcher.
+
+Failing network requests (404/500/CORS), incorrect HTTP method, or path mismatch.
+
+Serialization issues (e.g., expecting logs[] but receiving paged results).
+
+Modal/drawer not mounting due to state, portal/root mismatch, or conditional rendering.
+
+Authorization/permissions gating the details payload.
+
+Implement the Fix (preserve logic):
+
+Keep existing component structure and public function signatures intact.
+
+Ensure the button passes the correct stable identifier (unique import/job ID) to the details fetch action.
+
+If backend route exists, fix client-side invocation; if the route is missing/buggy, add or correct it while preserving existing schemas and constraints.
+
+Ensure UI displays:
+
+File name, import timestamp, importer, success/failure count, processed records, and per-step log messages with statuses and timestamps.
+
+Pagination or virtualized scrolling if logs are long.
+
+Handle loading, empty, and error states gracefully.
+
+Quality + Safety:
+
+Maintain current types/interfaces. Add narrow types if helpful, without breaking callers.
+
+Keep existing CSS/design tokens and component library usage.
+
+Accessibility: button is focusable, has aria-label, details view is reachable by keyboard, and returns focus on close.
+
+Do not remove or repurpose existing props, events, or endpoints.
+
+Testing (must pass in Replit):
+
+Add unit tests for:
+
+Click handler dispatches with correct import ID.
+
+API client builds the correct URL and parses response shape.
+
+Add integration/e2e test (headless) covering:
+
+Rendering list → clicking “View Details” → details view shows expected fields for a known fixture.
+
+Error path (500) shows retry and helpful message.
+
+Provide fixtures/mocks for import list and details payloads.
+
+Logging & Error Handling:
+
+Console/network logs during development; replace with existing app logger where available.
+
+User-facing errors: concise message with retry. Non-200 responses should not break the page.
+
+Deliverables:
+
+Code changes implementing the fix (UI and/or backend as required).
+
+Tests and fixtures described above.
+
+CHANGELOG.md entry with:
+
+Root cause
+
+Scope of changes
+
+Risk assessment
+
+Rollback plan
+
+README_FIX.md with:
+
+How to run locally on Replit (run command)
+
+How to execute tests
+
+Manual verification steps
+
+Acceptance Criteria:
+
+Clicking “View Details” on any row opens a details view populated with the correct log for that specific import.
+
+Works across refreshes and pagination/filters (Search, Status, Time range) shown in the screenshot.
+
+No regressions to import listing metrics (Total Imports, Successful, Failed, Records Processed) or existing actions.
+
+All new tests pass; existing tests remain green.

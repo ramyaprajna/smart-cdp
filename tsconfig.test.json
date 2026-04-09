@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["dev/**/*", "test/**/*", "server/tests/**/*", "development/testing/tests/**/*", "**/*.test.ts", "**/*.test.tsx"],
+  "exclude": ["node_modules", "build", "dist"],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "types": ["vitest/globals", "@testing-library/jest-dom", "node", "vite/client"]
+  }
+}

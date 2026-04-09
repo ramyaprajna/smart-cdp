@@ -1,0 +1,622 @@
+/**
+ * ⚠️ CRITICAL FILE - CORE DATABASE SCHEMA - DO NOT DELETE ⚠️
+ * This file defines the entire application's data model and is used throughout the system.
+ */
+import { pgTable, text, uuid, timestamp, jsonb, integer, real, boolean, index } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
+import { createInsertSchema } from "drizzle-zod";
+import { z } from "zod";
+
+// Embedding Jobs Table - for tracking cancellable embedding generation jobs
+// Implementation: August 12, 2025 - Supports real-time cancellable embedding workflow
+// Key Features: Job lifecycle management, token savings calculation, graceful cancellation
+export const embeddingJobs = pgTable("embedding_jobs", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  status: text("status").notNull().default("idle"), // Job states: 'idle', 'running', 'cancelling', 'cancelled', 'completed', 'failed'
+  totalCustomers: integer("total_customers").notNull().default(0), // Total customers to process in this job
+  processedCustomers: integer("processed_customers").notNull().default(0), // Real-time count of completed customers
+  batchSize: integer("batch_size").notNull().default(100), // Processing batch size (configurable via environment)
+  cancelRequested: boolean("cancel_requested").notNull().default(false), // Flag for graceful cancellation
+  estimatedTokensSaved: integer("estimated_tokens_saved").default(0), // Token cost savings from cancellation
+  errorMessage: text("error_message"), // Error details for failed jobs
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  startedAt: timestamp("started_at", { withTimezone: true }), // When job processing began
+  completedAt: timestamp("completed_at", { withTimezone: true }), // Natural completion time
+  cancelledAt: timestamp("cancelled_at", { withTimezone: true }), // User-initiated cancellation time
+}, (table) => ({
+  statusIdx: index("embedding_jobs_status_idx").on(table.status), // Fast status-based queries
+  createdAtIdx: index("embedding_jobs_created_at_idx").on(table.createdAt), // Chronological ordering
+}));
+
+// Customer Embeddings Table - for vector similarity search
+// Implementation: August 12, 2025 - PostgreSQL real array format for pgvector compatibility
+// Key Features: Unique customer constraint for upserts, proper number array format
+export const customerEmbeddings = pgTable("customer_embeddings", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  customerId: uuid("customer_id").notNull().unique(), // Unique constraint enables safe upsert operations
+  embedding: real("embedding").array().notNull(), // Vector embedding as PostgreSQL real array (not JSON)
+  embeddingType: text("embedding_type").notNull().default("customer_profile"), // Future support for multiple embedding types
+  lastGeneratedAt: timestamp("last_generated_at", { withTimezone: true }).defaultNow(), // Tracks generation timestamp
+}, (table) => ({
+  embeddingTypeIdx: index("customer_embeddings_type_idx").on(table.embeddingType), // Fast type-based filtering
+  customerIdIdx: index("customer_embeddings_customer_id_idx").on(table.customerId), // CRITICAL: Fast customer ID lookups and COUNT operations
+}));
+
+// Customers Table
+export const customers = pgTable("customers", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  email: text("email"),
+  phoneNumber: text("phone_number"),
+  dateOfBirth: timestamp("date_of_birth"),
+  gender: text("gender"),
+  currentAddress: jsonb("current_address"),
+  customerSegment: text("customer_segment"),
+  lifetimeValue: real("lifetime_value").default(0),
+  lastActiveAt: timestamp("last_active_at", { withTimezone: true }),
+  dataQualityScore: real("data_quality_score").default(0),
+  importId: uuid("import_id"),
+  sourceRowNumber: integer("source_row_number"),
+  sourceFileHash: text("source_file_hash"),
+  dataLineage: jsonb("data_lineage"),
+  // Enhanced JSON Storage for Unmapped Fields
+  unmappedFields: jsonb("unmapped_fields"), // Store unmapped source data as JSON
+  originalSourceData: jsonb("original_source_data"), // Complete original row data
+  fieldMappingMetadata: jsonb("field_mapping_metadata"), // AI mapping details and confidence scores
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  emailIdx: index("customers_email_idx").on(table.email),
+  segmentIdx: index("customers_segment_idx").on(table.customerSegment),
+  lifetimeValueIdx: index("customers_lifetime_value_idx").on(table.lifetimeValue),
+  // Additional performance indexes
+  phoneNumberIdx: index("customers_phone_number_idx").on(table.phoneNumber),
+  importIdIdx: index("customers_import_id_idx").on(table.importId),
+  updatedAtIdx: index("customers_updated_at_idx").on(table.updatedAt),
+  // JSONB GIN indexes for efficient JSON querying
+  unmappedFieldsIdx: index("customers_unmapped_fields_gin_idx").using('gin', table.unmappedFields),
+  originalSourceDataIdx: index("customers_original_source_data_gin_idx").using('gin', table.originalSourceData),
+}));
+
+// Customer Events Table
+export const customerEvents = pgTable("customer_events", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  customerId: uuid("customer_id").notNull(),
+  eventType: text("event_type").notNull(),
+  eventTimestamp: timestamp("event_timestamp", { withTimezone: true }).defaultNow(),
+  source: text("source"),
+  sessionId: text("session_id"),
+  deviceId: text("device_id"),
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+  eventProperties: jsonb("event_properties"),
+  importId: uuid("import_id"),
+  sourceRowNumber: integer("source_row_number"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  customerIdIdx: index("customer_events_customer_id_idx").on(table.customerId),
+  eventTypeIdx: index("customer_events_type_idx").on(table.eventType),
+  timestampIdx: index("customer_events_timestamp_idx").on(table.eventTimestamp),
+  // Composite index for efficient customer event queries
+  customerTimestampIdx: index("customer_events_customer_timestamp_idx").on(table.customerId, table.eventTimestamp),
+}));
+
+// Segments Table
+export const segments = pgTable("segments", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: text("name").notNull(),
+  description: text("description"),
+  criteria: jsonb("criteria").notNull(),
+  isActive: boolean("is_active").default(true),
+  customerCount: integer("customer_count").default(0),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  nameIdx: index("segments_name_idx").on(table.name),
+  activeIdx: index("segments_active_idx").on(table.isActive),
+}));
+
+// Customer Segments Junction Table
+export const customerSegments = pgTable("customer_segments", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  customerId: uuid("customer_id").notNull(),
+  segmentId: uuid("segment_id").notNull(),
+  assignedAt: timestamp("assigned_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  customerIdIdx: index("customer_segments_customer_id_idx").on(table.customerId),
+  segmentIdIdx: index("customer_segments_segment_id_idx").on(table.segmentId),
+}));
+
+// Customer Identifiers Table
+export const customerIdentifiers = pgTable("customer_identifiers", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  customerId: uuid("customer_id").notNull(),
+  identifierType: text("identifier_type").notNull(), // 'email', 'phone', 'national_id', etc.
+  identifierValue: text("identifier_value").notNull(),
+  sourceSystem: text("source_system"),
+  importId: uuid("import_id"),
+  sourceRowNumber: integer("source_row_number"),
+  lastSeenAt: timestamp("last_seen_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  customerIdIdx: index("customer_identifiers_customer_id_idx").on(table.customerId),
+  typeValueIdx: index("customer_identifiers_type_value_idx").on(table.identifierType, table.identifierValue),
+}));
+
+// Users Table
+export const users = pgTable("users", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  email: text("email").notNull().unique(),
+  passwordHash: text("password_hash").notNull(),
+  firstName: text("first_name"),
+  lastName: text("last_name"),
+  role: text("role").notNull().default("user"), // 'admin', 'user', 'viewer'
+  isActive: boolean("is_active").default(false), // Changed to false for email activation
+  isEmailVerified: boolean("is_email_verified").default(false),
+  activationToken: text("activation_token"),
+  activationTokenExpires: timestamp("activation_token_expires", { withTimezone: true }),
+  lastLoginAt: timestamp("last_login_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  emailIdx: index("users_email_idx").on(table.email),
+  roleIdx: index("users_role_idx").on(table.role),
+  activationTokenIdx: index("users_activation_token_idx").on(table.activationToken),
+}));
+
+// User Sessions Table
+export const userSessions = pgTable("user_sessions", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id").notNull(),
+  sessionToken: text("session_token").notNull().unique(),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  userIdIdx: index("user_sessions_user_id_idx").on(table.userId),
+  tokenIdx: index("user_sessions_token_idx").on(table.sessionToken),
+  expiresIdx: index("user_sessions_expires_idx").on(table.expiresAt),
+}));
+
+// Raw Data Imports Table
+export const rawDataImports = pgTable("raw_data_imports", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  importSessionId: uuid("import_session_id").notNull(),
+  sourceFileName: text("source_file_name"),
+  sourceSheetName: text("source_sheet_name"),
+  sourceRowNumber: integer("source_row_number").notNull(),
+  rawDataRow: jsonb("raw_data_row").notNull(),
+  originalHeaders: jsonb("original_headers"),
+  dataTypesDetected: jsonb("data_types_detected"),
+  validationErrors: jsonb("validation_errors"),
+  processingStatus: text("processing_status").notNull().default("pending"), // 'pending', 'processed', 'failed', 'skipped'
+  processedAt: timestamp("processed_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  sessionIdIdx: index("raw_data_imports_session_id_idx").on(table.importSessionId),
+  statusIdx: index("raw_data_imports_status_idx").on(table.processingStatus),
+  sourceRowNumberIdx: index("raw_data_imports_source_row_number_idx").on(table.sourceRowNumber),
+}));
+
+// Data Imports Table (for completed imports)
+export const dataImports = pgTable("data_imports", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  fileName: text("file_name").notNull(),
+  filePath: text("file_path"),
+  fileSize: integer("file_size"),
+  importType: text("import_type").notNull(), // 'csv', 'xlsx', 'json', 'api'
+  importSource: text("import_source"),
+  recordsProcessed: integer("records_processed").default(0),
+  recordsSuccessful: integer("records_successful").default(0),
+  recordsFailed: integer("records_failed").default(0),
+  recordsDuplicates: integer("records_duplicates").default(0),
+  recordsSkipped: integer("records_skipped").default(0),
+  recordsUpdated: integer("records_updated").default(0),
+  recordsMerged: integer("records_merged").default(0),
+  duplicateHandlingStrategy: text("duplicate_handling_strategy"), // 'skip_duplicates', 'overwrite_existing', 'merge_data', 'create_new'
+  importStatus: text("import_status").notNull().default("pending"), // 'pending', 'processing', 'completed', 'failed'
+  importMetadata: jsonb("import_metadata"),
+  importedBy: text("imported_by"),
+  importedAt: timestamp("imported_at", { withTimezone: true }),
+  completedAt: timestamp("completed_at", { withTimezone: true }),
+  processingMode: text("processing_mode"),
+  chunkSize: integer("chunk_size"),
+  validationRules: jsonb("validation_rules"),
+  fieldMappings: jsonb("field_mappings"),
+}, (table) => ({
+  statusIdx: index("data_imports_status_idx").on(table.importStatus),
+  importedAtIdx: index("data_imports_imported_at_idx").on(table.importedAt),
+  fileNameIdx: index("data_imports_file_name_idx").on(table.fileName),
+  importSourceIdx: index("data_imports_source_idx").on(table.importSource),
+}));
+
+// Data Source Schemas Table (for flexible CDP schema management)
+export const dataSourceSchemas = pgTable("data_source_schemas", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  sourceName: text("source_name").notNull(),
+  displayName: text("display_name").notNull(),
+  description: text("description"),
+  schemaVersion: text("schema_version").notNull().default("1.0"),
+  fieldDefinitions: jsonb("field_definitions").notNull(), // FieldDefinition objects
+  mappingTemplates: jsonb("mapping_templates"), // Header -> field mappings
+  validationRules: jsonb("validation_rules"),
+  industryContext: jsonb("industry_context"),
+  isActive: boolean("is_active").default(true),
+  createdBy: uuid("created_by"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  sourceNameIdx: index("data_source_schemas_source_name_idx").on(table.sourceName),
+  activeIdx: index("data_source_schemas_active_idx").on(table.isActive),
+}));
+
+// Customer Attributes Table (for dynamic attributes)
+export const customerAttributes = pgTable("customer_attributes", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  customerId: uuid("customer_id").notNull(),
+  attributeName: text("attribute_name").notNull(),
+  attributeValue: text("attribute_value"),
+  attributeType: text("attribute_type").notNull().default("text"), // 'text', 'number', 'date', 'boolean'
+  dataSource: text("data_source"),
+  confidence: real("confidence").default(1.0), // AI confidence score
+  isSystem: boolean("is_system").default(false), // System vs user-defined
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  customerIdIdx: index("customer_attributes_customer_id_idx").on(table.customerId),
+  attributeNameIdx: index("customer_attributes_name_idx").on(table.attributeName),
+  customerAttributeIdx: index("customer_attributes_customer_name_idx").on(table.customerId, table.attributeName),
+}));
+
+// Enhanced Application Logs Table - Evidence-Based Structured Logging
+// Implementation: August 14, 2025 - ✅ PRODUCTION READY
+// Status: 2,514+ log entries operational with real-time monitoring
+// Features: Structured logging, PII redaction, sampling, error grouping, lifecycle management
+// Integration: Complete data flow synchronization verified from database to frontend
+export const applicationLogs = pgTable("application_logs", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  timestamp: timestamp("timestamp", { withTimezone: true }).defaultNow().notNull(),
+  level: text("level").notNull(), // Standard levels: 'trace', 'debug', 'info', 'warn', 'error', 'fatal'
+  category: text("category").notNull(), // 'email', 'authentication', 'database', 'api', 'system', 'import', 'vector', 'archive', 'security', 'ai'
+  message: text("message").notNull(),
+  metadata: jsonb("metadata"), // Additional structured data
+  userId: uuid("user_id"), // User associated with the event (if applicable)
+  sessionId: text("session_id"), // Session identifier
+  ipAddress: text("ip_address"), // Request IP address
+  userAgent: text("user_agent"), // Browser/client information
+  requestId: text("request_id"), // Unique request identifier for correlation
+  correlationId: text("correlation_id"), // Cross-service correlation identifier
+  stackTrace: text("stack_trace"), // Error stack trace (for errors)
+
+  // Evidence-Based Enhancement Fields
+  service: text("service").notNull().default("cdp-platform"), // Service/module identifier
+  environment: text("environment").notNull().default("development"), // Environment context
+  version: text("version"), // Application version/commit hash
+  host: text("host"), // Host identifier
+
+  // Data Quality & Security
+  isRedacted: boolean("is_redacted").default(false), // PII/secrets redaction flag
+  redactionRules: jsonb("redaction_rules"), // Applied redaction rules
+  isSampled: boolean("is_sampled").default(false), // Sampling flag
+  sampleRate: real("sample_rate"), // Applied sample rate
+
+  // Error Grouping
+  errorFingerprint: text("error_fingerprint"), // Normalized error signature for grouping
+  errorGroupId: uuid("error_group_id"), // Reference to error group
+
+  // Lifecycle Management
+  isArchived: boolean("is_archived").default(false),
+  archivedAt: timestamp("archived_at", { withTimezone: true }),
+  ttlExpiry: timestamp("ttl_expiry", { withTimezone: true }), // Retention expiry
+
+  // Schema Validation
+  schemaVersion: text("schema_version").notNull().default("1.0"), // Log schema version
+  isValid: boolean("is_valid").default(true), // Schema validation result
+  validationErrors: jsonb("validation_errors"), // Validation error details
+
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  // Existing indexes
+  timestampIdx: index("application_logs_timestamp_idx").on(table.timestamp),
+  levelIdx: index("application_logs_level_idx").on(table.level),
+  categoryIdx: index("application_logs_category_idx").on(table.category),
+  userIdIdx: index("application_logs_user_id_idx").on(table.userId),
+  archivedIdx: index("application_logs_archived_idx").on(table.isArchived),
+  levelCategoryIdx: index("application_logs_level_category_idx").on(table.level, table.category),
+
+  // Enhanced indexes for evidence-based requirements
+  serviceIdx: index("application_logs_service_idx").on(table.service),
+  environmentIdx: index("application_logs_environment_idx").on(table.environment),
+  correlationIdIdx: index("application_logs_correlation_id_idx").on(table.correlationId),
+  errorFingerprintIdx: index("application_logs_error_fingerprint_idx").on(table.errorFingerprint),
+  errorGroupIdIdx: index("application_logs_error_group_id_idx").on(table.errorGroupId),
+  ttlExpiryIdx: index("application_logs_ttl_expiry_idx").on(table.ttlExpiry),
+  validIdx: index("application_logs_valid_idx").on(table.isValid),
+
+  // Composite indexes for efficient filtering and analytics
+  levelServiceIdx: index("application_logs_level_service_idx").on(table.level, table.service),
+  timestampLevelIdx: index("application_logs_timestamp_level_idx").on(table.timestamp, table.level),
+  environmentServiceIdx: index("application_logs_environment_service_idx").on(table.environment, table.service),
+}));
+
+// Error Groups Table - For error fingerprinting and grouping
+// Implementation: August 14, 2025 - ✅ PRODUCTION READY
+// Status: Intelligent error aggregation with MD5 fingerprinting operational
+// Features: Normalized error signatures, occurrence tracking, sample log references
+// Evidence: Complete schema validation, proper foreign key relationships
+export const errorGroups = pgTable("error_groups", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  fingerprint: text("fingerprint").notNull().unique(), // Normalized error signature
+  firstSeen: timestamp("first_seen", { withTimezone: true }).notNull(),
+  lastSeen: timestamp("last_seen", { withTimezone: true }).notNull(),
+  count: integer("count").notNull().default(1), // Total occurrences
+  sampleLogId: uuid("sample_log_id"), // Reference to representative log entry
+  level: text("level").notNull(), // Error level for grouping
+  category: text("category").notNull(), // Category for grouping
+  service: text("service").notNull(), // Service for grouping
+  messageTemplate: text("message_template"), // Normalized message pattern
+  stackTraceHash: text("stack_trace_hash"), // Stack trace signature
+  isResolved: boolean("is_resolved").default(false), // Resolution status
+  resolvedAt: timestamp("resolved_at", { withTimezone: true }),
+  resolvedBy: uuid("resolved_by"), // User who resolved
+  notes: text("notes"), // Resolution notes
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  fingerprintIdx: index("error_groups_fingerprint_idx").on(table.fingerprint),
+  firstSeenIdx: index("error_groups_first_seen_idx").on(table.firstSeen),
+  lastSeenIdx: index("error_groups_last_seen_idx").on(table.lastSeen),
+  countIdx: index("error_groups_count_idx").on(table.count),
+  levelIdx: index("error_groups_level_idx").on(table.level),
+  serviceIdx: index("error_groups_service_idx").on(table.service),
+  isResolvedIdx: index("error_groups_resolved_idx").on(table.isResolved),
+  // Composite indexes for analytics
+  levelServiceIdx: index("error_groups_level_service_idx").on(table.level, table.service),
+  lastSeenCountIdx: index("error_groups_last_seen_count_idx").on(table.lastSeen, table.count),
+}));
+
+// Log Settings Table - For retention, redaction, and alert configuration
+// Implementation: August 14, 2025 - Centralized logging configuration
+// Features: Retention policies, redaction rules, sampling rates, alert thresholds
+export const logSettings = pgTable("log_settings", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  settingKey: text("setting_key").notNull().unique(), // Configuration key
+  settingValue: jsonb("setting_value").notNull(), // Configuration value
+  settingType: text("setting_type").notNull(), // 'retention', 'redaction', 'sampling', 'alerts'
+  description: text("description"), // Human-readable description
+  isActive: boolean("is_active").default(true),
+  validationSchema: jsonb("validation_schema"), // JSON schema for value validation
+  updatedBy: uuid("updated_by"), // Last modified by
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  settingKeyIdx: index("log_settings_key_idx").on(table.settingKey),
+  settingTypeIdx: index("log_settings_type_idx").on(table.settingType),
+  isActiveIdx: index("log_settings_active_idx").on(table.isActive),
+}));
+
+// Log Alerts Table - For health monitoring and anomaly detection
+// Implementation: August 14, 2025 - Evidence-based health monitoring
+// Features: Rolling error rates, z-score analysis, persistence of alert events
+export const logAlerts = pgTable("log_alerts", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  alertType: text("alert_type").notNull(), // 'error_rate', 'volume_spike', 'anomaly', 'threshold'
+  scope: text("scope").notNull(), // 'service', 'category', 'global'
+  scopeValue: text("scope_value"), // Specific service/category if scoped
+  metric: text("metric").notNull(), // 'error_rate', 'log_count', 'fatal_count'
+  threshold: real("threshold").notNull(), // Alert threshold
+  currentValue: real("current_value").notNull(), // Current metric value
+  status: text("status").notNull().default("active"), // 'active', 'resolved', 'muted'
+  severity: text("severity").notNull(), // 'low', 'medium', 'high', 'critical'
+
+  // Statistical Analysis
+  analysisMethod: text("analysis_method"), // 'z_score', 'ewma', 'threshold'
+  zScore: real("z_score"), // Z-score for anomaly detection
+  baseline: real("baseline"), // Historical baseline value
+  windowSize: integer("window_size"), // Analysis window in minutes
+
+  // Alert Management
+  firstTriggered: timestamp("first_triggered", { withTimezone: true }).notNull(),
+  lastTriggered: timestamp("last_triggered", { withTimezone: true }).notNull(),
+  triggerCount: integer("trigger_count").default(1), // Number of triggers
+  resolvedAt: timestamp("resolved_at", { withTimezone: true }),
+  resolvedBy: uuid("resolved_by"), // User who resolved
+  mutedUntil: timestamp("muted_until", { withTimezone: true }), // Mute expiry
+
+  // Context and Metadata
+  alertData: jsonb("alert_data"), // Additional alert context
+  message: text("message"), // Alert description
+  actionRequired: text("action_required"), // Suggested actions
+
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  alertTypeIdx: index("log_alerts_type_idx").on(table.alertType),
+  scopeIdx: index("log_alerts_scope_idx").on(table.scope),
+  statusIdx: index("log_alerts_status_idx").on(table.status),
+  severityIdx: index("log_alerts_severity_idx").on(table.severity),
+  firstTriggeredIdx: index("log_alerts_first_triggered_idx").on(table.firstTriggered),
+  lastTriggeredIdx: index("log_alerts_last_triggered_idx").on(table.lastTriggered),
+  // Composite indexes for efficient filtering
+  statusSeverityIdx: index("log_alerts_status_severity_idx").on(table.status, table.severity),
+  scopeStatusIdx: index("log_alerts_scope_status_idx").on(table.scope, table.status),
+  alertTypeStatusIdx: index("log_alerts_type_status_idx").on(table.alertType, table.status),
+}));
+
+// Relations
+export const customersRelations = relations(customers, ({ many }) => ({
+  events: many(customerEvents),
+  embeddings: many(customerEmbeddings),
+  segments: many(customerSegments),
+  identifiers: many(customerIdentifiers),
+}));
+
+export const customerEventsRelations = relations(customerEvents, ({ one }) => ({
+  customer: one(customers, { fields: [customerEvents.customerId], references: [customers.id] }),
+}));
+
+export const customerEmbeddingsRelations = relations(customerEmbeddings, ({ one }) => ({
+  customer: one(customers, { fields: [customerEmbeddings.customerId], references: [customers.id] }),
+}));
+
+export const segmentsRelations = relations(segments, ({ many }) => ({
+  customers: many(customerSegments),
+}));
+
+export const customerSegmentsRelations = relations(customerSegments, ({ one }) => ({
+  customer: one(customers, { fields: [customerSegments.customerId], references: [customers.id] }),
+  segment: one(segments, { fields: [customerSegments.segmentId], references: [segments.id] }),
+}));
+
+export const customerIdentifiersRelations = relations(customerIdentifiers, ({ one }) => ({
+  customer: one(customers, { fields: [customerIdentifiers.customerId], references: [customers.id] }),
+}));
+
+export const usersRelations = relations(users, ({ many }) => ({
+  sessions: many(userSessions),
+}));
+
+export const userSessionsRelations = relations(userSessions, ({ one }) => ({
+  user: one(users, { fields: [userSessions.userId], references: [users.id] }),
+}));
+
+// Logging Relations
+export const applicationLogsRelations = relations(applicationLogs, ({ one }) => ({
+  errorGroup: one(errorGroups, { fields: [applicationLogs.errorGroupId], references: [errorGroups.id] }),
+}));
+
+export const errorGroupsRelations = relations(errorGroups, ({ one, many }) => ({
+  sampleLog: one(applicationLogs, { fields: [errorGroups.sampleLogId], references: [applicationLogs.id] }),
+  logs: many(applicationLogs),
+}));
+
+// Zod schemas for validation
+export const insertCustomerSchema = createInsertSchema(customers).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertCustomerEventSchema = createInsertSchema(customerEvents).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertSegmentSchema = createInsertSchema(segments).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertCustomerEmbeddingSchema = createInsertSchema(customerEmbeddings).omit({
+  id: true,
+});
+
+export const insertEmbeddingJobSchema = createInsertSchema(embeddingJobs).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertUserSchema = createInsertSchema(users).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertUserSessionSchema = createInsertSchema(userSessions).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertRawDataImportSchema = createInsertSchema(rawDataImports).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertDataImportSchema = createInsertSchema(dataImports).omit({
+  id: true,
+});
+
+export const insertDataSourceSchemaSchema = createInsertSchema(dataSourceSchemas).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertCustomerAttributeSchema = createInsertSchema(customerAttributes).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertApplicationLogSchema = createInsertSchema(applicationLogs).omit({
+  id: true,
+  createdAt: true,
+  isArchived: true,
+  archivedAt: true,
+  ttlExpiry: true,
+});
+
+export const insertErrorGroupSchema = createInsertSchema(errorGroups).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertLogSettingSchema = createInsertSchema(logSettings).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertLogAlertSchema = createInsertSchema(logAlerts).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+// Type exports
+export type Customer = typeof customers.$inferSelect;
+export type InsertCustomer = z.infer<typeof insertCustomerSchema>;
+
+export type CustomerEvent = typeof customerEvents.$inferSelect;
+export type InsertCustomerEvent = z.infer<typeof insertCustomerEventSchema>;
+
+export type Segment = typeof segments.$inferSelect;
+export type InsertSegment = z.infer<typeof insertSegmentSchema>;
+
+export type CustomerEmbedding = typeof customerEmbeddings.$inferSelect;
+export type InsertCustomerEmbedding = z.infer<typeof insertCustomerEmbeddingSchema>;
+
+export type EmbeddingJob = typeof embeddingJobs.$inferSelect;
+export type InsertEmbeddingJob = z.infer<typeof insertEmbeddingJobSchema>;
+
+export type User = typeof users.$inferSelect;
+export type InsertUser = z.infer<typeof insertUserSchema>;
+
+export type UserSession = typeof userSessions.$inferSelect;
+export type InsertUserSession = z.infer<typeof insertUserSessionSchema>;
+
+export type RawDataImport = typeof rawDataImports.$inferSelect;
+export type InsertRawDataImport = z.infer<typeof insertRawDataImportSchema>;
+
+export type DataImport = typeof dataImports.$inferSelect;
+export type InsertDataImport = z.infer<typeof insertDataImportSchema>;
+
+export type DataSourceSchema = typeof dataSourceSchemas.$inferSelect;
+export type InsertDataSourceSchema = z.infer<typeof insertDataSourceSchemaSchema>;
+
+export type CustomerAttribute = typeof customerAttributes.$inferSelect;
+export type InsertCustomerAttribute = z.infer<typeof insertCustomerAttributeSchema>;
+
+export type ApplicationLog = typeof applicationLogs.$inferSelect;
+export type InsertApplicationLog = z.infer<typeof insertApplicationLogSchema>;
+
+export type ErrorGroup = typeof errorGroups.$inferSelect;
+export type InsertErrorGroup = z.infer<typeof insertErrorGroupSchema>;
+
+export type LogSetting = typeof logSettings.$inferSelect;
+export type InsertLogSetting = z.infer<typeof insertLogSettingSchema>;
+
+export type LogAlert = typeof logAlerts.$inferSelect;
+export type InsertLogAlert = z.infer<typeof insertLogAlertSchema>;

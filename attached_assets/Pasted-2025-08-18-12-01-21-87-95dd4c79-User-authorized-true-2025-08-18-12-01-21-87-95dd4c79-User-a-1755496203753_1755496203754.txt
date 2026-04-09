@@ -1,0 +1,116 @@
+2025-08-18 12:01:21.87
+95dd4c79
+User
+authorized: true,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+authorizationError: null,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+_events: [Object: null prototype],
+2025-08-18 12:01:21.87
+95dd4c79
+User
+_eventsCount: 6,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+connecting: false,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+_hadError: false,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+_parent: null,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+_closeAfterHandlingError: false,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+_readableState: [ReadableState],
+2025-08-18 12:01:21.87
+95dd4c79
+User
+_writableState: [WritableState],
+2025-08-18 12:01:21.87
+95dd4c79
+User
+allowHalfOpen: false,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+_server: null,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+timeout: 0,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+[Symbol(verified)]: true,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+[Symbol(kBufferCb)]: null,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+[Symbol(kSetKeepAlive)]: false,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+[Symbol(websocket)]: [Circular *1]
+2025-08-18 12:01:21.87
+95dd4c79
+User
+},
+2025-08-18 12:01:21.87
+95dd4c79
+User
+[Symbol(shapeMode)]: false,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+writeBuffer: undefined,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+tlsState: 0,
+2025-08-18 12:01:21.87
+95dd4c79
+User
+tlsWrite: undefined
+2025-08-18 12:01:21.87
+95dd4c79
+User
+ssl: false,
+2025-08-18 12:01:45.77
+95dd4c79
+User
+🚀🚀🚀🚀🚀 DATA LINEAGE SERVICE LOADED 🚀🚀🚀🚀🚀
+2025-08-18 12:01:45.97
+95dd4c79
+User
+💫💫💫💫💫 CSV PROCESSOR MODULE LOADED 💫💫💫💫💫
+2025-08-18 12:01:52.17
+95dd4c79
+User
+🎯🎯🎯🎯🎯 ENHANCED JSON IMPORT SERVICE LOADED 🎯🎯🎯🎯🎯
+2025-08-18 12:04:56.43
+95dd4c79
+User
+[SLOW REQUEST] GET /api/analytics/segment-distribution - 2491ms - Status: 200
+2025-08-18 12:04:57.72
+95dd4c79
+User
+[SLOW REQUEST] GET /api/analytics/stats - 2171ms - Status: 200
+2025-08-18 12:07:36.79
+95dd4c79
+User
+[SLOW REQUEST] GET /api/analytics/embedding-status - 2170ms - Status: 200

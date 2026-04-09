@@ -1,0 +1,110 @@
+Investigate and resolve the project’s memory issues without modifying any existing functions, component logic, or UI. Add only diagnostics, scripts, and configuration. Provide a repeatable, evidence-based workflow runnable entirely in Replit.
+
+Objectives
+
+Reproduce memory growth.
+
+Pinpoint source (frontend React, backend Node.js, or data layer).
+
+Provide fixes via configuration or non-invasive code paths (e.g., preloaded diagnostics, environment flags) without altering current function bodies or UI output.
+
+Deliver artifacts (snapshots, logs, charts) and a clear report.
+
+Constraints
+
+Do not edit existing exported functions, component files, or UI markup/styles.
+
+All instrumentation must be opt-in via new scripts, Node flags, or preloaded modules (-r) and live under /diagnostics or /scripts.
+
+Production behavior must remain unchanged when diagnostics are off.
+
+Deliverables
+
+diagnostics/ folder with:
+
+backend-profiler.mjs (spawns the server with Node flags, collects GC/heap data without touching app code).
+
+frontend-runner.mjs (Puppeteer harness that drives the UI and collects memory metrics).
+
+analyze.mjs (parses logs/snapshots; outputs CSV/Markdown tables and charts).
+
+Artifacts in artifacts/:
+
+Heap snapshots (*.heapsnapshot), GC logs, ps samples, Puppeteer screenshots, HAR/network traces, CSVs.
+
+Package scripts (add to package.json, do not change existing ones):
+
+{
+  "scripts": {
+    "diag:backend": "node --expose-gc --trace-gc --trace-gc-verbose --max-old-space-size=2048 --heapsnapshot-near-heap-limit=3 --inspect=0.0.0.0:9229 -r ./diagnostics/preload.js ./diagnostics/backend-profiler.mjs",
+    "diag:frontend": "node ./diagnostics/frontend-runner.mjs",
+    "diag:load": "npx autocannon -d 60 -c 50 http://localhost:3000",
+    "diag:analyze": "node ./diagnostics/analyze.mjs",
+    "diag:report": "node ./diagnostics/analyze.mjs --report"
+  }
+}
+
+
+REPORT.md summarizing scenarios, expected vs. actual results, and remediation recommendations that do not require changing existing functions/UI (e.g., caching headers, stream/pagination settings, pool sizing, event-listener cleanup via lifecycle hooks toggled by env flag).
+
+Backend (Node.js) Diagnostics — No App Code Changes
+
+Run app via wrapper: spawn the existing server entry file using --inspect, --expose-gc, --trace-gc, and --heapsnapshot-near-heap-limit. Do not edit server source.
+
+Collect every 10s for 10–15 minutes:
+
+process.rss, heapUsed, heapTotal, external, arrayBuffers via inspector protocol (from the wrapper).
+
+GC events from stderr; persist to artifacts/gc.log.
+
+ps -o pid,%mem,rsz,vsz,etime,cmd -p <pid> samples.
+
+Trigger controlled load with npm run diag:load.
+
+Take two DevTools heap snapshots (CDP) at T=2m and T=12m from the wrapper to artifacts/backend-*.heapsnapshot.
+
+Flag a leak if heapUsed increases >15% across two forced GCs over ≥5 minutes.
+
+Frontend (React) Diagnostics — No UI Changes
+
+Use Puppeteer to:
+
+Open the app, navigate primary routes, and repeat key interactions (filters, pagination, modals) 200–500 cycles.
+
+Every 30 cycles, record performance.memory.usedJSHeapSize and take a detached-DOM snapshot (Performance.getMetrics via CDP).
+
+Save screenshots and network traces to artifacts/frontend/*.
+
+Flag a leak if usedJSHeapSize trends upward >10% after a forced GC across three snapshots or if detached DOM nodes/listeners monotonically grow.
+
+Analysis & Evidence
+
+analyze.mjs must:
+
+Produce CSVs and a Markdown table comparing Expected (steady/plateau after warm-up) vs. Actual memory and GC stats per scenario (idle, moderate load, peak load).
+
+Generate simple charts (PNG) of heapUsed/time (backend) and usedJSHeapSize/iteration (frontend).
+
+List top retaining types from heap snapshots (classes, ArrayBuffers, Closures) with counts/bytes.
+
+Cross-reference spikes with API endpoints from HAR traces.
+
+Testing Scenarios
+
+Idle: start app, no traffic, 10 minutes.
+
+Read-heavy: browse UI via Puppeteer only.
+
+Write/Import (if applicable): simulate uploads or log imports.
+
+Peak: autocannon + Puppeteer concurrently.
+
+Acceptance Criteria
+
+Repro steps and scripts run in Replit without editing existing functions/UI.
+
+Artifacts show whether memory plateaus or leaks; any leak is localized to a module/route without code edits to app logic.
+
+REPORT.md includes: environment, commands, charts, snapshots, GC excerpts, Expected vs. Actual tables, root-cause hypothesis, and configuration-only mitigation options.
+
+Disabling diagnostics returns the app to its original behavior.

@@ -1,0 +1,41 @@
+[cb6pvj] GET /api/analytics/segment-distribution 200 in 646ms
+Embedding status error: TypeError: cancellableEmbeddingService.getLatestJobStatus is not a function
+    at getEmbeddingSnapshot (/home/runner/workspace/server/services/analytics/analyticsSnapshot.ts:391:33)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/utils/http.ts:55:23)
+    at async CacheManager.deduplicateRequest (/home/runner/workspace/server/cache.ts:205:22)
+    at async <anonymous> (/home/runner/workspace/server/routes/analytics-routes.ts:188:14)
+    at async <anonymous> (/home/runner/workspace/server/utils/http.ts:109:22)
+[12:30:11 AM] GET /api/analytics/embedding-status 500 in 683ms :: {"error":"Failed to get emb…
+[r8gu2] GET /api/analytics/embedding-status 500 in 683ms
+[72b82h] GET /src/components/dashboard/stats-cards.tsx 200 in 14ms
+[mov4s5] GET /src/components/dashboard/analytics-charts.tsx 200 in 12ms
+[lt3lv] GET /src/hooks/use-dashboard-charts.ts 200 in 1ms
+[6hcl9c] GET /@fs/home/runner/workspace/node_modules/.vite/deps/recharts.js?v=b21acdd8 200 in 4ms
+Embedding status error: TypeError: cancellableEmbeddingService.getLatestJobStatus is not a function
+    at getEmbeddingSnapshot (/home/runner/workspace/server/services/analytics/analyticsSnapshot.ts:391:33)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/utils/http.ts:55:23)
+    at async CacheManager.deduplicateRequest (/home/runner/workspace/server/cache.ts:205:22)
+    at async <anonymous> (/home/runner/workspace/server/routes/analytics-routes.ts:188:14)
+    at async <anonymous> (/home/runner/workspace/server/utils/http.ts:109:22)
+[12:31:12 AM] GET /api/analytics/embedding-status 500 in 953ms :: {"error":"Failed to get emb…
+[6edvjv] GET /api/analytics/embedding-status 500 in 953ms
+Embedding status error: TypeError: cancellableEmbeddingService.getLatestJobStatus is not a function
+    at getEmbeddingSnapshot (/home/runner/workspace/server/services/analytics/analyticsSnapshot.ts:391:33)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/utils/http.ts:55:23)
+    at async CacheManager.deduplicateRequest (/home/runner/workspace/server/cache.ts:205:22)
+    at async <anonymous> (/home/runner/workspace/server/routes/analytics-routes.ts:188:14)
+    at async <anonymous> (/home/runner/workspace/server/utils/http.ts:109:22)
+[12:31:42 AM] GET /api/analytics/embedding-status 500 in 2ms :: {"error":"Failed to get embed…
+[ypbvh] GET /api/analytics/embedding-status 500 in 2ms
+Embedding status error: TypeError: cancellableEmbeddingService.getLatestJobStatus is not a function
+    at getEmbeddingSnapshot (/home/runner/workspace/server/services/analytics/analyticsSnapshot.ts:391:33)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/utils/http.ts:55:23)
+    at async CacheManager.deduplicateRequest (/home/runner/workspace/server/cache.ts:205:22)
+    at async <anonymous> (/home/runner/workspace/server/routes/analytics-routes.ts:188:14)
+    at async <anonymous> (/home/runner/workspace/server/utils/http.ts:109:22)
+[12:32:12 AM] GET /api/analytics/embedding-status 500 in 237ms :: {"error":"Failed to get emb…
+[g267w] GET /api/analytics/embedding-status 500 in 237ms

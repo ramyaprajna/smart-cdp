@@ -1,0 +1,39 @@
+❯ dev/tests/services/refactored-services.test.ts (23 tests | 15 failed) 111ms
+   ✓ Dynamic Attribute Service Tests > Unit Tests > should create a new custom attribute definition 3ms
+   ✓ Dynamic Attribute Service Tests > Unit Tests > should suggest attribute mapping based on column data 46ms
+   ✓ Dynamic Attribute Service Tests > Unit Tests > should handle invalid attribute names gracefully 1ms
+   ✓ Dynamic Attribute Service Tests > Performance Tests > should process bulk attributes efficiently 4ms
+   × Flexible AI Mapper Tests > Unit Tests > should analyze file columns with AI 17ms
+     → expected undefined to be defined
+   × Flexible AI Mapper Tests > Unit Tests > should detect schema patterns 8ms
+     → 
+   × Flexible AI Mapper Tests > Unit Tests > should handle empty data gracefully 4ms
+     → expected undefined to be defined
+   × Flexible AI Mapper Tests > Security Tests > should sanitize malicious column names 3ms
+     → Cannot read properties of undefined (reading 'mappings')
+   × Enhanced JSON Import Service Tests > Integration Tests > should create import preview with JSON storage options 1ms
+     → filePreviewService is not defined
+   × Enhanced JSON Import Service Tests > Error Handling Tests > should handle file processing errors gracefully 1ms
+     → filePreviewService is not defined
+   ✓ API Monitoring Service Tests > Unit Tests > should track API metrics 5ms
+   × API Monitoring Service Tests > Unit Tests > should generate performance alerts 1ms
+     → apiMonitoringService.getPerformanceAlerts is not a function
+   × API Monitoring Service Tests > Performance Tests > should handle high request volume 1ms
+     → apiMonitoringService.getMetricsSummary is not a function
+   × Cancellable Embedding Service Tests > Unit Tests > should start embedding job 1ms
+     → cancellableEmbeddingService.startEmbeddingJob is not a function
+   × Cancellable Embedding Service Tests > Unit Tests > should cancel embedding job 0ms
+     → cancellableEmbeddingService.cancelEmbeddingJob is not a function
+   × Cancellable Embedding Service Tests > Error Handling Tests > should handle missing customers gracefully 1ms
+     → cancellableEmbeddingService.startEmbeddingJob is not a function
+   × Schema Registry Service Tests > Unit Tests > should retrieve schema by name 1ms
+     → db.select(...).from is not a function
+   × Schema Registry Service Tests > Unit Tests > should list all available schemas 1ms
+     → db.select(...).from is not a function
+   ✓ Schema Registry Service Tests > Unit Tests > should validate field against schema 1ms
+   ✓ Email Service Tests > Unit Tests > should handle missing SendGrid API key gracefully 6ms
+   ✓ Email Service Tests > Unit Tests > should generate proper activation URLs 0ms
+   × Integration Tests - Service Interactions > should handle complete import workflow 1ms
+     → expected undefined to be defined
+   × Integration Tests - Service Interactions > should maintain data consistency across services 3ms
+     → expected undefined to be defined

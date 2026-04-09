@@ -1,0 +1,175 @@
+Performance] Fetched 7 segments for processing
+[Performance] Cache MISS for segment 01d91319-137a-41d1-9157-500586fb3ff1 - executing optimized COUNT query
+[Performance] Using optimized COUNT query for criteria: {"unmapped_fields.jeniskelamin":"Laki-Laki"}
+[Performance] Cache MISS for segment b3ecf0cf-7e2d-4040-bd7c-67c10c88d023 - executing optimized COUNT query
+[Performance] Using optimized COUNT query for criteria: {"unmapped_fields.domisili":{"$regex":"Jakarta"},"unmapped_fields.jeniskelamin":"Laki-Laki"}
+[Performance] Cache MISS for segment e26e348a-0d0f-4598-9b88-c046a2204e3a - executing optimized COUNT query
+[Performance] Using optimized COUNT query for criteria: {"unmapped_fields.jeniskelamin":"Perempuan"}
+[Performance] Cache MISS for segment 01fdb64d-edb7-47f6-87f0-c8f8fb43f3a9 - executing optimized COUNT query
+[Performance] Using optimized COUNT query for criteria: {"has_email":true,"has_phone":true,"has_first_name":true}
+[Performance] Cache MISS for segment 8e82c620-4821-4736-b093-f8cd71576b0d - executing optimized COUNT query
+[Performance] Using optimized COUNT query for criteria: {"has_email":true,"has_phone":false,"has_first_name":false}
+[Performance] Cache MISS for segment aee56201-ba42-4bde-8289-9047ca7d72ce - executing optimized COUNT query
+[Performance] Using optimized COUNT query for criteria: {"unmapped_fields.usia":"Dibawah 25 Tahun"}
+[Performance] Cache MISS for segment 99a5ec5a-a075-4250-ae04-51001d8cff25 - executing optimized COUNT query
+[Performance] Using optimized COUNT query for criteria: {"has_email":true,"has_phone":false,"has_first_name":true}
+[9:11:07 AM] HEAD /api 200 in 2ms
+[9:11:07 AM] HEAD /api 200 in 2ms
+[9:11:07 AM] GET /api/analytics/segment-distribution 200 in 1129ms :: [{"segment":"Basic Pro…
+[SLOW REQUEST] GET /api/analytics/segment-distribution - 1129ms - Status: 200
+[12thkx] GET /api/analytics/segment-distribution 200 in 1129ms
+[Performance] Using optimized COUNT query for criteria: {"unmapped_fields.jeniskelamin":"Laki-Laki"}
+[Performance] Using optimized COUNT query for criteria: {"unmapped_fields.domisili":{"$regex":"Jakarta"},"unmapped_fields.jeniskelamin":"Laki-Laki"}
+[Performance] Using optimized COUNT query for criteria: {"unmapped_fields.jeniskelamin":"Perempuan"}
+[Performance] Using optimized COUNT query for criteria: {"has_email":true,"has_phone":true,"has_first_name":true}
+[Performance] Using optimized COUNT query for criteria: {"has_email":true,"has_phone":false,"has_first_name":false}
+[Performance] Using optimized COUNT query for criteria: {"unmapped_fields.usia":"Dibawah 25 Tahun"}
+[Performance] Using optimized COUNT query for criteria: {"has_email":true,"has_phone":false,"has_first_name":true}
+[9:11:07 AM] HEAD /api 200 in 3ms
+[9:11:07 AM] HEAD /api 200 in 2ms
+[9:11:08 AM] GET /api/analytics/stats 200 in 1678ms :: {"totalCustomers":348402,"activeSegme…
+[SLOW REQUEST] GET /api/analytics/stats - 1678ms - Status: 200
+[l6t2w] GET /api/analytics/stats 200 in 1678ms
+[Performance] Slow segment query for 01fdb64d-edb7-47f6-87f0-c8f8fb43f3a9: 880ms
+[9:11:08 AM] HEAD /api 200 in 3ms
+[9:11:08 AM] HEAD /api 200 in 3ms
+[Performance] Slow segment query for 8e82c620-4821-4736-b093-f8cd71576b0d: 1172ms
+[9:11:08 AM] HEAD /api 200 in 5ms
+[Performance] Slow segment query for 99a5ec5a-a075-4250-ae04-51001d8cff25: 1602ms
+[9:11:08 AM] HEAD /api 200 in 3ms
+[9:11:09 AM] HEAD /api 200 in 3ms
+[9:11:09 AM] HEAD /api 200 in 3ms
+[9:11:09 AM] HEAD /api 200 in 1ms
+[9:11:09 AM] HEAD /api 200 in 2ms
+[Performance] Slow segment query for aee56201-ba42-4bde-8289-9047ca7d72ce: 2823ms
+[Performance] Slow segment query for e26e348a-0d0f-4598-9b88-c046a2204e3a: 2824ms
+[CDP Debug] Processing criteria with new mapping service: {"unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[Segment Criteria] Translating criteria: {"unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[Segment Criteria] Translation complete: 1 mappings, 1 conditions, selectivity: 1.000
+[Storage] Successfully translated 1 criteria mappings
+[Storage] Critical error in getCustomersByCriteria: ReferenceError: segmentPerformanceService is not defined
+    at DatabaseStorage.getCustomersByCriteria (/home/runner/workspace/server/storage.ts:1025:36)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:393:34)
+    at async Promise.all (index 0)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:380:7)
+[Performance] Slow segment query for b3ecf0cf-7e2d-4040-bd7c-67c10c88d023: 2830ms
+[Performance] Slow segment query for 01d91319-137a-41d1-9157-500586fb3ff1: 2832ms
+[Performance] Segments API completed:
+  - Total request time: 3799ms
+  - Number of segments: 7
+  - Total query time: 14963ms
+  - Average query time: 2137.6ms
+  - Cache efficiency: 0.0% (0 hits, 7 misses)
+  - Queries eliminated: 7 (removed duplicate getCustomersByCriteria calls)
+[Performance] Average execution time high: 2137.6 ms
+[Performance] Cache hit rate low: 0.0 %
+[9:11:10 AM] GET /api/segments 200 in 3802ms :: [{"id":"01d91319-137a-41d1-9157-500586fb3ff1…
+[SLOW REQUEST] GET /api/segments - 3802ms - Status: 200
+[niin8i] GET /api/segments 200 in 3802ms
+[9:11:10 AM] HEAD /api 200 in 3ms
+[9:11:10 AM] HEAD /api 200 in 2ms
+[CDP Debug] Processing criteria with new mapping service: {"unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[Segment Criteria] Translating criteria: {"unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[Segment Criteria] Translation complete: 1 mappings, 1 conditions, selectivity: 1.000
+[Storage] Successfully translated 1 criteria mappings
+[Storage] Critical error in getCustomersByCriteria: ReferenceError: segmentPerformanceService is not defined
+    at DatabaseStorage.getCustomersByCriteria (/home/runner/workspace/server/storage.ts:1025:36)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:393:34)
+    at async Promise.all (index 2)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:380:7)
+[CDP Debug] Processing criteria with new mapping service: {"unmapped_fields.domisili":"[LOCATION_DATA]","unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[Segment Criteria] Translating criteria: {"unmapped_fields.domisili":"[LOCATION_DATA]","unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[Segment Criteria] Translation complete: 2 mappings, 2 conditions, selectivity: 1.000
+[Storage] Successfully translated 2 criteria mappings
+[Storage] Critical error in getCustomersByCriteria: ReferenceError: segmentPerformanceService is not defined
+    at DatabaseStorage.getCustomersByCriteria (/home/runner/workspace/server/storage.ts:1025:36)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:393:34)
+    at async Promise.all (index 1)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:380:7)
+[CDP Debug] Processing criteria with new mapping service: {"unmapped_fields.usia":"[AGE_DATA]"}
+[Segment Criteria] Translating criteria: {"unmapped_fields.usia":"[AGE_DATA]"}
+[Segment Criteria] Translation complete: 1 mappings, 1 conditions, selectivity: 1.000
+[Storage] Successfully translated 1 criteria mappings
+[Storage] Critical error in getCustomersByCriteria: ReferenceError: segmentPerformanceService is not defined
+    at DatabaseStorage.getCustomersByCriteria (/home/runner/workspace/server/storage.ts:1025:36)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:393:34)
+    at async Promise.all (index 5)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:380:7)
+[CDP Debug] Processing criteria with new mapping service: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Translating criteria: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Mapped field: has_email → has_email {
+  strategy: 'email exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_phone → has_phone {
+  strategy: 'phoneNumber exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_first_name → has_first_name {
+  strategy: 'firstName exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Translation complete: 3 mappings, 3 conditions, selectivity: 0.245
+[Storage] Successfully translated 3 criteria mappings
+[Storage] Critical error in getCustomersByCriteria: ReferenceError: segmentPerformanceService is not defined
+    at DatabaseStorage.getCustomersByCriteria (/home/runner/workspace/server/storage.ts:1025:36)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:393:34)
+    at async Promise.all (index 3)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:380:7)
+[9:11:10 AM] HEAD /api 200 in 3ms
+[9:11:10 AM] HEAD /api 200 in 3ms
+[CDP Debug] Processing criteria with new mapping service: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Translating criteria: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Mapped field: has_email → has_email {
+  strategy: 'email exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_phone → has_phone {
+  strategy: 'phoneNumber does not exist (null or empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_first_name → has_first_name {
+  strategy: 'firstName exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Translation complete: 3 mappings, 3 conditions, selectivity: 0.245
+[Storage] Successfully translated 3 criteria mappings
+[Storage] Critical error in getCustomersByCriteria: ReferenceError: segmentPerformanceService is not defined
+    at DatabaseStorage.getCustomersByCriteria (/home/runner/workspace/server/storage.ts:1025:36)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:393:34)
+    at async Promise.all (index 6)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:380:7)
+[9:11:11 AM] GET /api/segments/metrics/Basic%20Profile 404 in 2630ms :: {"success":false,"er…
+[SLOW REQUEST] GET /api/segments/metrics/Basic%20Profile - 2629ms - Status: 404
+[lzsjso] GET /api/segments/metrics/Basic%20Profile 404 in 2629ms
+[CDP Debug] Processing criteria with new mapping service: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Translating criteria: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Mapped field: has_email → has_email {
+  strategy: 'email exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_phone → has_phone {
+  strategy: 'phoneNumber does not exist (null or empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_first_name → has_first_name {
+  strategy: 'firstName does not exist (null or empty)',
+  hasCondition: true
+}
+[Segment Criteria] Translation complete: 3 mappings, 3 conditions, selectivity: 0.245
+[Storage] Successfully translated 3 criteria mappings
+[Storage] Critical error in getCustomersByCriteria: ReferenceError: segmentPerformanceService is not defined
+    at DatabaseStorage.getCustomersByCriteria (/home/runner/workspace/server/storage.ts:1025:36)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:393:34)
+    at async Promise.all (index 4)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:380:7)
+[9:11:11 AM] GET /api/segments/metrics 200 in 4713ms :: {"Male Customers":{"description":"Cu…
+[SLOW REQUEST] GET /api/segments/metrics - 4713ms - Status: 200
+[x00ua8] GET /api/segments/metrics 200 in 4713ms

@@ -1,0 +1,43 @@
+Implement a documentation maintenance process in this Replit project that is triggered at the completion of each task or project checkpoint. The process must ensure all notes, code comments, and formal docs are accurate, concise, and aligned with the actual state of the codebase and database.
+
+Requirements
+
+Code Review & Update
+After each task or milestone, review all changed files for:
+Accuracy of in-code comments (function purpose, parameter notes, TODOs).
+Updated inline schema annotations if database structures changed.
+Remove stale comments that no longer match logic or data models.
+
+Documentation Audit & Cleanup
+Review all documentation files in the repo (.md, .txt, /docs folder).
+Identify and merge duplicate or overlapping documents to avoid confusion.
+Remove obsolete sections based on current requirements, recent commits, or deprecations.
+Improve structure for easier navigation (consistent headings, index tables, hyperlinks).
+Evidence-Based Validation
+
+Cross-check all documentation changes against:
+Actual codebase behavior (run/test features in Replit).
+Database schema from migrations or model definitions.
+Recent commit history to ensure features described are implemented.
+Attach references to commit hashes or schema diffs in the doc updates for traceability.
+
+Replit Steering Document (replit.md)
+Serve as the central operational guide for the project, including:
+Environment setup instructions (Replit packages, env vars).
+Deployment process for staging/production.
+Database initialization/migration/seed steps.
+Common workflows (branching, testing, linting, running).
+Known issues and quick-fix guidance.
+Keep replit.md updated with each feature or infra change.
+
+Deliverables
+Updated and validated documentation set, with obsolete content removed.
+Revised in-code comments reflecting current functionality.
+replit.md as a consolidated and authoritative project reference.
+CHANGELOG entry summarizing doc updates and linking to validation evidence.
+
+Acceptance Criteria
+No documentation contradicts current code or schema.
+Duplicate or outdated files are removed/merged.
+All doc changes are supported by evidence from the running codebase and commit logs.
+replit.md is complete enough for a new developer to set up and deploy without external help.

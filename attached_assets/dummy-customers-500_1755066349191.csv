@@ -1,0 +1,501 @@
+firstName,lastName,email,phoneNumber,dateOfBirth,gender,currentAddress,customerSegment
+Ashley,Pratama,ashley.pratama5502@demo.co,62819740885,12/2/1967,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 50""}",Professional
+Amanda,Johnson,amanda.johnson5522@example.com,62818702056,5/25/1978,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 3""}",Student
+Lisa,Martinez,lisa.martinez1826@company.co.id,62866252090,6/7/1983,Female,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 258""}",Casual
+Siti,Smith,siti.smith9949@company.co.id,62884000219,3/30/1974,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 51""}",SMB
+Nadia,Hidayat,nadia.hidayat5296@corp.id,62815541679,4/28/1978,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 70""}",Enterprise
+James,Saputra,james.saputra5471@mail.com,62891048478,10/14/1989,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Asia Afrika No. 123""}",Churn Risk
+Rina,Hidayat,rina.hidayat7838@test.com,62869227889,2/2/1988,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 260""}",Enterprise
+Emily,Hernandez,emily.hernandez4736@test.com,62881338962,12/8/1985,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 256""}",Enterprise
+William,Johnson,william.johnson6481@corp.id,62845903346,7/20/2004,Male,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 95""}",Churn Risk
+William,Brown,william.brown9872@mail.com,62876449247,7/30/1982,Male,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 167""}",Enterprise
+Wulan,Smith,wulan.smith2480@mail.com,62815883713,10/22/1980,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 224""}",Enterprise
+Jane,Simanjuntak,jane.simanjuntak4389@mail.com,62893578359,4/15/2002,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 179""}",SMB
+John,Brown,john.brown6732@corp.id,62897495592,4/23/2004,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Kuningan No. 202""}",Student
+Amanda,Hernandez,amanda.hernandez7471@demo.co,62893418557,1/13/1992,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 30""}",SMB
+Maya,Miller,maya.miller1168@company.co.id,62887050183,3/2/1994,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 269""}",VIP
+Ayu,Hernandez,ayu.hernandez377@corp.id,62883158610,8/17/2006,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 19""}",VIP
+Andi,Saputra,andi.saputra8803@mail.com,62844392625,10/7/1981,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 114""}",SMB
+Patricia,Hidayat,patricia.hidayat9776@company.co.id,62837843197,11/11/1984,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 155""}",Churn Risk
+Rizky,Miller,rizky.miller483@example.com,62817834898,9/10/1991,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 32""}",Churn Risk
+Daniel,Miller,daniel.miller6022@sample.id,62887260132,8/15/2006,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. MH Thamrin No. 163""}",Casual
+Bayu,Miller,bayu.miller871@company.co.id,62853730153,5/21/1975,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 216""}",VIP
+Christopher,Simanjuntak,christopher.simanjuntak3886@company.co.id,62848183120,9/29/2007,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 37""}",Enterprise
+Sarah,Hidayat,sarah.hidayat5620@mail.com,62859090945,1/15/1972,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 208""}",VIP
+Jessica,Kurniawan,jessica.kurniawan6839@test.com,62879801481,1/3/1988,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 42""}",Churn Risk
+Rina,Hidayat,rina.hidayat6782@sample.id,62879898834,8/18/1973,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Kuningan No. 281""}",Student
+Dwi,Kurniawan,dwi.kurniawan8679@company.co.id,62843931795,12/11/1971,Male,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 123""}",Churn Risk
+Budi,Simanjuntak,budi.simanjuntak6938@sample.id,62830228123,1/7/1985,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Kuningan No. 205""}",Prospect
+David,Saputra,david.saputra5177@sample.id,62860562844,8/27/1979,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 231""}",SMB
+Nisa,Wibowo,nisa.wibowo5882@sample.id,62819055946,11/13/1969,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 276""}",Churn Risk
+Nadia,Hidayat,nadia.hidayat6965@test.com,62887633530,8/11/1975,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 264""}",Professional
+William,Siregar,william.siregar3133@mail.com,62853987675,1/14/1966,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 17""}",Enterprise
+Amanda,Smith,amanda.smith3241@demo.co,62889993406,6/20/2006,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 215""}",SMB
+Sarah,Miller,sarah.miller8789@demo.co,62871200463,10/17/1995,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 109""}",Student
+Yuda,Brown,yuda.brown5268@corp.id,62862513789,11/28/1974,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 180""}",Casual
+Rina,Hidayat,rina.hidayat9932@sample.id,62885361299,9/11/1992,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 191""}",Professional
+Arif,Johnson,arif.johnson4198@mail.com,62877195416,4/16/1986,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 12""}",SMB
+Ayu,Lestari,ayu.lestari9305@mail.com,62852715871,12/8/2001,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 85""}",Professional
+Patricia,Lestari,patricia.lestari8463@sample.id,62892993341,6/1/1975,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 67""}",Casual
+Maya,Hidayat,maya.hidayat2896@demo.co,62885314800,9/26/1967,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 58""}",Student
+Amanda,Hidayat,amanda.hidayat275@company.co.id,62868772186,11/27/1998,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 50""}",Prospect
+James,Hernandez,james.hernandez3802@company.co.id,62887658986,6/15/2000,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 68""}",Professional
+Maya,Saputra,maya.saputra2777@sample.id,62844093642,9/27/1991,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 68""}",Professional
+Ashley,Hidayat,ashley.hidayat9868@corp.id,62862312363,11/26/2002,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 299""}",Prospect
+Ayu,Davis,ayu.davis9965@sample.id,62858205958,9/8/1981,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Kuningan No. 75""}",SMB
+Jessica,Saputra,jessica.saputra2390@mail.com,62843950231,7/10/2003,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 243""}",Professional
+Amanda,Santoso,amanda.santoso718@test.com,62869131557,5/25/2003,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 133""}",Casual
+Wulan,Saputra,wulan.saputra4469@sample.id,62860302596,11/10/1968,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 101""}",Professional
+Rian,Hidayat,rian.hidayat3880@example.com,62897224973,2/27/1989,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 60""}",Churn Risk
+Bayu,Lestari,bayu.lestari3083@mail.com,62895452959,7/25/1983,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 123""}",Professional
+James,Wibowo,james.wibowo5870@sample.id,62813608853,9/16/1997,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 101""}",Prospect
+Michael,Jones,michael.jones1996@company.co.id,62848165640,3/16/1996,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 257""}",VIP
+Lisa,Lestari,lisa.lestari5533@sample.id,62868996664,2/26/1975,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 3""}",VIP
+Nadia,Wijaya,nadia.wijaya2553@sample.id,62830373946,10/12/1979,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 160""}",Student
+Nisa,Hidayat,nisa.hidayat7562@company.co.id,62848150905,12/24/1998,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 160""}",VIP
+Nisa,Pratama,nisa.pratama1211@sample.id,62844655347,5/21/1988,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 268""}",Churn Risk
+Siti,Brown,siti.brown1322@company.co.id,62865333724,6/13/1982,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. MH Thamrin No. 179""}",Churn Risk
+John,Saputra,john.saputra8474@sample.id,62891316080,10/25/1994,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 186""}",Student
+Fajar,Hidayat,fajar.hidayat5001@company.co.id,62882201150,5/27/1997,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 218""}",Churn Risk
+Amanda,Lestari,amanda.lestari5495@company.co.id,62826125368,9/4/1984,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 233""}",Enterprise
+Patricia,Wibowo,patricia.wibowo5057@sample.id,62820583745,11/14/2003,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 232""}",VIP
+Jennifer,Johnson,jennifer.johnson7288@mail.com,62849092452,12/21/1999,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Rasuna Said No. 72""}",Churn Risk
+Fajar,Hidayat,fajar.hidayat9761@example.com,62849491319,6/4/1977,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 78""}",Professional
+Matthew,Johnson,matthew.johnson6183@corp.id,62836731918,7/27/1999,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 24""}",SMB
+John,Martinez,john.martinez5797@demo.co,62842398937,6/3/1969,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 242""}",Casual
+Siti,Garcia,siti.garcia7661@demo.co,62877241945,6/13/2002,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 139""}",Professional
+Putri,Garcia,putri.garcia7306@sample.id,62877638793,6/7/1978,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 2""}",Churn Risk
+Siti,Siregar,siti.siregar3013@test.com,62894028237,1/2/1972,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 43""}",Prospect
+Anthony,Lestari,anthony.lestari841@demo.co,62891488312,3/18/1977,Male,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 127""}",VIP
+Nadia,Wijaya,nadia.wijaya5553@company.co.id,62829904735,8/12/1984,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Braga No. 257""}",Prospect
+Agus,Jones,agus.jones150@company.co.id,62874457613,11/23/1988,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 257""}",Churn Risk
+Yuda,Wibowo,yuda.wibowo635@mail.com,62842760461,2/8/1991,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 279""}",Professional
+Agus,Johnson,agus.johnson9438@company.co.id,62826275110,3/10/1979,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 183""}",Student
+Tika,Siregar,tika.siregar8630@mail.com,62861826931,1/25/1986,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 223""}",Student
+Emily,Davis,emily.davis6808@sample.id,62846264222,9/20/2007,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 83""}",Prospect
+Amanda,Martinez,amanda.martinez7495@mail.com,62877802118,12/13/1967,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 65""}",Prospect
+David,Smith,david.smith2036@sample.id,62819942409,10/1/1982,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 29""}",SMB
+Linda,Siregar,linda.siregar1771@corp.id,62894110920,2/13/1981,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 103""}",SMB
+Patricia,Santoso,patricia.santoso3790@demo.co,62836598462,8/26/2006,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 199""}",Student
+Wulan,Santoso,wulan.santoso4533@example.com,62830076804,10/19/1988,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 128""}",SMB
+Siti,Lestari,siti.lestari4646@mail.com,62860254543,1/10/1996,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 217""}",Churn Risk
+Bayu,Pratama,bayu.pratama7072@mail.com,62848468561,11/10/1974,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 244""}",Enterprise
+Michael,Garcia,michael.garcia3554@sample.id,62851491084,11/6/1990,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Braga No. 76""}",Enterprise
+Putri,Wibowo,putri.wibowo9199@mail.com,62896781124,4/12/1983,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 122""}",Churn Risk
+John,Lestari,john.lestari4517@test.com,62839447535,8/7/1971,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 109""}",Prospect
+Siti,Hernandez,siti.hernandez454@example.com,62816566677,10/6/1973,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Rasuna Said No. 103""}",Professional
+Linda,Kurniawan,linda.kurniawan9665@demo.co,62872586229,1/31/1998,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 191""}",Enterprise
+Christopher,Garcia,christopher.garcia9239@corp.id,62820460084,11/28/2006,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 190""}",SMB
+Tika,Johnson,tika.johnson8123@example.com,62811372523,8/11/1975,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 81""}",VIP
+Agus,Davis,agus.davis3184@example.com,62855618496,6/4/1978,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 256""}",Student
+Jessica,Wijaya,jessica.wijaya2259@test.com,62825167273,11/10/1973,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 149""}",VIP
+Fajar,Kurniawan,fajar.kurniawan6177@company.co.id,62836223768,10/19/1996,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 239""}",Student
+Linda,Siregar,linda.siregar3803@test.com,62833952871,8/28/1992,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 201""}",VIP
+Putri,Simanjuntak,putri.simanjuntak4762@demo.co,62865110476,3/6/1993,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 175""}",Churn Risk
+Ayu,Wijaya,ayu.wijaya4937@corp.id,62890914123,8/8/1999,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 162""}",SMB
+Putri,Hernandez,putri.hernandez4526@demo.co,62897745221,2/12/1970,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 160""}",Professional
+Jessica,Johnson,jessica.johnson3459@corp.id,62894380463,3/13/1985,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 134""}",Enterprise
+Dwi,Miller,dwi.miller5878@company.co.id,62823485062,11/4/2000,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 35""}",VIP
+Ayu,Garcia,ayu.garcia9098@sample.id,62854672041,4/19/1968,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 248""}",Churn Risk
+Nisa,Wijaya,nisa.wijaya7758@test.com,62815013676,5/16/1971,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 37""}",Enterprise
+Michael,Davis,michael.davis8350@test.com,62861053612,9/21/2004,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 145""}",Churn Risk
+Ashley,Smith,ashley.smith8930@example.com,62882437619,1/7/1988,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Kuningan No. 201""}",Enterprise
+James,Jones,james.jones9174@demo.co,62897130221,1/23/2003,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Asia Afrika No. 47""}",Enterprise
+Rian,Miller,rian.miller6205@demo.co,62825084193,2/14/1981,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 169""}",Professional
+Matthew,Smith,matthew.smith9575@company.co.id,62836980917,3/30/1966,Male,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 195""}",Professional
+David,Smith,david.smith359@demo.co,62858543365,3/28/1985,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 86""}",Enterprise
+Christopher,Kurniawan,christopher.kurniawan3530@example.com,62850403910,10/22/1988,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 268""}",Professional
+Maya,Kurniawan,maya.kurniawan6515@company.co.id,62826980470,4/11/1988,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. MH Thamrin No. 38""}",Prospect
+Rina,Pratama,rina.pratama157@test.com,62858829953,5/7/1968,Female,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 66""}",SMB
+Matthew,Santoso,matthew.santoso3285@sample.id,62883932309,6/8/1986,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Asia Afrika No. 282""}",Professional
+Emily,Wijaya,emily.wijaya1822@mail.com,62824231890,9/4/1970,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 181""}",Enterprise
+Fajar,Kurniawan,fajar.kurniawan2665@demo.co,62823854103,2/15/1974,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 281""}",Casual
+Emily,Smith,emily.smith9264@corp.id,62854339094,1/17/2002,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 118""}",Professional
+Siti,Hidayat,siti.hidayat6541@sample.id,62875779391,5/1/1981,Female,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 289""}",Prospect
+Anthony,Siregar,anthony.siregar9672@mail.com,62868605901,11/17/1996,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 105""}",Churn Risk
+Matthew,Siregar,matthew.siregar9229@test.com,62814487571,7/6/1970,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 153""}",Student
+Andi,Martinez,andi.martinez211@sample.id,62817852973,7/24/1974,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 194""}",Prospect
+Jennifer,Garcia,jennifer.garcia9961@corp.id,62827489184,6/2/1998,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 167""}",SMB
+Rina,Santoso,rina.santoso3490@company.co.id,62890528045,3/13/1993,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 30""}",SMB
+Amanda,Simanjuntak,amanda.simanjuntak4437@sample.id,62895340107,6/13/1967,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 235""}",Student
+Tika,Martinez,tika.martinez8400@mail.com,62856971028,3/29/1998,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 268""}",VIP
+Amanda,Wibowo,amanda.wibowo8620@mail.com,62879563251,9/23/2005,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 71""}",Professional
+Ayu,Smith,ayu.smith6312@company.co.id,62872275353,1/31/1989,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 23""}",Casual
+Sarah,Smith,sarah.smith8160@test.com,62853564652,3/9/1996,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Asia Afrika No. 82""}",SMB
+Ashley,Kurniawan,ashley.kurniawan3009@test.com,62876745709,7/1/1973,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 123""}",SMB
+Maya,Johnson,maya.johnson5038@example.com,62849916909,12/5/1995,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 66""}",Student
+Patricia,Hidayat,patricia.hidayat6402@sample.id,62869914346,12/13/1973,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 5""}",Professional
+Fajar,Saputra,fajar.saputra5271@sample.id,62893742897,10/31/2003,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 79""}",Prospect
+Ashley,Lestari,ashley.lestari6290@demo.co,62878456226,10/2/1976,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 292""}",Enterprise
+Wulan,Garcia,wulan.garcia14@company.co.id,62818923205,1/25/2006,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Braga No. 44""}",Student
+Lisa,Hidayat,lisa.hidayat5472@corp.id,62814825998,3/23/1999,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 112""}",Prospect
+John,Lestari,john.lestari2414@mail.com,62849075959,11/7/1984,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 102""}",Casual
+John,Brown,john.brown3788@example.com,62889658860,3/9/1988,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 9""}",Casual
+Dwi,Miller,dwi.miller9694@sample.id,62824937484,2/19/1987,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. MH Thamrin No. 136""}",Casual
+Budi,Smith,budi.smith9540@mail.com,62859049347,5/22/2003,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 90""}",Prospect
+Matthew,Kurniawan,matthew.kurniawan3709@example.com,62849244759,1/20/1974,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 71""}",VIP
+Bayu,Doe,bayu.doe8627@sample.id,62888444630,2/4/1981,Male,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 225""}",Student
+John,Miller,john.miller1233@sample.id,62865470524,7/10/1998,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 38""}",Churn Risk
+Dwi,Smith,dwi.smith6042@test.com,62826062107,3/26/1980,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 290""}",SMB
+Siti,Garcia,siti.garcia5083@example.com,62833842761,7/21/1993,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 65""}",Enterprise
+Ayu,Pratama,ayu.pratama2897@example.com,62847687630,12/8/2000,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 225""}",SMB
+Nadia,Hidayat,nadia.hidayat5759@demo.co,62899892559,5/5/1984,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 18""}",Prospect
+William,Johnson,william.johnson3917@demo.co,62814566699,7/9/1999,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Rasuna Said No. 162""}",Casual
+Jane,Kurniawan,jane.kurniawan355@corp.id,62890079957,2/1/1979,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 42""}",Enterprise
+Nadia,Davis,nadia.davis5081@mail.com,62898412628,2/27/1980,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 259""}",Enterprise
+Wulan,Miller,wulan.miller1931@example.com,62831880138,2/9/1974,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 151""}",VIP
+Ayu,Simanjuntak,ayu.simanjuntak9284@example.com,62815677732,5/3/1973,Female,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 54""}",SMB
+David,Miller,david.miller4356@sample.id,62856439555,7/19/1974,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 166""}",Student
+Ayu,Wibowo,ayu.wibowo3697@demo.co,62850004202,2/20/1998,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 227""}",Casual
+Christopher,Hidayat,christopher.hidayat190@company.co.id,62891094275,3/17/1969,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 66""}",Professional
+Ayu,Hernandez,ayu.hernandez845@sample.id,62896073461,1/13/1990,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 81""}",Professional
+Bayu,Smith,bayu.smith7459@sample.id,62874774109,1/11/1970,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 262""}",Professional
+Sarah,Hernandez,sarah.hernandez6465@test.com,62823970746,12/6/1974,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 243""}",Churn Risk
+Dewi,Smith,dewi.smith151@mail.com,62870341598,6/11/1988,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 239""}",Enterprise
+Putri,Hidayat,putri.hidayat5817@test.com,62880566102,4/22/1982,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 144""}",VIP
+Budi,Doe,budi.doe3473@mail.com,62814638175,4/1/1978,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 55""}",VIP
+Yuda,Garcia,yuda.garcia4288@test.com,62851620063,1/25/2005,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 142""}",VIP
+Budi,Lestari,budi.lestari5037@demo.co,62853989863,8/10/1978,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 248""}",Student
+Agus,Kurniawan,agus.kurniawan6838@corp.id,62814057627,10/29/2000,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Rasuna Said No. 131""}",Enterprise
+Bayu,Simanjuntak,bayu.simanjuntak4636@example.com,62846475245,9/5/1985,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 57""}",Prospect
+Jennifer,Smith,jennifer.smith583@test.com,62888182143,6/27/1996,Female,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 98""}",Student
+Dwi,Simanjuntak,dwi.simanjuntak6083@mail.com,62884020606,9/4/1967,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 185""}",Professional
+Siti,Brown,siti.brown7770@test.com,62887157547,4/8/1971,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 96""}",Student
+Jane,Siregar,jane.siregar1752@sample.id,62883586486,6/2/1968,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 259""}",Casual
+Andi,Doe,andi.doe1845@demo.co,62825654850,10/23/1997,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 20""}",SMB
+John,Wibowo,john.wibowo4917@sample.id,62819159887,11/13/1966,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Asia Afrika No. 81""}",Prospect
+Agus,Wijaya,agus.wijaya6856@sample.id,62847150555,8/29/1983,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 61""}",Casual
+Sarah,Jones,sarah.jones1951@demo.co,62877650969,5/11/1966,Female,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 6""}",SMB
+Ashley,Simanjuntak,ashley.simanjuntak2094@test.com,62812144854,5/15/1970,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 298""}",SMB
+Jane,Martinez,jane.martinez3852@company.co.id,62868490878,3/17/1974,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 181""}",Churn Risk
+Siti,Hernandez,siti.hernandez8074@test.com,62878696113,1/7/1987,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 240""}",Student
+Budi,Martinez,budi.martinez7123@mail.com,62819035141,2/12/1985,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 239""}",Casual
+David,Saputra,david.saputra7550@sample.id,62831468980,8/2/1980,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 12""}",Prospect
+Rian,Johnson,rian.johnson1442@corp.id,62822950827,7/12/1979,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 80""}",Enterprise
+Amanda,Kurniawan,amanda.kurniawan1079@test.com,62875073324,3/31/1985,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 267""}",Prospect
+Budi,Hernandez,budi.hernandez2785@corp.id,62850342631,12/23/1972,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Braga No. 170""}",VIP
+Yuda,Johnson,yuda.johnson6514@mail.com,62884782542,3/4/1968,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 57""}",Enterprise
+Agus,Brown,agus.brown6629@mail.com,62816818129,5/22/1965,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. MH Thamrin No. 50""}",Enterprise
+Bayu,Brown,bayu.brown7531@test.com,62817136022,10/1/1978,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 291""}",Student
+William,Hidayat,william.hidayat9233@test.com,62857823284,6/21/2007,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 169""}",Casual
+Rizky,Hernandez,rizky.hernandez6109@sample.id,62864934546,4/30/1997,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. MH Thamrin No. 242""}",VIP
+Wulan,Hidayat,wulan.hidayat4104@test.com,62886886157,12/8/1969,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Rasuna Said No. 89""}",Student
+Maya,Brown,maya.brown8147@mail.com,62815801833,3/6/1993,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 236""}",Casual
+Nisa,Hidayat,nisa.hidayat2849@mail.com,62873650466,12/15/1970,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 162""}",Churn Risk
+Emily,Brown,emily.brown7703@example.com,62863872974,10/15/1993,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 277""}",SMB
+Ayu,Hernandez,ayu.hernandez1832@example.com,62899337052,1/24/1969,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 182""}",Casual
+Ashley,Pratama,ashley.pratama916@company.co.id,62896185201,1/2/1970,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 7""}",Prospect
+William,Johnson,william.johnson6633@company.co.id,62876201878,3/15/1966,Male,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 149""}",Professional
+Rizky,Santoso,rizky.santoso204@test.com,62896975380,1/1/1995,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 106""}",VIP
+Budi,Hidayat,budi.hidayat1082@demo.co,62855103876,5/31/1990,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Braga No. 74""}",Enterprise
+Ayu,Brown,ayu.brown5846@mail.com,62874594287,9/3/1983,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Braga No. 271""}",Student
+Matthew,Wibowo,matthew.wibowo8531@example.com,62839826322,10/22/2006,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 186""}",Enterprise
+Yuda,Wibowo,yuda.wibowo3109@sample.id,62853111582,12/18/1982,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 88""}",Churn Risk
+Bayu,Garcia,bayu.garcia5809@corp.id,62879398641,8/19/1976,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 41""}",VIP
+Emily,Martinez,emily.martinez3728@company.co.id,62878558714,7/12/1980,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 19""}",Professional
+Rina,Siregar,rina.siregar985@mail.com,62828824046,10/24/1995,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 246""}",Enterprise
+Lisa,Jones,lisa.jones7867@example.com,62821659987,11/16/1986,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 68""}",Enterprise
+Tika,Saputra,tika.saputra5687@mail.com,62878470507,3/5/1978,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 153""}",Casual
+Anthony,Hernandez,anthony.hernandez395@example.com,62830428367,12/2/2004,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 198""}",Churn Risk
+Emily,Garcia,emily.garcia8156@corp.id,62871419421,11/27/1981,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 90""}",SMB
+Emily,Wibowo,emily.wibowo2000@example.com,62820304575,10/1/1973,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Braga No. 49""}",SMB
+Budi,Wibowo,budi.wibowo8330@mail.com,62849832302,3/11/2002,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 247""}",Casual
+Amanda,Doe,amanda.doe4535@example.com,62839828637,11/1/1965,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Asia Afrika No. 109""}",Casual
+Rian,Smith,rian.smith587@test.com,62897430272,2/6/1970,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Asia Afrika No. 253""}",SMB
+Emily,Saputra,emily.saputra7382@demo.co,62894281198,4/20/2002,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 279""}",Churn Risk
+Nadia,Hernandez,nadia.hernandez7753@test.com,62826280251,6/4/1969,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 122""}",SMB
+Linda,Smith,linda.smith2888@example.com,62827431151,8/12/1993,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 213""}",Prospect
+Amanda,Garcia,amanda.garcia7148@sample.id,62835801326,12/29/1987,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 37""}",Prospect
+Tika,Lestari,tika.lestari6220@mail.com,62844579068,4/7/1977,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 236""}",Prospect
+Nisa,Saputra,nisa.saputra6289@example.com,62828906337,6/25/1984,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 116""}",VIP
+Andi,Lestari,andi.lestari1263@demo.co,62815433480,12/5/1983,Male,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 221""}",Casual
+Putri,Santoso,putri.santoso5715@corp.id,62848147340,5/3/1991,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 183""}",Prospect
+John,Smith,john.smith4355@corp.id,62851182867,8/2/1982,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 162""}",Professional
+Emily,Wibowo,emily.wibowo5182@test.com,62843284669,4/23/1981,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 191""}",VIP
+Dewi,Lestari,dewi.lestari8184@example.com,62883422473,8/19/1986,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 259""}",VIP
+Michael,Smith,michael.smith8747@company.co.id,62853603965,8/28/1965,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 122""}",Student
+Yuda,Garcia,yuda.garcia2694@company.co.id,62831864152,4/13/1970,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 148""}",Professional
+Siti,Garcia,siti.garcia9801@mail.com,62817883159,3/3/1986,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 27""}",SMB
+Daniel,Miller,daniel.miller4307@mail.com,62855781466,11/25/1979,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 249""}",Enterprise
+Dwi,Lestari,dwi.lestari5899@test.com,62890204744,10/25/1970,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 246""}",SMB
+Nisa,Lestari,nisa.lestari9834@corp.id,62817996541,5/26/2007,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 227""}",Casual
+Putri,Garcia,putri.garcia9735@demo.co,62844049163,3/28/1972,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 271""}",Casual
+Dewi,Simanjuntak,dewi.simanjuntak5077@company.co.id,62899729565,1/11/1973,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 155""}",SMB
+Maya,Smith,maya.smith9479@test.com,62892412705,3/3/1994,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 124""}",Prospect
+Amanda,Miller,amanda.miller471@demo.co,62848082826,8/17/2004,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 179""}",Churn Risk
+Siti,Hidayat,siti.hidayat651@test.com,62853617286,8/22/1999,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 176""}",Churn Risk
+Amanda,Simanjuntak,amanda.simanjuntak764@company.co.id,62856255452,11/18/1981,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 166""}",Student
+Dewi,Hernandez,dewi.hernandez6871@test.com,62811344290,11/23/1999,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 83""}",Student
+John,Doe,john.doe2723@company.co.id,62850923679,10/29/1983,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 12""}",Casual
+Dwi,Saputra,dwi.saputra7680@sample.id,62873559017,3/6/2002,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 117""}",VIP
+Jessica,Wibowo,jessica.wibowo2728@company.co.id,62890453094,9/28/1989,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 253""}",Prospect
+Arif,Johnson,arif.johnson8883@company.co.id,62896033438,7/27/2005,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Rasuna Said No. 100""}",Professional
+Jennifer,Martinez,jennifer.martinez3673@mail.com,62886826630,8/7/1999,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 222""}",Churn Risk
+Putri,Jones,putri.jones6753@demo.co,62818151887,4/14/2004,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 296""}",VIP
+Fajar,Brown,fajar.brown5225@sample.id,62890868186,11/9/1989,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 80""}",Enterprise
+Daniel,Simanjuntak,daniel.simanjuntak6510@demo.co,62896156101,9/21/1995,Male,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 181""}",VIP
+Jane,Wijaya,jane.wijaya9605@example.com,62875164889,6/14/2007,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 33""}",Prospect
+Linda,Brown,linda.brown282@company.co.id,62817381908,8/31/1997,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 109""}",VIP
+Bayu,Miller,bayu.miller4610@corp.id,62811318230,7/23/1967,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 23""}",Professional
+Daniel,Kurniawan,daniel.kurniawan4773@demo.co,62891685111,10/28/1974,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Kuningan No. 198""}",Professional
+James,Saputra,james.saputra4815@corp.id,62874063110,8/15/1994,Male,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 237""}",Casual
+Siti,Simanjuntak,siti.simanjuntak5772@example.com,62855711475,11/21/1970,Female,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 49""}",Casual
+David,Doe,david.doe6146@example.com,62859012017,3/21/1994,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 288""}",Enterprise
+Jennifer,Davis,jennifer.davis271@demo.co,62885551827,6/23/1983,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Braga No. 7""}",Prospect
+Andi,Simanjuntak,andi.simanjuntak8911@company.co.id,62877955518,6/2/1997,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 96""}",SMB
+Emily,Brown,emily.brown6693@sample.id,62864165897,7/10/1994,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 87""}",Professional
+James,Davis,james.davis6263@test.com,62822744114,7/8/1965,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 99""}",Prospect
+Siti,Miller,siti.miller7994@mail.com,62879578823,3/6/1980,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 116""}",Casual
+Siti,Brown,siti.brown299@example.com,62834889146,3/15/2006,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Asia Afrika No. 116""}",Professional
+Rian,Smith,rian.smith9306@corp.id,62856801745,1/12/1992,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 93""}",Student
+Tika,Siregar,tika.siregar8958@sample.id,62841956038,1/30/1976,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 209""}",Casual
+Linda,Lestari,linda.lestari2222@demo.co,62857252987,12/19/1995,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 44""}",SMB
+Rian,Hernandez,rian.hernandez1674@test.com,62864717750,9/2/1992,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 113""}",Prospect
+Patricia,Doe,patricia.doe3070@mail.com,62864368869,2/14/1981,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 259""}",Professional
+Amanda,Miller,amanda.miller6229@corp.id,62832941435,8/11/1989,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 290""}",Prospect
+Yuda,Miller,yuda.miller9923@corp.id,62819007702,7/17/1997,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 78""}",Prospect
+Tika,Siregar,tika.siregar8249@company.co.id,62815171281,11/11/1990,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 281""}",SMB
+Dewi,Smith,dewi.smith1063@sample.id,62885205337,8/22/2006,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 119""}",Prospect
+Andi,Martinez,andi.martinez3234@corp.id,62886908920,8/15/2003,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 70""}",Casual
+Siti,Hidayat,siti.hidayat1183@mail.com,62814267630,7/11/1993,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 258""}",VIP
+Jessica,Siregar,jessica.siregar7162@sample.id,62869655658,12/30/1975,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 48""}",Professional
+Jennifer,Davis,jennifer.davis1606@test.com,62848425307,8/10/1990,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 138""}",VIP
+David,Pratama,david.pratama307@mail.com,62817069099,5/21/2002,Male,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 163""}",Prospect
+Rian,Johnson,rian.johnson1246@example.com,62870888576,11/29/1976,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 13""}",VIP
+Agus,Siregar,agus.siregar6512@demo.co,62811310193,1/19/1984,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 12""}",Enterprise
+Putri,Siregar,putri.siregar7420@corp.id,62877073303,2/9/1972,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 163""}",VIP
+James,Johnson,james.johnson9776@corp.id,62811629562,5/19/1971,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 255""}",VIP
+Arif,Jones,arif.jones8316@demo.co,62865544168,4/15/1969,Male,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 165""}",VIP
+Maya,Santoso,maya.santoso7548@company.co.id,62863054497,12/29/1982,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 45""}",SMB
+Sarah,Doe,sarah.doe1238@mail.com,62891428022,12/8/1982,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 27""}",Enterprise
+Rina,Siregar,rina.siregar3081@company.co.id,62858258550,7/13/1999,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 210""}",Professional
+Putri,Hidayat,putri.hidayat2722@example.com,62870764562,8/10/1973,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 102""}",Professional
+Ashley,Simanjuntak,ashley.simanjuntak8103@example.com,62856948037,11/7/1984,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 118""}",SMB
+Amanda,Wibowo,amanda.wibowo4774@corp.id,62899209458,10/21/1995,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 181""}",Professional
+Jennifer,Brown,jennifer.brown2987@example.com,62893364783,7/29/1999,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 275""}",Casual
+Putri,Garcia,putri.garcia2129@corp.id,62815412908,10/3/2004,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Kuningan No. 202""}",Student
+Maya,Johnson,maya.johnson8670@example.com,62817211654,8/7/1998,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 32""}",SMB
+Arif,Smith,arif.smith1322@sample.id,62870317345,5/7/2003,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 274""}",Prospect
+Michael,Wijaya,michael.wijaya5977@example.com,62828611955,9/13/2002,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 97""}",Churn Risk
+James,Smith,james.smith9428@test.com,62811263392,4/16/1965,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 282""}",Prospect
+Fajar,Davis,fajar.davis5124@test.com,62873774346,9/2/1972,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 56""}",Prospect
+Budi,Kurniawan,budi.kurniawan518@example.com,62835937514,4/15/1989,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 257""}",VIP
+Yuda,Pratama,yuda.pratama206@test.com,62832746054,11/19/1996,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 135""}",Student
+Christopher,Miller,christopher.miller1148@test.com,62853670801,2/18/1985,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 195""}",SMB
+Fajar,Santoso,fajar.santoso1351@test.com,62855720803,11/20/1987,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 54""}",Casual
+Ashley,Wijaya,ashley.wijaya9609@test.com,62896286155,1/31/1980,Female,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 282""}",Enterprise
+Siti,Wijaya,siti.wijaya1432@sample.id,62811321178,7/18/1995,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 262""}",SMB
+Siti,Smith,siti.smith7981@sample.id,62821167495,1/23/1999,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 165""}",Professional
+Maya,Pratama,maya.pratama3061@corp.id,62818544731,12/11/1996,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 13""}",Casual
+Ashley,Jones,ashley.jones8094@demo.co,62857267627,6/3/1977,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 230""}",Enterprise
+Patricia,Hidayat,patricia.hidayat4099@corp.id,62818707960,10/13/1969,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 64""}",Churn Risk
+Michael,Wijaya,michael.wijaya8311@sample.id,62847084619,8/21/1996,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 241""}",Professional
+Patricia,Hidayat,patricia.hidayat6353@test.com,62890921186,2/10/1993,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Braga No. 64""}",VIP
+Michael,Siregar,michael.siregar5550@corp.id,62839194805,1/18/2005,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 211""}",VIP
+Christopher,Jones,christopher.jones3841@company.co.id,62848298849,9/26/1980,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 242""}",Prospect
+Sarah,Martinez,sarah.martinez6930@company.co.id,62895723329,11/27/1991,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 294""}",Prospect
+Robert,Wijaya,robert.wijaya543@test.com,62878918986,3/4/1966,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Asia Afrika No. 258""}",Enterprise
+Christopher,Wibowo,christopher.wibowo636@test.com,62839695608,4/22/1973,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 282""}",SMB
+Ayu,Siregar,ayu.siregar5993@mail.com,62846865116,8/22/1999,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 296""}",Churn Risk
+Daniel,Doe,daniel.doe8286@example.com,62869370778,2/28/1977,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 183""}",SMB
+Putri,Pratama,putri.pratama1677@demo.co,62843390618,4/15/1966,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. MH Thamrin No. 97""}",Churn Risk
+Jane,Saputra,jane.saputra198@demo.co,62864012430,12/26/1996,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 103""}",Casual
+Arif,Martinez,arif.martinez4921@mail.com,62829447105,7/22/1991,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 251""}",Enterprise
+Nisa,Saputra,nisa.saputra4325@company.co.id,62843074129,6/12/1968,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 63""}",Prospect
+Rian,Hidayat,rian.hidayat1350@company.co.id,62896518253,11/16/2003,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 1""}",Professional
+Yuda,Hidayat,yuda.hidayat2664@test.com,62828053168,9/7/1985,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 75""}",Enterprise
+Agus,Johnson,agus.johnson4993@demo.co,62828770137,7/5/1992,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 206""}",Churn Risk
+Lisa,Davis,lisa.davis3949@example.com,62856961964,12/17/1969,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 296""}",Enterprise
+Emily,Johnson,emily.johnson7905@sample.id,62820240231,5/21/1967,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 135""}",Student
+John,Kurniawan,john.kurniawan5375@sample.id,62876349619,8/30/1982,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 285""}",Professional
+Nadia,Johnson,nadia.johnson3559@corp.id,62837192622,12/2/1982,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 1""}",Casual
+Jane,Garcia,jane.garcia2764@mail.com,62849041225,5/4/1991,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 103""}",Enterprise
+Dwi,Miller,dwi.miller7730@demo.co,62847680930,2/28/2000,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 224""}",Churn Risk
+Dewi,Smith,dewi.smith5870@sample.id,62812896917,2/9/1973,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 43""}",Churn Risk
+Dewi,Santoso,dewi.santoso5462@corp.id,62896426686,1/23/1989,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 104""}",SMB
+Andi,Hidayat,andi.hidayat358@mail.com,62840202279,4/29/1980,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 269""}",Churn Risk
+David,Smith,david.smith8523@demo.co,62824705115,3/2/1968,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 41""}",Prospect
+Fajar,Garcia,fajar.garcia4339@sample.id,62853624820,4/12/1977,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 48""}",Enterprise
+Jessica,Doe,jessica.doe7256@example.com,62829480102,5/24/2000,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 16""}",Professional
+Sarah,Martinez,sarah.martinez5386@corp.id,62882557860,12/31/1985,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 206""}",Prospect
+Siti,Kurniawan,siti.kurniawan1984@corp.id,62835216775,8/25/1985,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. MH Thamrin No. 86""}",Enterprise
+James,Garcia,james.garcia2043@test.com,62840377653,12/17/1990,Male,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 35""}",SMB
+Rizky,Pratama,rizky.pratama277@company.co.id,62826492580,4/23/1994,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 250""}",Churn Risk
+Nadia,Doe,nadia.doe774@mail.com,62845897815,1/31/1974,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 226""}",VIP
+Linda,Brown,linda.brown4537@demo.co,62851907658,4/20/1968,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 242""}",Prospect
+David,Doe,david.doe389@demo.co,62899129114,9/28/1991,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 251""}",Casual
+Putri,Hernandez,putri.hernandez4516@sample.id,62893378620,8/18/1998,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 269""}",Casual
+Rian,Jones,rian.jones4103@example.com,62874055115,8/14/1979,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 140""}",SMB
+William,Johnson,william.johnson7112@corp.id,62845310344,6/19/1995,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 206""}",Student
+Maya,Saputra,maya.saputra4191@example.com,62891731753,6/11/1994,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Rasuna Said No. 260""}",Prospect
+James,Martinez,james.martinez3482@test.com,62845249456,7/27/1975,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 265""}",Churn Risk
+Daniel,Siregar,daniel.siregar9443@demo.co,62888256045,4/4/1992,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 22""}",Casual
+Rian,Hidayat,rian.hidayat2425@company.co.id,62826237653,9/1/1978,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 264""}",VIP
+Andi,Hidayat,andi.hidayat3230@mail.com,62820582018,3/21/1979,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 280""}",Enterprise
+Linda,Santoso,linda.santoso7674@test.com,62812775053,1/1/1968,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 265""}",VIP
+Sarah,Davis,sarah.davis8031@example.com,62852239324,8/20/1989,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 159""}",Professional
+Michael,Johnson,michael.johnson1102@company.co.id,62817029328,6/19/1970,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. MH Thamrin No. 276""}",Casual
+Wulan,Lestari,wulan.lestari8635@example.com,62883335748,1/9/1999,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 288""}",VIP
+Bayu,Pratama,bayu.pratama9599@corp.id,62876549361,1/27/1978,Male,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 112""}",Prospect
+Daniel,Brown,daniel.brown382@sample.id,62894255101,10/15/1998,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 38""}",Prospect
+Putri,Santoso,putri.santoso8810@corp.id,62899327460,12/10/1971,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 76""}",Churn Risk
+Christopher,Johnson,christopher.johnson7985@example.com,62855444896,9/5/1973,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Kuningan No. 242""}",SMB
+Nadia,Santoso,nadia.santoso717@example.com,62879821348,3/25/2003,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 213""}",Student
+Dewi,Saputra,dewi.saputra6575@sample.id,62825107555,11/19/1977,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 228""}",Enterprise
+Ashley,Santoso,ashley.santoso667@corp.id,62869433525,6/16/1992,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 72""}",VIP
+Agus,Wibowo,agus.wibowo4721@company.co.id,62848036731,11/27/1998,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 142""}",Student
+Budi,Davis,budi.davis555@test.com,62889828460,6/5/1993,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 241""}",Casual
+Jane,Smith,jane.smith6904@company.co.id,62868704626,7/31/2005,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 124""}",Prospect
+Nadia,Jones,nadia.jones9317@test.com,62812620370,9/9/1983,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 255""}",Enterprise
+Rian,Simanjuntak,rian.simanjuntak8760@demo.co,62888562323,3/20/1967,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 217""}",VIP
+Arif,Garcia,arif.garcia1481@mail.com,62898133063,1/19/1981,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 184""}",Churn Risk
+Lisa,Garcia,lisa.garcia1872@sample.id,62858175043,12/14/2007,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 224""}",Professional
+Patricia,Martinez,patricia.martinez4099@mail.com,62881184896,8/20/1999,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 176""}",Churn Risk
+Fajar,Doe,fajar.doe5189@demo.co,62851362724,8/5/1972,Male,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 72""}",Prospect
+Robert,Jones,robert.jones6586@sample.id,62862524781,1/29/1986,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 261""}",Enterprise
+Dwi,Smith,dwi.smith1300@company.co.id,62820713849,8/26/1991,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Asia Afrika No. 289""}",Professional
+Jessica,Simanjuntak,jessica.simanjuntak2150@test.com,62863050782,7/5/2000,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 83""}",Student
+Rian,Doe,rian.doe7019@demo.co,62871133202,9/5/1991,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 131""}",Student
+Nisa,Jones,nisa.jones9833@example.com,62842064719,12/19/1981,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Kuningan No. 42""}",Prospect
+Nisa,Simanjuntak,nisa.simanjuntak2618@corp.id,62894405181,8/8/1973,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 164""}",Professional
+Budi,Saputra,budi.saputra7301@corp.id,62870240891,2/26/2002,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 12""}",Professional
+Arif,Saputra,arif.saputra4998@demo.co,62869303683,8/21/1992,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 62""}",Prospect
+Nisa,Smith,nisa.smith4685@demo.co,62857819517,11/9/2002,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Rasuna Said No. 125""}",VIP
+Wulan,Pratama,wulan.pratama1274@company.co.id,62834088163,8/26/1991,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 252""}",Casual
+Anthony,Siregar,anthony.siregar2878@corp.id,62897513837,2/21/1988,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. MH Thamrin No. 114""}",VIP
+Budi,Hernandez,budi.hernandez583@company.co.id,62827023559,3/14/1993,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 282""}",SMB
+Amanda,Brown,amanda.brown56@sample.id,62844538343,1/10/1979,Female,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 13""}",Churn Risk
+David,Davis,david.davis2542@demo.co,62844598683,7/17/1980,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 76""}",Student
+Agus,Siregar,agus.siregar2332@test.com,62834331830,9/27/1965,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 23""}",Enterprise
+Wulan,Saputra,wulan.saputra2870@demo.co,62867659157,7/30/1979,Female,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 210""}",Prospect
+James,Lestari,james.lestari7262@test.com,62873927938,12/29/2002,Male,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 142""}",SMB
+Anthony,Jones,anthony.jones3729@sample.id,62898106929,12/12/1965,Male,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 155""}",SMB
+Jane,Lestari,jane.lestari7312@demo.co,62813467796,10/17/1990,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 121""}",Student
+Jessica,Doe,jessica.doe1652@demo.co,62897727456,9/2/2001,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. MH Thamrin No. 127""}",Professional
+Bayu,Hidayat,bayu.hidayat4245@company.co.id,62861836557,6/13/1998,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Rasuna Said No. 201""}",Casual
+Putri,Simanjuntak,putri.simanjuntak4869@demo.co,62879166543,8/2/1972,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 11""}",Prospect
+Daniel,Hernandez,daniel.hernandez1606@company.co.id,62886306138,2/14/1979,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 270""}",VIP
+Patricia,Siregar,patricia.siregar8518@test.com,62841785808,11/30/2001,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 142""}",Professional
+Amanda,Garcia,amanda.garcia9006@company.co.id,62860909287,2/24/1965,Female,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 174""}",Enterprise
+Jessica,Simanjuntak,jessica.simanjuntak8914@corp.id,62814676223,3/4/1976,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 135""}",VIP
+Dewi,Wijaya,dewi.wijaya9014@example.com,62866521734,3/20/2000,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 46""}",Churn Risk
+Anthony,Doe,anthony.doe5150@test.com,62853134033,11/25/1994,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 158""}",Student
+Arif,Siregar,arif.siregar3124@test.com,62879953783,1/19/2001,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 102""}",Professional
+Putri,Hernandez,putri.hernandez1785@demo.co,62871552895,11/9/1978,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 238""}",SMB
+Tika,Doe,tika.doe3401@company.co.id,62834387743,2/25/1975,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 175""}",Student
+Christopher,Johnson,christopher.johnson7495@company.co.id,62884836544,7/10/1971,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 85""}",Prospect
+Tika,Siregar,tika.siregar8396@sample.id,62883517440,12/2/1989,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 97""}",Churn Risk
+Budi,Johnson,budi.johnson4629@mail.com,62863271297,4/10/1982,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 201""}",Student
+Christopher,Hidayat,christopher.hidayat6037@mail.com,62818199569,10/24/2007,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 279""}",VIP
+Linda,Davis,linda.davis3666@company.co.id,62867501703,8/5/2003,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 178""}",Casual
+Amanda,Kurniawan,amanda.kurniawan3138@example.com,62842831538,8/14/1983,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. MH Thamrin No. 36""}",Enterprise
+Putri,Wijaya,putri.wijaya1448@mail.com,62833930634,7/23/2002,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 188""}",Professional
+Bayu,Siregar,bayu.siregar4693@demo.co,62843466469,7/11/1976,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 38""}",Churn Risk
+Fajar,Hidayat,fajar.hidayat1153@mail.com,62887515597,12/5/1992,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Kuningan No. 100""}",Casual
+Jane,Siregar,jane.siregar6788@mail.com,62870655286,1/20/1970,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 207""}",VIP
+Rina,Doe,rina.doe2704@sample.id,62833286474,5/20/1999,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 111""}",Student
+Anthony,Simanjuntak,anthony.simanjuntak9528@demo.co,62846364789,6/23/1984,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 178""}",VIP
+William,Smith,william.smith5287@test.com,62856222423,2/25/1991,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 138""}",Professional
+Budi,Wijaya,budi.wijaya2264@sample.id,62843687437,3/27/1985,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Kuningan No. 292""}",Student
+Rizky,Wibowo,rizky.wibowo1622@demo.co,62893376252,3/3/1988,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 175""}",Professional
+Maya,Siregar,maya.siregar5229@test.com,62897406772,7/20/1980,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Rasuna Said No. 64""}",SMB
+Budi,Smith,budi.smith6894@demo.co,62819309972,3/20/2002,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 290""}",Churn Risk
+David,Kurniawan,david.kurniawan399@mail.com,62872464570,7/17/1970,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Asia Afrika No. 252""}",SMB
+Patricia,Wijaya,patricia.wijaya8839@company.co.id,62825698971,1/30/1995,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 151""}",Professional
+John,Wijaya,john.wijaya2647@test.com,62892537669,12/13/1996,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Braga No. 249""}",Enterprise
+Amanda,Siregar,amanda.siregar7503@corp.id,62846449626,10/28/1985,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 291""}",Professional
+Daniel,Smith,daniel.smith2023@demo.co,62874273409,4/22/2000,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 160""}",Prospect
+Arif,Siregar,arif.siregar2371@sample.id,62825819627,1/7/2005,Male,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 19""}",Student
+Rina,Simanjuntak,rina.simanjuntak9861@test.com,62828292043,12/22/1975,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Asia Afrika No. 69""}",Student
+Tika,Pratama,tika.pratama4830@test.com,62868234297,2/9/1967,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 289""}",Churn Risk
+Michael,Hidayat,michael.hidayat2979@sample.id,62866310039,1/25/1980,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 206""}",Churn Risk
+Linda,Lestari,linda.lestari2792@example.com,62888189785,12/13/1968,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 140""}",VIP
+James,Santoso,james.santoso1535@sample.id,62899394993,12/13/1975,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 44""}",Professional
+Matthew,Jones,matthew.jones822@mail.com,62819923863,7/15/1976,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 261""}",VIP
+Robert,Wibowo,robert.wibowo6316@example.com,62850086660,7/26/1965,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 212""}",Professional
+Patricia,Lestari,patricia.lestari6066@corp.id,62882768843,8/26/2002,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 260""}",SMB
+Rizky,Brown,rizky.brown8551@example.com,62843746092,7/15/1995,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 167""}",VIP
+Ashley,Garcia,ashley.garcia2357@test.com,62893672861,6/8/1989,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 289""}",Student
+James,Johnson,james.johnson3402@company.co.id,62859768840,2/5/2006,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 36""}",VIP
+Budi,Lestari,budi.lestari5479@example.com,62885794574,7/10/1983,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 223""}",SMB
+Patricia,Santoso,patricia.santoso7877@demo.co,62847671758,4/5/1990,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Rasuna Said No. 212""}",VIP
+David,Jones,david.jones3474@demo.co,62850567107,12/19/1977,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Rasuna Said No. 270""}",Casual
+Rizky,Simanjuntak,rizky.simanjuntak5111@corp.id,62899958050,1/22/1969,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Kuningan No. 28""}",Casual
+Agus,Hernandez,agus.hernandez9514@company.co.id,62841964851,9/11/1984,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 9""}",Enterprise
+Anthony,Doe,anthony.doe3968@corp.id,62858780687,2/8/1982,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 112""}",Professional
+Matthew,Santoso,matthew.santoso3560@demo.co,62879228826,5/24/1978,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 20""}",Professional
+Putri,Saputra,putri.saputra8327@demo.co,62890547202,6/26/2004,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 46""}",Enterprise
+Jessica,Miller,jessica.miller6102@company.co.id,62859851321,3/19/1976,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 272""}",Professional
+Maya,Santoso,maya.santoso8927@company.co.id,62844815115,5/7/1981,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 30""}",Student
+Rina,Doe,rina.doe8799@corp.id,62822398507,6/13/1999,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 242""}",Enterprise
+Yuda,Pratama,yuda.pratama572@demo.co,62857126805,1/12/1994,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 294""}",VIP
+William,Siregar,william.siregar7616@demo.co,62846408594,4/4/1986,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 139""}",Churn Risk
+Wulan,Martinez,wulan.martinez247@company.co.id,62867700177,12/11/1970,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 42""}",SMB
+Daniel,Wibowo,daniel.wibowo2832@demo.co,62894603611,5/12/2006,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 61""}",Casual
+Patricia,Smith,patricia.smith5501@mail.com,62894932536,5/11/1993,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 270""}",Professional
+Robert,Simanjuntak,robert.simanjuntak4399@demo.co,62884326676,1/7/1966,Male,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 230""}",VIP
+Rina,Kurniawan,rina.kurniawan338@corp.id,62860498304,12/31/1965,Female,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 86""}",SMB
+Dewi,Doe,dewi.doe1041@demo.co,62897594073,9/5/1994,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Tunjungan No. 285""}",Professional
+Dewi,Davis,dewi.davis5530@sample.id,62858088625,7/2/1979,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 240""}",Professional
+Anthony,Davis,anthony.davis7049@mail.com,62832685062,7/5/1987,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 60""}",Churn Risk
+Bayu,Hernandez,bayu.hernandez3326@mail.com,62850549989,3/26/2000,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 118""}",Casual
+Arif,Kurniawan,arif.kurniawan1984@example.com,62847913479,6/11/1986,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Gatot Subroto No. 81""}",Casual
+Rizky,Hernandez,rizky.hernandez6321@mail.com,62878958321,6/6/1998,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 216""}",Student
+Yuda,Wibowo,yuda.wibowo6001@corp.id,62857580964,11/29/1969,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 106""}",Enterprise
+Rizky,Kurniawan,rizky.kurniawan7785@test.com,62844603145,9/1/1996,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 216""}",Casual
+Michael,Brown,michael.brown9145@company.co.id,62849854679,3/25/1999,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 77""}",SMB
+Maya,Lestari,maya.lestari2942@company.co.id,62883928848,3/15/1989,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 249""}",Student
+Siti,Martinez,siti.martinez489@corp.id,62885264453,7/31/1985,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 145""}",Enterprise
+Robert,Doe,robert.doe5636@test.com,62863332848,4/6/2002,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 225""}",VIP
+Andi,Lestari,andi.lestari2289@sample.id,62823709885,2/28/1973,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 272""}",Enterprise
+Matthew,Brown,matthew.brown3316@demo.co,62856236618,8/17/1973,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 89""}",Casual
+Yuda,Brown,yuda.brown2211@company.co.id,62819022575,8/12/1987,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Rasuna Said No. 286""}",Enterprise
+Wulan,Davis,wulan.davis5200@demo.co,62813780123,8/23/1974,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 291""}",Student
+Agus,Garcia,agus.garcia6704@sample.id,62841093167,10/17/1967,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 200""}",VIP
+Siti,Wijaya,siti.wijaya9603@example.com,62854276042,8/15/1965,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 117""}",Casual
+Nisa,Miller,nisa.miller8761@sample.id,62883703480,9/26/1979,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Asia Afrika No. 107""}",Prospect
+Daniel,Hidayat,daniel.hidayat4584@demo.co,62848215626,3/5/1965,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 94""}",SMB
+Ashley,Davis,ashley.davis2215@example.com,62883332010,12/31/1979,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 92""}",Student
+Siti,Garcia,siti.garcia3948@corp.id,62834319525,9/16/2004,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 238""}",Enterprise
+Putri,Wijaya,putri.wijaya9866@company.co.id,62854382043,3/7/2002,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 249""}",Student
+Matthew,Simanjuntak,matthew.simanjuntak3682@company.co.id,62877593166,1/16/1975,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Malioboro No. 284""}",Casual
+Dwi,Doe,dwi.doe2954@example.com,62856771804,3/29/1976,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Pemuda No. 78""}",Enterprise
+Andi,Miller,andi.miller70@demo.co,62851732691,2/11/1980,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 111""}",Prospect
+Nadia,Wibowo,nadia.wibowo5094@example.com,62837807143,10/4/1995,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Dago No. 53""}",Churn Risk
+Siti,Hernandez,siti.hernandez9279@corp.id,62868531879,10/2/1993,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 281""}",Professional
+Patricia,Brown,patricia.brown6383@test.com,62829083669,12/23/1980,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 129""}",VIP
+Nadia,Kurniawan,nadia.kurniawan4721@demo.co,62891989995,5/8/1967,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 251""}",Casual
+Daniel,Miller,daniel.miller7096@mail.com,62874370282,7/16/1996,Male,"{""city"": ""Medan"", ""address"": ""Jl. Pemuda No. 160""}",Prospect
+Jessica,Smith,jessica.smith5287@example.com,62860386615,5/2/1982,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Gatot Subroto No. 68""}",VIP
+Michael,Davis,michael.davis3878@sample.id,62836362409,3/27/1986,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Braga No. 20""}",SMB
+Bayu,Kurniawan,bayu.kurniawan769@mail.com,62843086335,10/17/1999,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 207""}",Professional
+Amanda,Santoso,amanda.santoso1026@test.com,62829812662,12/23/1984,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 39""}",Professional
+Christopher,Johnson,christopher.johnson9579@test.com,62845644051,12/7/1977,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 252""}",Enterprise
+John,Lestari,john.lestari1948@mail.com,62862154304,3/27/1986,Male,"{""city"": ""Medan"", ""address"": ""Jl. Sisingamangaraja No. 290""}",Student
+Yuda,Kurniawan,yuda.kurniawan2519@demo.co,62812874519,5/11/1994,Male,"{""city"": ""Surabaya"", ""address"": ""Jl. Mayjen Sungkono No. 64""}",Professional
+Fajar,Santoso,fajar.santoso2545@demo.co,62824148250,5/2/1998,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Braga No. 285""}",Prospect
+David,Smith,david.smith434@example.com,62822970709,4/28/1990,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 208""}",Casual
+Dewi,Simanjuntak,dewi.simanjuntak6051@demo.co,62865895877,4/29/1992,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Kuningan No. 222""}",Prospect
+Emily,Hidayat,emily.hidayat2212@test.com,62869581978,5/26/1983,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 226""}",Professional
+Tika,Hernandez,tika.hernandez666@example.com,62896228183,2/17/2002,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 113""}",Student
+Wulan,Wibowo,wulan.wibowo7346@sample.id,62855230263,3/1/1993,Female,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 18""}",Professional
+Anthony,Lestari,anthony.lestari9935@example.com,62825755475,10/12/2007,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Magelang No. 53""}",Enterprise
+Dwi,Pratama,dwi.pratama3192@demo.co,62862213423,6/20/1983,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Riau No. 61""}",Churn Risk
+Daniel,Wijaya,daniel.wijaya8747@mail.com,62888129461,2/6/1985,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 23""}",Prospect
+Andi,Pratama,andi.pratama4417@corp.id,62884026264,10/12/1998,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Pasteur No. 204""}",VIP
+Sarah,Johnson,sarah.johnson4775@corp.id,62879229357,7/7/1993,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 36""}",VIP
+Rian,Wijaya,rian.wijaya7704@corp.id,62849814918,4/19/1997,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 260""}",Student
+William,Miller,william.miller7131@demo.co,62884462119,10/30/1995,Male,"{""city"": ""Jakarta"", ""address"": ""Jl. Sudirman No. 107""}",Professional
+Jessica,Lestari,jessica.lestari4928@company.co.id,62884365042,8/28/1973,Female,"{""city"": ""Jakarta"", ""address"": ""Jl. Thamrin No. 245""}",Enterprise
+Emily,Davis,emily.davis523@test.com,62861662567,8/8/2004,Female,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Solo No. 146""}",Prospect
+James,Hernandez,james.hernandez5354@corp.id,62841998286,10/30/1994,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 163""}",VIP
+Sarah,Kurniawan,sarah.kurniawan7351@test.com,62859406630,8/21/2005,Female,"{""city"": ""Surabaya"", ""address"": ""Jl. Darmo No. 80""}",Churn Risk
+Lisa,Johnson,lisa.johnson4240@test.com,62837562381,9/11/1980,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 138""}",Prospect
+Jessica,Johnson,jessica.johnson5809@demo.co,62839834129,11/3/1976,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 253""}",Churn Risk
+Rizky,Brown,rizky.brown9738@mail.com,62860353621,11/7/1984,Male,"{""city"": ""Bandung"", ""address"": ""Jl. Braga No. 17""}",Student
+Rian,Saputra,rian.saputra5498@mail.com,62813027998,11/17/2002,Male,"{""city"": ""Yogyakarta"", ""address"": ""Jl. Sudirman No. 290""}",SMB
+Nadia,Johnson,nadia.johnson5845@test.com,62866994472,5/14/1974,Female,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 100""}",Churn Risk
+David,Siregar,david.siregar9184@example.com,62842503625,9/3/1981,Male,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 240""}",Churn Risk
+Rina,Davis,rina.davis7516@mail.com,62895013343,10/26/1994,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Imam Bonjol No. 242""}",VIP
+John,Davis,john.davis2976@company.co.id,62844228714,10/15/1987,Male,"{""city"": ""Medan"", ""address"": ""Jl. Gatot Subroto No. 165""}",SMB
+Ayu,Saputra,ayu.saputra2831@demo.co,62840301666,12/30/1992,Female,"{""city"": ""Denpasar"", ""address"": ""Jl. Teuku Umar No. 297""}",Professional

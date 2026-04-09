@@ -1,0 +1,117 @@
+Upgrade the current “Application Logs” module to provide reliable ingest, storage, querying, visualization, and lifecycle management of logs in a single Replit project (usable via shell, file system, console, and package manager). Keep the solution stack‑agnostic and runnable with one command.
+
+Objectives
+
+Improve troubleshooting speed, correctness, and safety using evidence‑based logging/observability practices.
+
+Preserve the existing UI layout (KPI cards, Filters, Logs list) while adding robust back‑end APIs, error grouping, and alerting.
+
+Evidence‑Based Methods (must implement)
+
+Structured logging (JSON) with fixed schema; avoid free‑text only.
+
+Standard levels: trace, debug, info, warn, error, fatal; enforce server‑side filtering.
+
+Context enrichment: ISO8601 UTC timestamp, service/module, category, requestId/correlationId, userId (if present), sessionId, env, version/commit, host.
+
+Redaction: scrub PII/secrets via configurable allow/deny rules; log redaction actions.
+
+Cardinality control: cap high‑cardinality fields, hash long/unique values.
+
+Sampling & rate limiting: per‑level sampling (e.g., trace/debug) and burst throttling with metrics.
+
+Retention & rotation: size/time‑based rotation; archive with TTL; restore path.
+
+Error grouping: fingerprint by normalized stack + message template; track counts/first/last seen.
+
+Health & anomalies: rolling error‑rate alerts using z‑score or EWMA; persistence of alert events.
+
+Validation: schema validation on ingest; quarantine malformed entries.
+
+Exportability: NDJSON/CSV streaming export honoring current filters.
+
+Data Model
+
+LogEntry { id, timestamp, level, message, category, service, requestId, userId, sessionId, env, version, metadata<object>, archived<bool> }
+
+ErrorGroup { id, fingerprint, firstSeen, lastSeen, count, sampleLogId }
+
+Settings { retentionDays, redactionRules[], sampleRates{level}, alertThresholds }
+
+Alert { id, createdAt, scope(service|category), metric, threshold, value, status }
+
+APIs
+
+POST /logs (single/batch): validate → redact → sample/rate‑limit → persist.
+
+GET /logs?level=&category=&archived=&q=&from=&to=&limit=&cursor= (cursor pagination).
+
+GET /stats/overview → totals, active, archived, recent errors (last 30d), top categories.
+
+GET /stats/timeseries?metric=(count|errorRate)&interval=…
+
+POST /groups/rebuild → async regrouping.
+
+PATCH /logs/:id → archive/unarchive.
+
+DELETE /logs/:id
+
+POST /export → NDJSON/CSV stream for current filter set.
+
+POST /logs/test?count=N → generate synthetic logs for demo.
+
+UI Enhancements (keep existing look)
+
+KPI cards: Total Logs, Recent Errors (30d), Archived Logs, Active Logs (auto‑refresh after actions).
+
+Filters row: multi‑select Level, Category, Status (Show archived), Date range, Limit.
+
+Logs table: timestamp (UTC), level badges, truncated message (tooltip), category, service, requestId, actions (archive/delete).
+
+Detail drawer: full JSON, copy, quick‑filters by field, “View related by requestId”.
+
+Error Groups tab: list groups with counts, last seen, sparkline; drill‑down to sample logs.
+
+Charts: time‑series of counts and error‑rate; empty/loading states; accessible labels and keyboard nav.
+
+Buttons: Refresh and Create Test Logs wired to APIs.
+
+Testing
+
+Unit tests: schema validation, redaction, sampling, grouping.
+
+API tests: filtering, pagination, edge cases (malformed payloads, large batches).
+
+UI tests: filter combinations, archive toggle, export flow.
+
+Performance
+
+Index by timestamp, level, category, archived.
+
+Cursor‑based pagination only; bounded page sizes.
+
+Batch writes/reads; stream exports to avoid memory spikes.
+
+Security
+
+Auth hook placeholder; input and JSON size limits; audit admin actions; dependency pinning.
+
+Deliverables
+
+Runnable Replit project with server, UI, and tests.
+
+Seed script to generate ≥2,500 mixed logs.
+
+README with run steps and env vars.
+
+Demo path: Create Test Logs → Filter/Limit → Archive/Unarchive → View Groups → Trigger synthetic error surge → Observe alert banner → Export filtered logs.
+
+Acceptance Criteria
+
+KPIs/filters reflect accurate counts in real time.
+
+Structured logs stored, redacted, sampled, and queryable.
+
+Error groups computed and navigable; alerts persist and display.
+
+Export yields valid NDJSON/CSV for any current filters.

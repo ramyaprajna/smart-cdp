@@ -1,0 +1,89 @@
+**Objective**
+Perform a cautious, line-by-line audit of the entire codebase to detect sloppy insertions, orphaned/dead code, merge leftovers, and bug-prone patterns. Produce concrete, minimal diffs to fix issues while preserving existing style and behavior. This is to mitigate risks from AI edits applied to existing files.
+
+**Scope & Environment (Replit/Cline)**
+
+* Use the Replit file system and shell.
+* Do not assume a language; infer it from project files.
+* Exclude vendor/build artifacts: `.git`, `node_modules`, `dist`, `build`, `out`, `target`, `.next`, `.venv`, `__pycache__`, `*.min.*`, binaries.
+* Use project’s configured tools if present (lockfiles, config files).
+
+**Language/Tool Detection (conditional)**
+
+* If `package.json`: run `npm ci || pnpm i || yarn --frozen-lockfile`, prefer project’s `eslint`, `prettier`, test script in `scripts.test`.
+* If `requirements.txt`/`pyproject.toml`: create/activate venv, `pip install -r requirements.txt` or `pip install .`, use `ruff/flake8/black/mypy/pytest` if present.
+* If `go.mod`: use `go vet`, `gofmt -l`, `golangci-lint` if configured.
+* If `Cargo.toml`: use `cargo fmt --check`, `cargo clippy`, `cargo test`.
+* If `pom.xml`/`gradle.*`: use `mvn -q -DskipTests=false test` or `gradlew test` and any linters configured.
+* Otherwise, run language-agnostic checks only.
+
+**Audit Method**
+
+1. **Inventory**: list all source files (respect exclusions).
+2. **Static scan (language-agnostic):** flag lines/patterns for manual review:
+
+   * Merge conflict markers: `<<<<<<<`, `=======`, `>>>>>>>`.
+   * Commented-out large code blocks; duplicate/near-duplicate blocks; unreachable code (`return`/`throw` followed by statements).
+   * Orphaned definitions (functions/classes not referenced), dead files (never imported/required).
+   * Debug leftovers: `console.log`, `print(`, `debugger`, `pdb.set_trace`, `System.out.println`, TODO/FIXME/XXX notes.
+   * Hardcoded secrets/keys, credentials, tokens, or absolute paths.
+   * Inconsistent naming, mixed tabs/spaces, trailing whitespace, inconsistent line endings.
+3. **Language-specific checks (only if applicable):**
+
+   * JS/TS: `eslint --max-warnings=0`, `tsc --noEmit` if TS.
+   * Python: `ruff check`, `mypy` (if `pyproject`/config present).
+   * Go: `go vet`, `golangci-lint run`.
+   * Rust: `cargo clippy -q`.
+   * Java: static analysis if configured.
+4. **Reference analysis:** for each suspect symbol/file, compute usage references (grep-style search across repo). Do not mark as orphan without zero references confirmed (allow for dynamic imports/reflection; lower confidence if uncertain).
+5. **Tests/Run:** if a test command exists, run it before and after any proposed changes (dry-run diff first).
+6. **Carefulness rules for edits:**
+
+   * Prefer **minimal diffs**; avoid large refactors.
+   * Preserve public APIs and file structure.
+   * Match existing formatting and naming.
+   * If behavior changes, include/adjust tests.
+   * Never introduce unrelated edits in the same patch.
+
+**False-Positive Controls**
+
+* Require **evidence** for each “bad line”: cite file path, line number, and reference count.
+* Classify confidence: `high` (clear bug/marker), `medium` (likely smell), `low` (style/nit).
+* When dynamic usage is possible (e.g., reflection, string-based imports), downgrade to `low` unless additional evidence exists (runtime logs, tests).
+
+**Output Format**
+
+1. **Summary.md**: brief counts by category (conflicts, orphans, debug leftovers, unreachable code, secrets, style issues).
+2. **Findings.json** (newline-delimited objects), one per issue:
+
+```json
+{
+  "file": "path/to/file.ext",
+  "line": 123,
+  "code": "exact line or minimal snippet",
+  "issue_type": "orphan|debug_leftover|merge_conflict|unreachable|secret|style|duplication|other",
+  "severity": "critical|major|minor",
+  "confidence": "high|medium|low",
+  "evidence": "why this is problematic; reference counts; linter/test output",
+  "proposed_fix": "short description of fix",
+  "fix_diff": "unified diff patch applying a minimal, safe change"
+}
+```
+
+3. **Patches/**: save each `fix_diff` as an individual `.patch` file.
+
+**Execution Steps (Replit Shell)**
+
+* Generate inventory and initial scans.
+* Run linters/type-checkers/tests conditionally based on detected ecosystem.
+* Build `Findings.json` and `Summary.md`.
+* Prepare diffs but **do not apply** them yet.
+* Present `Summary.md` and top 10 highest-severity findings with their diffs.
+* On approval, apply patches in order (highest severity first), re-run formatters/tests, and update the summary.
+
+**Acceptance Criteria**
+
+* No merge markers, debug leftovers, or obvious dead/orphan code remain.
+* All changes are minimal and isolated; formatters/linters pass.
+* Tests (if present) pass before and after, or failing tests are explained with targeted fixes.
+* Deliverables include `Summary.md`, `Findings.json`, and `.patch` files, with clear rationale per change.

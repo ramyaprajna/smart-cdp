@@ -1,0 +1,46 @@
+🔍 [Duplicate Detection] Service imported successfully
+🔍 [Duplicate Analysis] Starting analysis for dummy-customers-500.csv
+📊 [Duplicate Analysis] Analyzing 500 incoming records
+🚀 [Duplicate Analysis] Using optimized batch processing for 500 customers
+📊 [Duplicate Analysis] Found 5000 email matches, 4000 phone matches
+📈 [Duplicate Analysis] Progress: 10%
+📈 [Duplicate Analysis] Progress: 20%
+📈 [Duplicate Analysis] Progress: 30%
+📈 [Duplicate Analysis] Progress: 40%
+📈 [Duplicate Analysis] Progress: 50%
+📈 [Duplicate Analysis] Progress: 60%
+📈 [Duplicate Analysis] Progress: 70%
+📈 [Duplicate Analysis] Progress: 80%
+📈 [Duplicate Analysis] Progress: 90%
+📈 [Duplicate Analysis] Progress: 100%
+✅ [Duplicate Analysis] Batch processing complete: 500 duplicates found
+📝 [Duplicate Detection Log] duplicate_analysis: {
+  fileName: 'dummy-customers-500.csv',
+  fileHash: 'e584a3f004058e67cb04953e2d31c1ee77fa3a51e1b4cbdd0cbfe7ccb3e1cf17',
+  analysis: {
+    fileDuplicatesCount: 0,
+    customerDuplicatesCount: 500,
+    totalIncomingRecords: 500,
+    uniqueNewRecords: 0,
+    duplicateRecordsCount: 500
+  },
+  recommendations: {
+    action: 'review_required',
+    reason: '500 duplicate customers found',
+    options: [
+      'Skip duplicate customers',
+      'Update existing customers',
+      'Merge customer data',
+      'Create new records with identifiers'
+    ]
+  }
+}
+🔍 [Duplicate Detection] ✅ Analysis completed successfully
+📊 [Duplicate Detection] Analysis complete: { fileDuplicates: 0, customerDuplicates: 500, uniqueRecords: 0 }
+⚠️ [Duplicate Detection] Customer duplicates found: 500 existing records
+🔧 [Duplicate Handling] Checking if duplicate handling should proceed...
+🔧 [Duplicate Handling] Conditions: testMode=false, hasDuplicateOptions=false, hasAnalysis=true, duplicateCount=500
+ℹ️ [Duplicate Detection] No duplicate handling options provided, importing all records
+📊 [Large File Optimization] Processing 500 records in batches of 100
+🚀 Starting batch processing: 500 records in batches of 100
+📦 Processing batch 1/5: records 1-100

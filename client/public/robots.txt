@@ -1,0 +1,35 @@
+# Smart CDP Platform - Web Crawler Prevention
+# This application contains private customer data and should not be indexed
+
+User-agent: *
+Disallow: /
+
+# Explicitly disallow major search engine crawlers
+User-agent: Googlebot
+Disallow: /
+
+User-agent: Bingbot
+Disallow: /
+
+User-agent: Slurp
+Disallow: /
+
+User-agent: DuckDuckBot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+User-agent: facebookexternalhit
+Disallow: /
+
+User-agent: Twitterbot
+Disallow: /
+
+User-agent: LinkedInBot
+Disallow: /
+
+# No sitemap provided as we don't want any indexing

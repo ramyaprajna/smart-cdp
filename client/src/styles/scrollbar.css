@@ -1,0 +1,48 @@
+/* Custom scrollbar styles for Import History */
+.custom-scrollbar {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #9CA3AF #F9FAFB;
+
+  /* Force scrollbars to always be visible */
+  overflow-y: auto !important;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #F9FAFB;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #9CA3AF;
+  border-radius: 6px;
+  border: 2px solid #F9FAFB;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #6B7280;
+}
+
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: #F9FAFB;
+}
+
+/* Ensure scrollbar is always visible even when content doesn't overflow */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  min-height: 20px;
+}
+
+/* Table container with proper scrolling */
+.table-scroll-container {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+}

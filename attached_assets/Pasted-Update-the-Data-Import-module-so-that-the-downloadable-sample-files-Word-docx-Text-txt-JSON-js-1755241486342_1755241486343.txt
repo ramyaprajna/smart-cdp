@@ -1,0 +1,69 @@
+Update the Data Import module so that the downloadable sample files (Word .docx, Text .txt, JSON .json) become fully functional templates that users can fill in with their own data. These templates must align exactly with the Customer Profile schema used by the backend, ensuring seamless validation and import.
+
+Requirements
+
+Template Content
+
+Populate sample files with the correct field names, data types, and example values based on the live Customer Profile schema.
+
+Clearly mark mandatory fields (e.g., with * in headers or [MANDATORY] in remarks).
+
+Include short inline descriptions for each field’s format (e.g., dateOfBirth: YYYY-MM-DD).
+
+Maintain field order as defined in the schema to avoid mapping errors.
+
+Evidence-Based Design
+
+Base field list, data types, and required flags on the actual backend schema (e.g., database model, API contract, or JSON schema file).
+
+Pull this metadata dynamically during template generation where possible to prevent drift from schema changes.
+
+Validate the generated templates by running them through the same backend validation logic used in the live import process.
+
+File Variants
+
+.docx — Structured table with column headers, mandatory markers, and example rows.
+
+.txt — Tab or comma-delimited table matching schema order and constraints.
+
+.json — Array of objects with correct keys, types, and sample values.
+
+Frontend Integration
+
+Update Download Sample File button to serve the correct template based on selected format type.
+
+Add hover tooltip: “Download a pre-formatted template with required fields marked for the Customer Profile schema.”
+
+Testing & Verification
+
+Create automated tests to download each format, then re-import them to verify:
+
+All mandatory fields are present.
+
+Data passes validation without errors when using the provided example values.
+
+Capture logs of validation steps and API responses as proof.
+
+Deliverables
+
+Updated template generator logic.
+
+Test suite confirming template validity.
+
+TEMPLATE_GUIDE.md explaining:
+
+Meaning of mandatory markers.
+
+How to fill optional vs. required fields.
+
+Acceptable value formats for each field.
+
+Acceptance Criteria
+
+Downloaded templates always match the current backend customer profile schema.
+
+Mandatory fields are clearly marked and explained.
+
+A correctly filled template imports without validation errors.
+
+Evidence (logs/screenshots/API responses) proving that sample files align with schema.

@@ -1,0 +1,58 @@
+🔍 Smart CDP Platform - Debugging Plan
+Priority-ordered execution plan based on identified issues
+
+🔴 CRITICAL PRIORITY - Execute First
+1. Memory Leaks in Toast System
+File: client/src/hooks/use-toast.ts
+Issue: Global toastTimeouts map doesn't clean up dismissed toasts
+Impact: Memory accumulation with frequent usage
+Fix: Add cleanup function for manual dismissals, proper timeout management
+2. Progress Polling Memory Leaks
+Files: client/src/hooks/use-data-import.ts, client/src/hooks/use-import-progress.ts
+Issue: Polling intervals don't clean up in all exit scenarios
+Impact: Background processes continue running
+Fix: Implement AbortController, comprehensive useEffect cleanup
+🟡 HIGH PRIORITY - Execute Second
+3. Authentication Race Conditions
+File: client/src/contexts/auth-context.tsx
+Issue: Rapid login/logout cycles cause timing issues
+Impact: Inconsistent auth state, security concerns
+Fix: Add request cancellation, state synchronization, debouncing
+4. Secure Refresh Hook Race Conditions
+File: client/src/hooks/use-secure-refresh-fixed.ts
+Issue: Complex isCurrentOperationRef allows concurrent operations
+Impact: Data inconsistency, API abuse potential
+Fix: Simplify logic, ensure cleanup always executes
+🟠 MEDIUM PRIORITY - Execute Third
+5. Form State Management
+File: client/src/components/segments/edit-segment-modal.tsx
+Issue: Form doesn't reset when segment prop changes
+Impact: Users see stale data
+Fix: Add prop change detection, proper form reset
+6. Component Re-render Issues
+Files: client/src/components/customers/customer-filters.tsx
+Issue: Unstable callbacks causing unnecessary re-renders
+Impact: Performance degradation
+Fix: Stable useCallback dependencies, proper memoization
+🟢 LOW PRIORITY - Execute Last
+7. Vector Search Security
+File: server/storage.ts (lines 485-498)
+Issue: Raw SQL queries need parameter validation
+Impact: Potential SQL injection risk
+Fix: Add parameter sanitization, input validation
+8. Cache Consistency
+File: server/cache.ts
+Issue: Potential cache-database sync issues
+Impact: Data inconsistency under load
+Fix: Add invalidation verification, health checks
+🚀 EXECUTION PHASES
+Phase 1: Memory (Critical) → Fix toast cleanup + polling cleanup
+Phase 2: Concurrency (High) → Resolve auth + refresh race conditions
+Phase 3: State/Performance (Medium) → Fix forms + optimize renders
+Phase 4: Security (Low) → Audit SQL + verify cache consistency
+
+✅ Success Criteria
+Zero memory leaks in 24-hour stress test
+No race conditions with concurrent users
+Stable performance under load
+All security vulnerabilities resolved

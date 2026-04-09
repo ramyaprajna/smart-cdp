@@ -1,0 +1,104 @@
+Implement a cancellable “Generate Missing Embeddings” workflow with a visible Stop Embedding button to minimize token usage.
+
+Goal
+Add UI + backend support to start and cancel an embeddings job. When cancellation is requested, stop dequeuing new work immediately and abort in‑flight requests as soon as safely possible. Persist status so the app can resume later.
+
+Environment
+
+Target: Replit project with a web UI and a server process.
+
+Detect stack automatically:
+
+If Node.js present (package.json), use Express + fetch/axios.
+
+If Python present (requirements.txt/pyproject), use FastAPI + httpx/requests.
+
+Use env vars: OPENAI_API_KEY, EMBEDDING_MODEL (default text-embedding-3-small), EMBED_BATCH_SIZE (default 100).
+
+UI Changes
+
+In the “Vector Embeddings” card, next to the existing Generate Missing Embeddings button, add a secondary Stop Embedding button (disabled when idle).
+
+Show job state pill: Idle | Running | Cancelling | Cancelled | Completed.
+
+While running:
+
+Disable “Generate” and enable “Stop”.
+
+Live progress bar (processed / total) and percentage.
+
+On cancel click:
+
+Immediate optimistic state → Cancelling….
+
+Call POST /embeddings/:jobId/cancel.
+
+When backend confirms, show Cancelled state with final counts.
+
+On page load, poll GET /embeddings/:jobId/status to restore state after refresh.
+
+Backend API
+
+POST /embeddings/start → { jobId }
+
+Creates a job record: id, total, processed, status, createdAt, updatedAt.
+
+POST /embeddings/:jobId/cancel → { ok: true }
+
+Sets status = "cancelling" and cancelRequested = true.
+
+GET /embeddings/:jobId/status → { jobId, status, total, processed, error? }
+
+Job Runner Requirements
+
+Consume items in batches of EMBED_BATCH_SIZE.
+
+Between batches (and between items within a batch), check cancelRequested.
+
+If cancelling:
+
+Stop dequeuing new items immediately.
+
+Best effort to abort current provider requests (use AbortController in Node or timeout/cancel token in Python).
+
+Persist status = "cancelled".
+
+Idempotent: safe to restart the same job; skip already‑vectorized items.
+
+Store progress atomically (DB, JSON file, or in‑memory with periodic snapshot to disk).
+
+Log each provider call count to estimate avoided tokens.
+
+Error handling: exponential backoff for 429/5xx, but still honor cancelRequested.
+
+Provider Call
+
+Use the chosen stack’s official HTTP client to call the embeddings endpoint with model = EMBEDDING_MODEL.
+
+Batch inputs; respect rate limits via small delays if needed.
+
+Tests / Verification
+
+Build a mock embeddings provider to avoid real token spend during tests.
+
+Simulate 1,505 items; start job; after ~200 processed (≈13.3%), call cancel.
+
+Assert:
+
+No additional batches start after cancellation flag set (allowing at most the in‑flight batch to finish).
+
+Final processed ≤ processed_at_cancel + EMBED_BATCH_SIZE.
+
+UI shows Cancelled and buttons return to Generate (enabled) / Stop (disabled).
+
+Deliverables
+
+Updated UI component with both buttons and state handling.
+
+Server routes and job runner with cancellation.
+
+Persistence layer (simple file or lightweight DB) and progress polling.
+
+README section: how to run on Replit, env var setup, and test instructions.
+
+Brief note in console on estimated tokens avoided when cancelling.

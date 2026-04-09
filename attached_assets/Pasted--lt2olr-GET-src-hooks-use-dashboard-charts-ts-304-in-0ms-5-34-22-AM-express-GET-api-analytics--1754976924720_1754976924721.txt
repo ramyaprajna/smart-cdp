@@ -1,0 +1,91 @@
+[lt2olr] GET /src/hooks/use-dashboard-charts.ts 304 in 0ms
+5:34:22 AM [express] GET /api/analytics/embedding-status 200 in 696ms :: {"totalCustomers":3,"custom…
+[4a1ig] GET /api/analytics/embedding-status 200 in 696ms
+5:34:26 AM [express] GET /api/analytics/embedding-status 200 in 693ms :: {"totalCustomers":3,"custom…
+[veq25] GET /api/analytics/embedding-status 200 in 694ms
+🔄 [Background] Starting embedding generation for 3 customers (Job: bulk-embeddings-1754976868112)
+5:34:28 AM [express] POST /api/analytics/trigger-embeddings 200 in 235ms :: {"success":true,"message…
+[ma4mze] POST /api/analytics/trigger-embeddings 200 in 235ms
+🤖 Generating OpenAI embedding for customer: Ahmad Santoso
+✅ Generated customer embedding with 1536 dimensions
+🤖 Generating OpenAI embedding for customer: Sari Indrawati
+🤖 Generating OpenAI embedding for customer: Budi Wijaya
+Failed to generate embedding for customer cae02562-616a-4d32-821b-2a07eee15110: error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+    at file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1345:74
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes/analytics-routes.ts:37:9)
+    at async Promise.allSettled (index 0)
+    at async processEmbeddingsInBackground (/home/runner/workspace/server/routes/analytics-routes.ts:57:26) {
+  length: 148,
+  severity: 'ERROR',
+  code: '42P10',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'plancat.c',
+  line: '915',
+  routine: 'infer_arbiter_indexes'
+}
+5:34:29 AM [express] GET /api/analytics/embedding-status 200 in 1395ms :: {"totalCustomers":3,"custo…
+[SLOW REQUEST] GET /api/analytics/embedding-status - 1395ms - Status: 200
+[gerpyn] GET /api/analytics/embedding-status 200 in 1395ms
+✅ Generated customer embedding with 1536 dimensions
+✅ Generated customer embedding with 1536 dimensions
+Failed to generate embedding for customer 790387f2-acc4-4256-9605-d137b79e2e05: error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+    at file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1345:74
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes/analytics-routes.ts:37:9)
+    at async Promise.allSettled (index 2)
+    at async processEmbeddingsInBackground (/home/runner/workspace/server/routes/analytics-routes.ts:57:26) {
+  length: 148,
+  severity: 'ERROR',
+  code: '42P10',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'plancat.c',
+  line: '915',
+  routine: 'infer_arbiter_indexes'
+}
+Failed to generate embedding for customer e178134d-bc3e-4731-af38-dd1a019b4288: error: there is no unique or exclusion constraint matching the ON CONFLICT specification
+    at file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1345:74
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes/analytics-routes.ts:37:9)
+    at async Promise.allSettled (index 1)
+    at async processEmbeddingsInBackground (/home/runner/workspace/server/routes/analytics-routes.ts:57:26) {
+  length: 148,
+  severity: 'ERROR',
+  code: '42P10',
+  detail: undefined,
+  hint: undefined,
+  position: undefined,
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'plancat.c',
+  line: '915',
+  routine: 'infer_arbiter_indexes'
+}
+🔄 [Background] Processed batch 1 of 1 (0/3 completed)
+✅ [Background] Completed embedding generation: 0/3 successful (Job: bulk-embeddings-1754976868112)

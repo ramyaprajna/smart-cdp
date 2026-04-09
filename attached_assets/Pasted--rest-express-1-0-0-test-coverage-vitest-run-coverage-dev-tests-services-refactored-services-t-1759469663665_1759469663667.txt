@@ -1,0 +1,439 @@
+
+> rest-express@1.0.0 test:coverage
+> vitest run --coverage dev/tests/services/refactored-services.test.ts --coverage.all=false --reporter=verbose
+
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta[39m
+      [2mCoverage enabled with [22m[33mv8[39m
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts
+[22m[39m[2025-10-03T05:24:37.042Z] INFO     [DB_CONNECTION] 🔐 Database connection [CONFIGURED] | Metadata: {"connectionPoolSize":5,"dbConfigured":true}
+
+[90mstderr[2m | dev/tests/services/refactored-services.test.ts
+[22m[39m[2025-10-03T05:24:37.882Z] WARN     [EMAIL_SERVICE] SENDGRID_API_KEY environment variable not set, email functionality disabled
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mDynamic Attribute Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould create a new custom attribute definition
+[22m[39m✅ Created attribute definition: test_attribute (text)
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mDynamic Attribute Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould create a new custom attribute definition
+[22m[39m✅ Dynamic Attribute Creation: PASSED
+
+[90mstderr[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mDynamic Attribute Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould suggest attribute mapping based on column data
+[22m[39mFailed to find similar attributes: TypeError: Cannot read properties of undefined (reading 'rows')
+    at NeonPreparedQuery.execute [90m(file:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4msrc[24m/neon-serverless/session.ts:106:13[90m)[39m
+[90m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+    at DynamicAttributeService.findSimilarAttributes [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/dynamic-attribute-service.ts:474:23[90m)[39m
+    at DynamicAttributeService.suggestAttributeMapping [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/dynamic-attribute-service.ts:376:24[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mdev/tests/services/refactored-services.test.ts:234:26
+    at [90mfile:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:20
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mDynamic Attribute Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould suggest attribute mapping based on column data
+[22m[39m✅ Attribute Mapping Suggestion: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mDynamic Attribute Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould handle invalid attribute names gracefully
+[22m[39m✅ Created attribute definition: invalid_name (text)
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mDynamic Attribute Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould handle invalid attribute names gracefully
+[22m[39m✅ Invalid Name Handling: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mDynamic Attribute Service Tests[2m > [22m[2mPerformance Tests[2m > [22m[2mshould process bulk attributes efficiently
+[22m[39m✅ Created attribute definition: perf_test_0 (text)
+✅ Created attribute definition: perf_test_1 (text)
+✅ Created attribute definition: perf_test_2 (text)
+✅ Created attribute definition: perf_test_3 (text)
+✅ Created attribute definition: perf_test_4 (text)
+✅ Created attribute definition: perf_test_5 (text)
+✅ Created attribute definition: perf_test_6 (text)
+✅ Created attribute definition: perf_test_7 (text)
+✅ Created attribute definition: perf_test_8 (text)
+✅ Created attribute definition: perf_test_9 (text)
+✅ Created attribute definition: perf_test_10 (text)
+✅ Created attribute definition: perf_test_11 (text)
+✅ Created attribute definition: perf_test_12 (text)
+✅ Created attribute definition: perf_test_13 (text)
+✅ Created attribute definition: perf_test_14 (text)
+✅ Created attribute definition: perf_test_15 (text)
+✅ Created attribute definition: perf_test_16 (text)
+✅ Created attribute definition: perf_test_17 (text)
+✅ Created attribute definition: perf_test_18 (text)
+✅ Created attribute definition: perf_test_19 (text)
+✅ Created attribute definition: perf_test_20 (text)
+✅ Created attribute definition: perf_test_21 (text)
+✅ Created attribute definition: perf_test_22 (text)
+✅ Created attribute definition: perf_test_23 (text)
+✅ Created attribute definition: perf_test_24 (text)
+✅ Created attribute definition: perf_test_25 (text)
+✅ Created attribute definition: perf_test_26 (text)
+✅ Created attribute definition: perf_test_27 (text)
+✅ Created attribute definition: perf_test_28 (text)
+✅ Created attribute definition: perf_test_29 (text)
+✅ Created attribute definition: perf_test_30 (text)
+✅ Created attribute definition: perf_test_31 (text)
+✅ Created attribute definition: perf_test_32 (text)
+✅ Created attribute definition: perf_test_33 (text)
+✅ Created attribute definition: perf_test_34 (text)
+✅ Created attribute definition: perf_test_35 (text)
+✅ Created attribute definition: perf_test_36 (text)
+✅ Created attribute definition: perf_test_37 (text)
+✅ Created attribute definition: perf_test_38 (text)
+✅ Created attribute definition: perf_test_39 (text)
+✅ Created attribute definition: perf_test_40 (text)
+✅ Created attribute definition: perf_test_41 (text)
+✅ Created attribute definition: perf_test_42 (text)
+✅ Created attribute definition: perf_test_43 (text)
+✅ Created attribute definition: perf_test_44 (text)
+✅ Created attribute definition: perf_test_45 (text)
+✅ Created attribute definition: perf_test_46 (text)
+✅ Created attribute definition: perf_test_47 (text)
+✅ Created attribute definition: perf_test_48 (text)
+✅ Created attribute definition: perf_test_49 (text)
+✅ Created attribute definition: perf_test_50 (text)
+✅ Created attribute definition: perf_test_51 (text)
+✅ Created attribute definition: perf_test_52 (text)
+✅ Created attribute definition: perf_test_53 (text)
+✅ Created attribute definition: perf_test_54 (text)
+✅ Created attribute definition: perf_test_55 (text)
+✅ Created attribute definition: perf_test_56 (text)
+✅ Created attribute definition: perf_test_57 (text)
+✅ Created attribute definition: perf_test_58 (text)
+✅ Created attribute definition: perf_test_59 (text)
+✅ Created attribute definition: perf_test_60 (text)
+✅ Created attribute definition: perf_test_61 (text)
+✅ Created attribute definition: perf_test_62 (text)
+✅ Created attribute definition: perf_test_63 (text)
+✅ Created attribute definition: perf_test_64 (text)
+✅ Created attribute definition: perf_test_65 (text)
+✅ Created attribute definition: perf_test_66 (text)
+✅ Created attribute definition: perf_test_67 (text)
+✅ Created attribute definition: perf_test_68 (text)
+✅ Created attribute definition: perf_test_69 (text)
+✅ Created attribute definition: perf_test_70 (text)
+✅ Created attribute definition: perf_test_71 (text)
+✅ Created attribute definition: perf_test_72 (text)
+✅ Created attribute definition: perf_test_73 (text)
+✅ Created attribute definition: perf_test_74 (text)
+✅ Created attribute definition: perf_test_75 (text)
+✅ Created attribute definition: perf_test_76 (text)
+✅ Created attribute definition: perf_test_77 (text)
+✅ Created attribute definition: perf_test_78 (text)
+✅ Created attribute definition: perf_test_79 (text)
+✅ Created attribute definition: perf_test_80 (text)
+✅ Created attribute definition: perf_test_81 (text)
+✅ Created attribute definition: perf_test_82 (text)
+✅ Created attribute definition: perf_test_83 (text)
+✅ Created attribute definition: perf_test_84 (text)
+✅ Created attribute definition: perf_test_85 (text)
+✅ Created attribute definition: perf_test_86 (text)
+✅ Created attribute definition: perf_test_87 (text)
+✅ Created attribute definition: perf_test_88 (text)
+✅ Created attribute definition: perf_test_89 (text)
+✅ Created attribute definition: perf_test_90 (text)
+✅ Created attribute definition: perf_test_91 (text)
+✅ Created attribute definition: perf_test_92 (text)
+✅ Created attribute definition: perf_test_93 (text)
+✅ Created attribute definition: perf_test_94 (text)
+✅ Created attribute definition: perf_test_95 (text)
+✅ Created attribute definition: perf_test_96 (text)
+✅ Created attribute definition: perf_test_97 (text)
+✅ Created attribute definition: perf_test_98 (text)
+✅ Created attribute definition: perf_test_99 (text)
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mDynamic Attribute Service Tests[2m > [22m[2mPerformance Tests[2m > [22m[2mshould process bulk attributes efficiently
+[22m[39m✅ Bulk Processing Performance: 8ms for 100 attributes
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mFlexible AI Mapper Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould analyze file columns with AI
+[22m[39m[FlexibleAIMapper] Cached analysis for column: First Name (7ms)
+[FlexibleAIMapper] Cached analysis for column: Last Name (7ms)
+[FlexibleAIMapper] Cached analysis for column: Email Address (6ms)
+[FlexibleAIMapper] Cached analysis for column: Phone (6ms)
+
+[90mstderr[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mFlexible AI Mapper Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould analyze file columns with AI
+[22m[39mFailed to analyze column First Name: TypeError: Cannot read properties of undefined (reading 'choices')
+    at FlexibleAIMapper.analyzeColumnFlexible [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:440:46[90m)[39m
+[90m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:301:24
+    at async Promise.all (index 0)
+    at FlexibleAIMapper.analyzeColumnsInParallel [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:321:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:231:32
+    at Function.execute [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/utils/service-utilities.ts:241:22[90m)[39m
+    at FlexibleAIMapper.analyzeFileColumns [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:212:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mdev/tests/services/refactored-services.test.ts:300:22
+    at [90mfile:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:20
+Failed to analyze column Last Name: TypeError: Cannot read properties of undefined (reading 'choices')
+    at FlexibleAIMapper.analyzeColumnFlexible [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:440:46[90m)[39m
+[90m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:301:24
+    at async Promise.all (index 1)
+    at FlexibleAIMapper.analyzeColumnsInParallel [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:321:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:231:32
+    at Function.execute [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/utils/service-utilities.ts:241:22[90m)[39m
+    at FlexibleAIMapper.analyzeFileColumns [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:212:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mdev/tests/services/refactored-services.test.ts:300:22
+    at [90mfile:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:20
+Failed to analyze column Email Address: TypeError: Cannot read properties of undefined (reading 'choices')
+    at FlexibleAIMapper.analyzeColumnFlexible [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:440:46[90m)[39m
+[90m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:301:24
+    at async Promise.all (index 2)
+    at FlexibleAIMapper.analyzeColumnsInParallel [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:321:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:231:32
+    at Function.execute [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/utils/service-utilities.ts:241:22[90m)[39m
+    at FlexibleAIMapper.analyzeFileColumns [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:212:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mdev/tests/services/refactored-services.test.ts:300:22
+    at [90mfile:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:20
+Failed to analyze column Phone: TypeError: Cannot read properties of undefined (reading 'choices')
+    at FlexibleAIMapper.analyzeColumnFlexible [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:440:46[90m)[39m
+[90m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:301:24
+    at async Promise.all (index 3)
+    at FlexibleAIMapper.analyzeColumnsInParallel [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:321:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:231:32
+    at Function.execute [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/utils/service-utilities.ts:241:22[90m)[39m
+    at FlexibleAIMapper.analyzeFileColumns [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:212:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mdev/tests/services/refactored-services.test.ts:300:22
+    at [90mfile:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:20
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mFlexible AI Mapper Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould analyze file columns with AI
+[22m[39m✅ AI Column Analysis: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mFlexible AI Mapper Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould handle empty data gracefully
+[22m[39m✅ Empty Data Handling: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mFlexible AI Mapper Tests[2m > [22m[2mSecurity Tests[2m > [22m[2mshould sanitize malicious column names
+[22m[39m[FlexibleAIMapper] Cached analysis for column: alert(XSS) (1ms)
+[FlexibleAIMapper] Cached analysis for column: customers (1ms)
+[FlexibleAIMapper] Cached analysis for column: etc/passwd (2ms)
+
+[90mstderr[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mFlexible AI Mapper Tests[2m > [22m[2mSecurity Tests[2m > [22m[2mshould sanitize malicious column names
+[22m[39mFailed to analyze column alert(XSS): TypeError: Cannot read properties of undefined (reading 'choices')
+    at FlexibleAIMapper.analyzeColumnFlexible [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:440:46[90m)[39m
+[90m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:301:24
+    at async Promise.all (index 0)
+    at FlexibleAIMapper.analyzeColumnsInParallel [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:321:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:231:32
+    at Function.execute [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/utils/service-utilities.ts:241:22[90m)[39m
+    at FlexibleAIMapper.analyzeFileColumns [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:212:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mdev/tests/services/refactored-services.test.ts:331:22
+    at [90mfile:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:20
+Failed to analyze column customers: TypeError: Cannot read properties of undefined (reading 'choices')
+    at FlexibleAIMapper.analyzeColumnFlexible [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:440:46[90m)[39m
+[90m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:301:24
+    at async Promise.all (index 1)
+    at FlexibleAIMapper.analyzeColumnsInParallel [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:321:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:231:32
+    at Function.execute [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/utils/service-utilities.ts:241:22[90m)[39m
+    at FlexibleAIMapper.analyzeFileColumns [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:212:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mdev/tests/services/refactored-services.test.ts:331:22
+    at [90mfile:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:20
+Failed to analyze column etc/passwd: TypeError: Cannot read properties of undefined (reading 'choices')
+    at FlexibleAIMapper.analyzeColumnFlexible [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:440:46[90m)[39m
+[90m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:301:24
+    at async Promise.all (index 2)
+    at FlexibleAIMapper.analyzeColumnsInParallel [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:321:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:231:32
+    at Function.execute [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/utils/service-utilities.ts:241:22[90m)[39m
+    at FlexibleAIMapper.analyzeFileColumns [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/flexible-ai-mapper.ts:212:12[90m)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mdev/tests/services/refactored-services.test.ts:331:22
+    at [90mfile:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:20
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mFlexible AI Mapper Tests[2m > [22m[2mSecurity Tests[2m > [22m[2mshould sanitize malicious column names
+[22m[39m✅ Security - XSS/SQL Injection Prevention: PASSED
+
+[90mstderr[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mEnhanced JSON Import Service Tests[2m > [22m[2mError Handling Tests[2m > [22m[2mshould handle file processing errors gracefully
+[22m[39m❌ Failed to create JSON import preview: Error: File read error
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mdev/tests/services/refactored-services.test.ts:399:9
+    at [90mfile:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+    at [90mfile:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+    at [90mfile:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+    at new Promise (<anonymous>)
+    at runWithTimeout [90m(file:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10[90m)[39m
+    at runTest [90m(file:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1574:12[90m)[39m
+[90m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+    at runSuite [90m(file:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8[90m)[39m
+    at runSuite [90m(file:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8[90m)[39m
+    at runSuite [90m(file:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8[90m)[39m
+    at runFiles [90m(file:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1787:3[90m)[39m
+    at startTests [90m(file:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1820:3[90m)[39m
+    at [90mfile:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4mvitest[24m/dist/chunks/runBaseTests.9Ij9_de-.js:117:26
+    at withEnv [90m(file:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4mvitest[24m/dist/chunks/runBaseTests.9Ij9_de-.js:84:3[90m)[39m
+    at run [90m(file:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4mvitest[24m/dist/chunks/runBaseTests.9Ij9_de-.js:109:2[90m)[39m
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mEnhanced JSON Import Service Tests[2m > [22m[2mError Handling Tests[2m > [22m[2mshould handle file processing errors gracefully
+[22m[39m✅ File Processing Error Handling: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mAPI Monitoring Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould track API metrics
+[22m[39m✅ API Metrics Tracking: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mAPI Monitoring Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould generate performance alerts
+[22m[39m✅ Performance Alert Generation: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mAPI Monitoring Service Tests[2m > [22m[2mPerformance Tests[2m > [22m[2mshould handle high request volume
+[22m[39m✅ High Volume Performance: 1ms for 1000 operations
+
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mDynamic Attribute Service Tests[2m > [22mUnit Tests[2m > [22mshould create a new custom attribute definition[32m 3[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mDynamic Attribute Service Tests[2m > [22mUnit Tests[2m > [22mshould suggest attribute mapping based on column data[32m 13[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mDynamic Attribute Service Tests[2m > [22mUnit Tests[2m > [22mshould handle invalid attribute names gracefully[32m 1[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mDynamic Attribute Service Tests[2m > [22mPerformance Tests[2m > [22mshould process bulk attributes efficiently[32m 9[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mFlexible AI Mapper Tests[2m > [22mUnit Tests[2m > [22mshould analyze file columns with AI[32m 13[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mFlexible AI Mapper Tests[2m > [22mUnit Tests[2m > [22mshould detect schema patterns[32m 0[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mFlexible AI Mapper Tests[2m > [22mUnit Tests[2m > [22mshould handle empty data gracefully[32m 1[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mFlexible AI Mapper Tests[2m > [22mSecurity Tests[2m > [22mshould sanitize malicious column names[32m 4[2mms[22m[39m
+ [2m[90m↓[39m[22m dev/tests/services/refactored-services.test.ts[2m > [22mEnhanced JSON Import Service Tests[2m > [22mIntegration Tests[2m > [22mshould create import preview with JSON storage options
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mEnhanced JSON Import Service Tests[2m > [22mError Handling Tests[2m > [22mshould handle file processing errors gracefully[32m 7[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mAPI Monitoring Service Tests[2m > [22mUnit Tests[2m > [22mshould track API metrics[32m 17[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mAPI Monitoring Service Tests[2m > [22mUnit Tests[2m > [22mshould generate performance alerts[32m 3[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mAPI Monitoring Service Tests[2m > [22mPerformance Tests[2m > [22mshould handle high request volume[32m 4[2mms[22m[39m
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mCancellable Embedding Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould start embedding job
+[22m[39m[INFO] [vector] 🔄 Performing startup recovery check for orphaned jobs [90mundefined[39m
+
+[90mstderr[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mCancellable Embedding Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould start embedding job
+[22m[39mFailed to create error group: TypeError: Cannot read properties of undefined (reading 'findOrCreateErrorGroup')
+    at EnhancedApplicationLogger.writeLog [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/application-logger.ts:350:28[90m)[39m
+    at EnhancedApplicationLogger.error [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/application-logger.ts:457:16[90m)[39m
+    at EmbeddingOrchestrator.performStartupRecovery [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/_shared/embedding-orchestrator.ts:189:31[90m)[39m
+[90m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mCancellable Embedding Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould start embedding job
+[22m[39m[ERROR] [vector] Failed to perform startup recovery {
+  errorName: [32m'TypeError'[39m,
+  errorMessage: [32m'__vite_ssr_import_0__.db.select(...).from(...).where is not a function'[39m,
+  error: [32m'__vite_ssr_import_0__.db.select(...).from(...).where is not a function'[39m
+}
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mCancellable Embedding Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould start embedding job
+[22m[39m[INFO] [vector] Started embedding job test-job-id for 10 customers {
+  jobId: [32m'test-job-id'[39m,
+  importId: [32m'5fd19b32-d844-4ed3-90db-5f662605247d'[39m,
+  totalCustomers: [33m10[39m,
+  batchSize: [90mundefined[39m
+}
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mCancellable Embedding Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould start embedding job
+[22m[39m✅ Embedding Job Start: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mCancellable Embedding Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould start embedding job
+[22m[39m[ERROR] [vector] Failed embedding job test-job-id {
+  jobId: [32m'test-job-id'[39m,
+  error: [32m'typeerror:process_embedding_job:__vite_ssr_import_n___db_select______from______leftjoin______where______offset_is_not_a_function'[39m,
+  severity: [32m'medium'[39m
+}
+
+[90mstderr[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mCancellable Embedding Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould start embedding job
+[22m[39mFailed to create error group: TypeError: Cannot read properties of undefined (reading 'findOrCreateErrorGroup')
+    at EnhancedApplicationLogger.writeLog [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/application-logger.ts:350:28[90m)[39m
+    at EnhancedApplicationLogger.error [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/application-logger.ts:457:16[90m)[39m
+    at EmbeddingOrchestrator.handleJobFailure [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/_shared/embedding-orchestrator.ts:856:29[90m)[39m
+[90m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+    at EmbeddingOrchestrator.processEmbeddingJob [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/_shared/embedding-orchestrator.ts:612:7[90m)[39m
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mCancellable Embedding Service Tests[2m > [22m[2mError Handling Tests[2m > [22m[2mshould handle missing customers gracefully
+[22m[39m[ERROR] [vector] Failed to start embedding job {
+  error: [32m'typeerror:start_embedding_job:__vite_ssr_import_n___db_select______from_is_not_a_function'[39m,
+  severity: [32m'medium'[39m
+}
+
+[90mstderr[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mCancellable Embedding Service Tests[2m > [22m[2mError Handling Tests[2m > [22m[2mshould handle missing customers gracefully
+[22m[39mFailed to create error group: TypeError: Cannot read properties of undefined (reading 'findOrCreateErrorGroup')
+    at EnhancedApplicationLogger.writeLog [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/application-logger.ts:350:28[90m)[39m
+    at EnhancedApplicationLogger.error [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/application-logger.ts:457:16[90m)[39m
+    at EmbeddingOrchestrator.startEmbeddingJob [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/_shared/embedding-orchestrator.ts:272:31[90m)[39m
+    at CancellableEmbeddingServiceAdapter.startJob [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/_shared/embedding-adapters.ts:169:36[90m)[39m
+    at CancellableEmbeddingService.startJob [90m(/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mserver/services/cancellable-embedding-service.ts:57:20[90m)[39m
+[90m    at processTicksAndRejections (node:internal/process/task_queues:95:5)[39m
+    at [90m/home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mdev/tests/services/refactored-services.test.ts:522:7
+    at [90mfile:///home/runner/work/Smart-CDP-Platform-beta/Smart-CDP-Platform-beta/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:20
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mCancellable Embedding Service Tests[2m > [22m[2mError Handling Tests[2m > [22m[2mshould handle missing customers gracefully
+[22m[39m✅ Missing Customers Error Handling: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mSchema Registry Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould retrieve schema by name
+[22m[39m✅ Schema Retrieval: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mSchema Registry Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould list all available schemas
+[22m[39m✅ Schema Listing: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mSchema Registry Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould validate field against schema
+[22m[39m✅ Field Validation: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mEmail Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould handle missing SendGrid API key gracefully
+[22m[39m[WARN] [email] SendGrid API key not configured { emailAttempt: [32m'te***@example.com'[39m, reason: [32m'missing_api_key'[39m }
+
+[90mstderr[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mEmail Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould handle missing SendGrid API key gracefully
+[22m[39m⚠️ SendGrid not configured. Activation email not sent.
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mEmail Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould handle missing SendGrid API key gracefully
+[22m[39m✅ Missing API Key Handling: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mEmail Service Tests[2m > [22m[2mUnit Tests[2m > [22m[2mshould generate proper activation URLs
+[22m[39m✅ URL Generation: PASSED
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mIntegration Tests - Service Interactions[2m > [22m[2mshould maintain data consistency across services
+[22m[39m✅ Created attribute definition: test_consistency_1759469078125_gqtkjnxuk (text)
+
+[90mstdout[2m | dev/tests/services/refactored-services.test.ts[2m > [22m[2mIntegration Tests - Service Interactions[2m > [22m[2mshould maintain data consistency across services
+[22m[39m✅ Data Consistency Across Services: PASSED
+
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mCancellable Embedding Service Tests[2m > [22mUnit Tests[2m > [22mshould start embedding job[32m 148[2mms[22m[39m
+ [2m[90m↓[39m[22m dev/tests/services/refactored-services.test.ts[2m > [22mCancellable Embedding Service Tests[2m > [22mUnit Tests[2m > [22mshould cancel embedding job
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mCancellable Embedding Service Tests[2m > [22mError Handling Tests[2m > [22mshould handle missing customers gracefully[32m 3[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mSchema Registry Service Tests[2m > [22mUnit Tests[2m > [22mshould retrieve schema by name[32m 1[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mSchema Registry Service Tests[2m > [22mUnit Tests[2m > [22mshould list all available schemas[32m 1[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mSchema Registry Service Tests[2m > [22mUnit Tests[2m > [22mshould validate field against schema[32m 1[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mEmail Service Tests[2m > [22mUnit Tests[2m > [22mshould handle missing SendGrid API key gracefully[32m 2[2mms[22m[39m
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mEmail Service Tests[2m > [22mUnit Tests[2m > [22mshould generate proper activation URLs[32m 1[2mms[22m[39m
+ [2m[90m↓[39m[22m dev/tests/services/refactored-services.test.ts[2m > [22mIntegration Tests - Service Interactions[2m > [22mshould handle complete import workflow
+ [32m✓[39m dev/tests/services/refactored-services.test.ts[2m > [22mIntegration Tests - Service Interactions[2m > [22mshould maintain data consistency across services[32m 1[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m20 passed[39m[22m[2m | [22m[33m3 skipped[39m[90m (23)[39m
+[2m   Start at [22m 05:24:34
+[2m   Duration [22m 3.49s[2m (transform 795ms, setup 255ms, collect 1.46s, tests 237ms, environment 672ms, prepare 121ms)[22m
+
+[34m % [39m[2mCoverage report from [22m[33mv8[39m
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   44.68 |    62.97 |   34.58 |   44.68 |                   
+ server            |   20.73 |       60 |      25 |   20.73 |                   
+  db.ts            |   81.81 |        0 |     100 |   81.81 | 26-29             
+  ...or-handler.ts |   12.32 |      100 |   11.11 |   12.32 | ...11-248,256,259 
+  ...ew-service.ts |   19.23 |      100 |   66.66 |   19.23 | 61-138            
+ ...ile-processors |    9.79 |      100 |       0 |    9.79 |                   
+  ...-processor.ts |    9.33 |      100 |       0 |    9.33 | ...96-109,115-118 
+  csv-processor.ts |      10 |      100 |       0 |      10 | 19-69             
+  ...-processor.ts |    9.85 |      100 |       0 |    9.85 | ...73,76-83,86-96 
+  ...-processor.ts |   14.28 |      100 |       0 |   14.28 | 12-41             
+  index.ts         |     8.1 |      100 |       0 |     8.1 | 23-41,49-65       
+  ...-processor.ts |    9.21 |      100 |       0 |    9.21 | ...4,38-88,91-101 
+ server/services   |   49.84 |    57.07 |   45.29 |   49.84 |                   
+  ...ng-service.ts |   34.82 |       50 |   36.36 |   34.82 | ...99-301,325-345 
+  ...ion-logger.ts |   47.98 |    48.14 |   32.25 |   47.98 | ...57-666,674-680 
+  ...ng-service.ts |    40.9 |      100 |   22.22 |    40.9 | ...07-109,113-120 
+  ...te-service.ts |   36.63 |    66.66 |   57.89 |   36.63 | ...14-534,538-539 
+  email-service.ts |      35 |     37.5 |   42.85 |      35 | ...39,343,350-369 
+  ...rt-service.ts |   13.34 |       25 |    7.69 |   13.34 | ...32-637,640-658 
+  ...-ai-mapper.ts |   87.96 |    62.24 |   84.21 |   87.96 | ...09-712,716-719 
+  ...ry-service.ts |   74.78 |    53.84 |      75 |   74.78 | ...14-416,423-462 
+ ...rvices/_shared |   38.85 |    66.03 |   35.94 |   38.85 |                   
+  batch.ts         |   25.08 |       60 |   16.66 |   25.08 | ...46-458,461-462 
+  ...g-adapters.ts |   26.66 |      100 |      20 |   26.66 | ...44-354,361-374 
+  ...chestrator.ts |    34.6 |    63.63 |   32.14 |    34.6 | ...23,868-894,911 
+  error.ts         |   45.72 |    58.62 |   66.66 |   45.72 | ...92-393,398-399 
+  progress.ts      |   59.56 |    68.18 |      50 |   59.56 | ...97-398,404-405 
+  rate-limiter.ts  |   40.38 |       60 |      25 |   40.38 | ...29-232,266-267 
+  retry.ts         |   28.84 |      100 |    9.09 |   28.84 | ...38-207,229-232 
+  watchdog.ts      |   52.41 |    68.75 |   58.82 |   52.41 | ...45-362,375-376 
+ server/utils      |   36.98 |    58.33 |    28.3 |   36.98 |                   
+  ...-utilities.ts |   11.88 |      100 |       0 |   11.88 | ...67-272,275-290 
+  ...-estimator.ts |   22.47 |      100 |    12.5 |   22.47 | ...98-122,125-129 
+  secure-logger.ts |   69.26 |    55.17 |   47.61 |   69.26 | ...02-333,339-347 
+  ...-utilities.ts |   33.14 |    66.66 |   30.76 |   33.14 | ...08-213,245-246 
+ server/validation |   16.58 |      100 |   10.52 |   16.58 |                   
+  ...e-detector.ts |   15.58 |      100 |    12.5 |   15.58 | ...00-105,108-113 
+  ...-validator.ts |   17.18 |      100 |    9.09 |   17.18 | ...75-177,181-183 
+ shared            |   98.51 |      100 |   33.33 |   98.51 |                   
+  schema.ts        |   98.51 |      100 |   33.33 |   98.51 | 16-17,19-25       
+-------------------|---------|----------|---------|---------|-------------------

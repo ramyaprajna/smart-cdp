@@ -1,0 +1,100 @@
+2025-08-15 12:12:58.46
+e319bbd1
+User
+5:12:58 AM [express] GET /api/archives 500 in 94ms :: {"success":false,"error":"Failed to retrieve a…
+2025-08-15 12:12:58.46
+e319bbd1
+User
+Archive statistics error: error: relation "archive.metadata" does not exist
+2025-08-15 12:12:58.46
+e319bbd1
+User
+at file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1345:74
+2025-08-15 12:12:58.46
+e319bbd1
+User
+at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-08-15 12:12:58.46
+e319bbd1
+User
+at async NeonPreparedQuery.execute (file:///home/runner/workspace/node_modules/drizzle-orm/neon-serverless/session.js:76:20)
+2025-08-15 12:12:58.46
+e319bbd1
+User
+at async IsolatedArchiveService.getArchiveStatistics (file:///home/runner/workspace/dist/index.js:13885:19)
+2025-08-15 12:12:58.46
+e319bbd1
+User
+at async file:///home/runner/workspace/dist/index.js:14872:24 {
+2025-08-15 12:12:58.46
+e319bbd1
+User
+length: 115,
+2025-08-15 12:12:58.46
+e319bbd1
+User
+severity: 'ERROR',
+2025-08-15 12:12:58.46
+e319bbd1
+User
+code: '42P01',
+2025-08-15 12:12:58.46
+e319bbd1
+User
+detail: undefined,
+2025-08-15 12:12:58.46
+e319bbd1
+User
+hint: undefined,
+2025-08-15 12:12:58.46
+e319bbd1
+User
+position: '96',
+2025-08-15 12:12:58.46
+e319bbd1
+User
+internalPosition: undefined,
+2025-08-15 12:12:58.46
+e319bbd1
+User
+internalQuery: undefined,
+2025-08-15 12:12:58.46
+e319bbd1
+User
+where: undefined,
+2025-08-15 12:12:58.46
+e319bbd1
+User
+schema: undefined,
+2025-08-15 12:12:58.46
+e319bbd1
+User
+table: undefined,
+2025-08-15 12:12:58.46
+e319bbd1
+User
+column: undefined,
+2025-08-15 12:12:58.46
+e319bbd1
+User
+dataType: undefined,
+2025-08-15 12:12:58.46
+e319bbd1
+User
+constraint: undefined,
+2025-08-15 12:12:58.46
+e319bbd1
+User
+file: 'parse_relation.c',
+2025-08-15 12:12:58.46
+e319bbd1
+User
+line: '1428',
+2025-08-15 12:12:58.46
+e319bbd1
+User
+routine: 'parserOpenTable'
+2025-08-15 12:12:58.46
+e319bbd1
+User
+}

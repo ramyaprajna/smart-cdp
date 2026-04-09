@@ -1,0 +1,200 @@
+[CDP Debug] Processing criteria with new mapping service: {"unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[CDP Debug] Processing criteria with new mapping service: {"unmapped_fields.domisili":"[LOCATION_DATA]","unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[CDP Debug] Processing criteria with new mapping service: {"unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[CDP Debug] Processing criteria with new mapping service: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[CDP Debug] Processing criteria with new mapping service: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[CDP Debug] Processing criteria with new mapping service: {"unmapped_fields.usia":"[AGE_DATA]"}
+[CDP Debug] Processing criteria with new mapping service: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Translating criteria: {"unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[Segment Criteria] Translation complete: 1 mappings, 1 conditions, selectivity: 1.000
+[Segment Criteria] Translating criteria: {"unmapped_fields.domisili":"[LOCATION_DATA]","unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[Segment Criteria] Translation complete: 2 mappings, 2 conditions, selectivity: 1.000
+[Segment Criteria] Translating criteria: {"unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[Segment Criteria] Translation complete: 1 mappings, 1 conditions, selectivity: 1.000
+[Segment Criteria] Translating criteria: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Translating criteria: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Translating criteria: {"unmapped_fields.usia":"[AGE_DATA]"}
+[Segment Criteria] Translation complete: 1 mappings, 1 conditions, selectivity: 1.000
+[Segment Criteria] Translating criteria: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Storage] Successfully translated 1 criteria mappings
+[Storage] Successfully translated 2 criteria mappings
+[Storage] Successfully translated 1 criteria mappings
+[Segment Criteria] Mapped field: has_email → has_email {
+  strategy: 'email exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_email → has_email {
+  strategy: 'email exists (not null and not empty)',
+  hasCondition: true
+}
+[Storage] Successfully translated 1 criteria mappings
+[Segment Criteria] Mapped field: has_email → has_email {
+  strategy: 'email exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_phone → has_phone {
+  strategy: 'phoneNumber exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_phone → has_phone {
+  strategy: 'phoneNumber does not exist (null or empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_phone → has_phone {
+  strategy: 'phoneNumber does not exist (null or empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_first_name → has_first_name {
+  strategy: 'firstName exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Translation complete: 3 mappings, 3 conditions, selectivity: 0.245
+[Segment Criteria] Mapped field: has_first_name → has_first_name {
+  strategy: 'firstName does not exist (null or empty)',
+  hasCondition: true
+}
+[Segment Criteria] Translation complete: 3 mappings, 3 conditions, selectivity: 0.245
+[Segment Criteria] Mapped field: has_first_name → has_first_name {
+  strategy: 'firstName exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Translation complete: 3 mappings, 3 conditions, selectivity: 0.245
+[Storage] Successfully translated 3 criteria mappings
+[Storage] Successfully translated 3 criteria mappings
+[Storage] Successfully translated 3 criteria mappings
+[10:51:20 PM] HEAD /api 200 in 1ms
+[10:51:21 PM] HEAD /api 200 in 1ms
+[10:51:21 PM] HEAD /api 200 in 0ms
+[10:51:21 PM] HEAD /api 200 in 1ms
+[10:51:21 PM] HEAD /api 200 in 1ms
+[10:51:22 PM] HEAD /api 200 in 1ms
+[Performance] Slow query detected: criteria_{"unmapped_fields.domisili":{"$regex":"Jakarta"},"unmapped_fields.jeniskelamin":"Laki-Laki"} (1515.4ms)
+[Performance] Optimization suggestions: [
+  'Consider adding database indexes for query fields',
+  'Consider adding more selective filters'
+]
+[Storage] Query executed in 1515.4ms, returned 0 customers, from cache: false
+[Storage] Query performance warnings: [
+  'Slow query: 1515.4ms (threshold: 500ms)',
+  'Query may not use optimal indexes',
+  'Query has low selectivity, consider adding filters'
+]
+[10:51:22 PM] HEAD /api 200 in 1ms
+[Performance] Slow query detected: criteria_{"unmapped_fields.jeniskelamin":"Laki-Laki"} (1657.7ms)
+[Performance] Optimization suggestions: [
+  'Consider adding database indexes for query fields',
+  'Consider adding more selective filters'
+]
+[Storage] Query executed in 1657.7ms, returned 842 customers, from cache: false
+[Storage] Query performance warnings: [
+  'Slow query: 1657.7ms (threshold: 500ms)',
+  'Query may not use optimal indexes',
+  'Query has low selectivity, consider adding filters'
+]
+[CDP Debug] Processing criteria with new mapping service: {"unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[Segment Criteria] Translating criteria: {"unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[Segment Criteria] Translation complete: 1 mappings, 1 conditions, selectivity: 1.000
+[Storage] Successfully translated 1 criteria mappings
+[Storage] Query executed in 0.1ms, returned 842 customers, from cache: true
+📊 Memory change: -57.07 MB heap usage (total: 147.93 MB)
+[10:51:22 PM] HEAD /api 200 in 1ms
+[10:51:22 PM] HEAD /api 200 in 0ms
+[Performance] Slow query detected: criteria_{"unmapped_fields.usia":"Dibawah 25 Tahun"} (2160.9ms)
+[Performance] Optimization suggestions: [
+  'Consider adding database indexes for query fields',
+  'Consider adding more selective filters'
+]
+[Storage] Query executed in 2160.9ms, returned 784 customers, from cache: false
+[Storage] Query performance warnings: [
+  'Slow query: 2160.9ms (threshold: 500ms)',
+  'Query may not use optimal indexes',
+  'Query has low selectivity, consider adding filters'
+]
+[CDP Debug] Processing criteria with new mapping service: {"unmapped_fields.usia":"[AGE_DATA]"}
+[Segment Criteria] Translating criteria: {"unmapped_fields.usia":"[AGE_DATA]"}
+[Segment Criteria] Translation complete: 1 mappings, 1 conditions, selectivity: 1.000
+[Storage] Successfully translated 1 criteria mappings
+[Storage] Query executed in 0.0ms, returned 784 customers, from cache: true
+[Performance] Slow query detected: criteria_{"has_email":true,"has_phone":false,"has_first_name":false} (2250.1ms)
+[Storage] Query executed in 2250.1ms, returned 1000 customers, from cache: false
+[Storage] Query performance warnings: [ 'Slow query: 2250.1ms (threshold: 500ms)' ]
+[CDP Debug] Processing criteria with new mapping service: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Translating criteria: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Mapped field: has_email → has_email {
+  strategy: 'email exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_phone → has_phone {
+  strategy: 'phoneNumber does not exist (null or empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_first_name → has_first_name {
+  strategy: 'firstName does not exist (null or empty)',
+  hasCondition: true
+}
+[Segment Criteria] Translation complete: 3 mappings, 3 conditions, selectivity: 0.245
+[Storage] Successfully translated 3 criteria mappings
+[Storage] Query executed in 0.0ms, returned 1000 customers, from cache: true
+[Performance] Slow query detected: criteria_{"unmapped_fields.jeniskelamin":"Perempuan"} (2361.3ms)
+[Performance] Optimization suggestions: [
+  'Consider adding database indexes for query fields',
+  'Consider adding more selective filters'
+]
+[Storage] Query executed in 2361.3ms, returned 1000 customers, from cache: false
+[Storage] Query performance warnings: [
+  'Slow query: 2361.3ms (threshold: 500ms)',
+  'Query may not use optimal indexes',
+  'Query has low selectivity, consider adding filters'
+]
+[CDP Debug] Processing criteria with new mapping service: {"unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[Segment Criteria] Translating criteria: {"unmapped_fields.jeniskelamin":"[GENDER_DATA]"}
+[Segment Criteria] Translation complete: 1 mappings, 1 conditions, selectivity: 1.000
+[Storage] Successfully translated 1 criteria mappings
+[Storage] Query executed in 0.0ms, returned 1000 customers, from cache: true
+[Performance] Slow query detected: criteria_{"has_email":true,"has_phone":false,"has_first_name":true} (2424.2ms)
+[Storage] Query executed in 2424.2ms, returned 1000 customers, from cache: false
+[Storage] Query performance warnings: [ 'Slow query: 2424.2ms (threshold: 500ms)' ]
+[CDP Debug] Processing criteria with new mapping service: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Translating criteria: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Mapped field: has_email → has_email {
+  strategy: 'email exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_phone → has_phone {
+  strategy: 'phoneNumber does not exist (null or empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_first_name → has_first_name {
+  strategy: 'firstName exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Translation complete: 3 mappings, 3 conditions, selectivity: 0.245
+[Storage] Successfully translated 3 criteria mappings
+[Storage] Query executed in 0.0ms, returned 1000 customers, from cache: true
+[10:51:23 PM] HEAD /api 200 in 1ms
+[10:51:23 PM] HEAD /api 200 in 0ms
+[10:51:23 PM] HEAD /api 200 in 1ms
+[10:51:24 PM] HEAD /api 200 in 1ms
+[Performance] Slow query detected: criteria_{"has_email":true,"has_phone":true,"has_first_name":true} (3119.0ms)
+[Storage] Query executed in 3119.0ms, returned 1000 customers, from cache: false
+[Storage] Query performance warnings: [ 'Slow query: 3119.0ms (threshold: 500ms)' ]
+[CDP Debug] Processing criteria with new mapping service: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Translating criteria: {"has_email":"[INVALID_DATA]","has_phone":"[INVALID_FORMAT]","has_first_name":"[INVALID_DATA]"}
+[Segment Criteria] Mapped field: has_email → has_email {
+  strategy: 'email exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_phone → has_phone {
+  strategy: 'phoneNumber exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Mapped field: has_first_name → has_first_name {
+  strategy: 'firstName exists (not null and not empty)',
+  hasCondition: true
+}
+[Segment Criteria] Translation complete: 3 mappings, 3 conditions, selectivity: 0.245
+[Storage] Successfully translated 3 criteria mappings
+[Storage] Query executed in 0.0ms, returned 1000 customers, from cache: true
+[10:51:24 PM] GET /api/segments 200 in 4201ms :: [{"id":"01d91319-137a-41d1-9157-500586fb3ff1…
+[SLOW REQUEST] GET /api/segments - 4201ms - Status: 200
+[naolbn] GET /api/segments 200 in 4201ms

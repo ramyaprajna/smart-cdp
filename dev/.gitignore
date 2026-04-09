@@ -1,0 +1,26 @@
+# Development-only directory
+# This directory contains files only used during development
+# and is excluded from production builds
+
+# Temporary test data
+temp/*
+!temp/.gitkeep
+
+# Test coverage reports
+coverage/
+*.coverage
+
+# Development logs
+*.log
+debug.log
+
+# Local test databases
+*.test.db
+*.dev.db
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Development scripts output
+scripts/output/

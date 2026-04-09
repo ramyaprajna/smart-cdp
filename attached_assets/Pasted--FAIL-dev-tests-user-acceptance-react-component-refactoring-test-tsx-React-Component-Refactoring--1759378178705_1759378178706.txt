@@ -1,0 +1,78 @@
+ FAIL  dev/tests/user-acceptance/react-component-refactoring.test.tsx > React Component Refactoring - User Acceptance Tests > ImportFilters Component with useCallback Patterns > should render filter controls correctly
+ReferenceError: ImportFiltersComponent is not defined
+ ❯ dev/tests/user-acceptance/react-component-refactoring.test.tsx:218:10
+    216|     it('should render filter controls correctly', () => {
+    217|       render(
+    218|         <ImportFiltersComponent
+       |          ^
+    219|           filters={mockFilters}
+    220|           {...mockCallbacks}
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[97/191]⎯
+ FAIL  dev/tests/user-acceptance/react-component-refactoring.test.tsx > React Component Refactoring - User Acceptance Tests > ImportFilters Component with useCallback Patterns > should handle search input with optimized callbacks
+ReferenceError: ImportFiltersComponent is not defined
+ ❯ dev/tests/user-acceptance/react-component-refactoring.test.tsx:239:10
+    237|     it('should handle search input with optimized callbacks', async ()…
+    238|       render(
+    239|         <ImportFiltersComponent
+       |          ^
+    240|           filters={mockFilters}
+    241|           {...mockCallbacks}
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[98/191]⎯
+ FAIL  dev/tests/user-acceptance/react-component-refactoring.test.tsx > React Component Refactoring - User Acceptance Tests > ImportFilters Component with useCallback Patterns > should handle filter changes correctly
+ReferenceError: ImportFiltersComponent is not defined
+ ❯ dev/tests/user-acceptance/react-component-refactoring.test.tsx:258:10
+    256|     it('should handle filter changes correctly', async () => {
+    257|       render(
+    258|         <ImportFiltersComponent
+       |          ^
+    259|           filters={mockFilters}
+    260|           {...mockCallbacks}
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[99/191]⎯
+ FAIL  dev/tests/user-acceptance/react-component-refactoring.test.tsx > React Component Refactoring - User Acceptance Tests > ImportFilters Component with useCallback Patterns > should show loading state correctly
+ReferenceError: ImportFiltersComponent is not defined
+ ❯ dev/tests/user-acceptance/react-component-refactoring.test.tsx:280:10
+    278|     it('should show loading state correctly', () => {
+    279|       render(
+    280|         <ImportFiltersComponent
+       |          ^
+    281|           filters={mockFilters}
+    282|           {...mockCallbacks}
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[100/191]⎯
+ FAIL  dev/tests/user-acceptance/react-component-refactoring.test.tsx > React Component Refactoring - User Acceptance Tests > CustomerFilters Component with memo and useCallback > should render filter dialog trigger correctly
+ReferenceError: CustomerFiltersComponent is not defined
+ ❯ dev/tests/user-acceptance/react-component-refactoring.test.tsx:303:12
+       |                    ^
+    110|         .rejects.toThrow('Failed to analyze field mappings')
+    111|     })
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[132/191]⎯
+ FAIL  development/testing/tests/services/mapping-review-service.test.ts > MappingReviewService > analyzeMapping > should handle invalid AI response format
+ReferenceError: service is not defined
+ ❯ development/testing/tests/services/mapping-review-service.test.ts:126:20
+    124|       const existingMapping = { name: 'firstName' }
+    125| 
+    126|       await expect(service.analyzeMapping(headers, sampleData, existin…
+       |                    ^
+    127|         .rejects.toThrow('Invalid AI response format')
+    128|     })
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[133/191]⎯
+ FAIL  development/testing/tests/services/mapping-review-service.test.ts > MappingReviewService > processApproval > should process valid approved mappings
+ReferenceError: service is not defined
+ ❯ development/testing/tests/services/mapping-review-service.test.ts:139:22
+    137|       }
+    138| 
+    139|       const result = await service.processApproval(approvedMappings)
+       |                      ^
+    140| 
+    141|       expect(result.success).toBe(true)
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[134/191]⎯
+ FAIL  development/testing/tests/services/mapping-review-service.test.ts > MappingReviewService > processApproval > should validate mapping field names
+ReferenceError: service is not defined
+ ❯ development/testing/tests/services/mapping-review-service.test.ts:151:20
+    149|       }
+    150| 
+    151|       await expect(service.processApproval(invalidMappings))
+       |                    ^
+    152|         .rejects.toThrow('Invalid field mapping')
+    153|     })
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[135/191]⎯
+ FAIL  development/testing/tests/services/mapping-review-service.test.ts > MappingReviewService > processApproval > should sanitize field values to prevent XSS

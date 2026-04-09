@@ -1,0 +1,56 @@
+2025-10-07 13:40:24.08
+at process.processTimers (node:internal/timers:519:7),
+2025-10-07 13:40:24.08
+[Symbol(kMessage)]: 'WebSocket was closed before the connection was established'
+2025-10-07 13:40:24.08
+}
+2025-10-07 13:40:24.08
+}
+2025-10-07 13:40:24.08
+Error: Archive schema initialization failed: Connection terminated due to connection timeout
+2025-10-07 13:40:24.08
+at initializeArchiveSchema (file:///home/runner/workspace/dist/index.js:25570:11)
+2025-10-07 13:40:24.08
+at processTicksAndRejections (node:internal/process/task_queues:95:5)
+2025-10-07 13:40:24.08
+at runNextTicks (node:internal/process/task_queues:64:3)
+2025-10-07 13:40:24.08
+at listOnTimeout (node:internal/timers:545:9)
+2025-10-07 13:40:24.08
+at process.processTimers (node:internal/timers:519:7)
+2025-10-07 13:59:46.96
+[2025-10-07T06:59:46.866Z] WARN [CACHE_WARMING] Slow cache warming detected | Metadata: {"duration":6991,"threshold":3000}
+2025-10-07 15:09:28.66
+[2025-10-07T08:09:28.667Z] WARN [CACHE_WARMING] Slow cache warming detected | Metadata: {"duration":9328,"threshold":3000}
+2025-10-07 16:39:13.57
+[2025-10-07T09:39:13.371Z] WARN [CACHE_WARMING] Slow cache warming detected | Metadata: {"duration":7702,"threshold":3000}
+2025-10-07 17:40:55.68
+[2025-10-07T10:40:55.687Z] WARN [CACHE_WARMING] Slow cache warming detected | Metadata: {"duration":9087,"threshold":3000}
+2025-10-07 18:44:50.87
+[2025-10-07T11:44:50.877Z] WARN [CACHE_WARMING] Slow cache warming detected | Metadata: {"duration":8117,"threshold":3000}
+2025-10-07 20:11:48.37
+[2025-10-07T13:11:47.880Z] WARN [CACHE_WARMING] Slow cache warming detected | Metadata: {"duration":8631,"threshold":3000}
+2025-10-07 21:11:58.42
+[2025-10-07T14:11:58.426Z] WARN [CACHE_WARMING] Slow cache warming detected | Metadata: {"duration":8294,"threshold":3000}
+2025-10-07 21:19:46.55
+[2025-10-07T14:19:46.551Z] WARN [CACHE_WARMING] Slow cache warming detected | Metadata: {"duration":3901,"threshold":3000}
+2025-10-07 22:15:34.91
+[2025-10-07T15:15:34.913Z] WARN [CACHE_WARMING] Slow cache warming detected | Metadata: {"duration":7990,"threshold":3000}
+2025-10-07 23:19:10.86
+[2025-10-07T16:19:10.860Z] WARN [CACHE_WARMING] Slow cache warming detected | Metadata: {"duration":8703,"threshold":3000}
+2025-10-08 00:19:21.00
+[2025-10-07T17:19:21.004Z] ERROR [CACHE_WARMING] Cache warming failed | Metadata: {"error":"Cache warming timeout"}
+2025-10-08 08:28:41.41
+[2025-10-08T01:28:41.414Z] WARN [CACHE_WARMING] Slow cache warming detected | Metadata: {"duration":6856,"threshold":3000}
+2025-10-08 08:28:42.31
+[2025-10-08T01:28:42.314Z] WARN [PERFORMANCE] SLOW REQUEST: GET /api/analytics/stats - 5470ms - Status: 200 | Metadata: {"method":"GET","url":"/api/analytics/stats","duration":5470,"status":200,"requestId":"6mkh0o"}
+2025-10-08 08:28:42.63
+[2025-10-08T01:28:42.639Z] WARN [PERFORMANCE] SLOW REQUEST: GET /api/analytics/embedding-status - 5793ms - Status: 200 | Metadata: {"method":"GET","url":"/api/analytics/embedding-status","duration":5793,"status":200,"requestId":"mzsuhi"}
+2025-10-08 09:55:32.14
+[2025-10-08T02:55:32.140Z] WARN [PERFORMANCE] SLOW REQUEST: POST /api/embeddings/batch/start - 2425ms - Status: 200 | Metadata: {"method":"POST","url":"/api/embeddings/batch/start","duration":2425,"status":200,"requestId":"0ot2z4"}
+2025-10-08 09:56:30.16
+[2025-10-08T02:56:30.162Z] WARN [PERFORMANCE] SLOW REQUEST: GET /api/customers?offset=0&limit=50 - 1895ms - Status: 200 | Metadata: {"method":"GET","url":"/api/customers?offset=0&limit=50","duration":1895,"status":200,"requestId":"n3hehq"}
+2025-10-08 09:56:39.13
+(node:35) MaxListenersExceededWarning: Possible EventTarget memory leak detected. 11 abort listeners added to [AbortSignal]. MaxListeners is 10. Use events.setMaxListeners() to increase limit
+2025-10-08 09:56:39.13
+(Use `node --trace-warnings ...` to show where the warning was created)

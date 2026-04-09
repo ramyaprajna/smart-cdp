@@ -1,0 +1,128 @@
+Goal
+Identify the single, verifiable root cause of the recurring error before proposing any fixes.
+
+Hard Constraints
+
+Make no code changes (no edits, refactors, formatting, or migrations).
+
+Make no dependency/environment changes (no installs/upgrades/downgrades, no .env modifications).
+
+Make no commits/pushes. Read-only analysis only.
+
+Capture and cite only factual evidence from the current codebase and runtime; avoid speculation.
+
+Workspace & Safety
+
+Platform: Replit workspace with Cline available.
+
+Use Replit Shell, Console, and Webview only.
+
+Keep all artifacts under analysis/ (new folder) or /tmp without touching application code.
+
+Never print secret values; log only secret keys/presence.
+
+Deliverables (all under analysis/)
+
+investigation_log.md — timestamped command log and outputs (redact secrets).
+
+system_snapshot.md — OS/arch/lang versions, env keys present, resource stats.
+
+runtime_evidence/ — full error traces, screenshots (if any), HTTP transcripts.
+
+call_graph_notes.md — execution flow and failure origin mapping.
+
+dependency_matrix.md — declared vs resolved versions with any mismatches.
+
+root_cause_report.md (final) — exact root cause, minimal repro steps, scope/impact, evidence links, risk factors, and fix options (no code).
+
+validation_plan.md — objective tests/observations to confirm a future fix.
+
+Procedure
+
+Reproduce Deterministically
+
+Extract run command from .replit and/or replit.nix or project scripts.
+
+Run the app/tests until the error appears; capture exact error, stack trace, exit codes, timestamps.
+
+If HTTP-facing, record failing endpoint(s), request/response, and status codes using curl or the Replit Webview network logs.
+
+Log & Trace Collection
+
+Save Console output and any framework/service logs to runtime_evidence/.
+
+If browser JS is involved, capture Webview console/network traces (export if possible).
+
+Tag each artifact with a short description and timestamp.
+
+Execution Flow Mapping
+
+Identify the entrypoint and trace the path to failure.
+
+Use code search to locate where exceptions originate (e.g., rg, grep -R, IDE search).
+
+Produce a concise call-flow outline in call_graph_notes.md (functions/modules → failure site).
+
+Dependency & Version Audit (No Changes)
+
+Extract declared versions from lockfiles/manifests (e.g., package-lock.json, pnpm-lock.yaml, poetry.lock, requirements.txt, Pipfile.lock, Cargo.lock, Gemfile.lock, go.mod/sum).
+
+List resolved runtime versions without installing (e.g., pip freeze, npm ls --depth=0 if already installed).
+
+Note mismatches, optional/peer dependencies, postinstall scripts, and native bindings in dependency_matrix.md.
+
+Environment & Config Parity
+
+Record OS/arch, language/runtime versions, CPU/memory/disk (uname -a, env | sort, df -h, memory stats where available).
+
+Enumerate env keys used by the app; verify presence and expected format (do not print values).
+
+Capture relevant config files (paths only), feature flags, ports, time zone assumptions.
+
+Data/State & External Services
+
+Identify DB type and schema/migration state (list pending/applied migrations without applying them).
+
+Verify connection strings point to intended instances.
+
+For external APIs: list endpoints, timeouts, auth mode, and capture any failing calls (status, headers, latency).
+
+Failure Pattern & Timing
+
+Determine if the error is input-dependent, load-dependent, time-dependent, or race-related.
+
+Re-run with controlled variations (same commit, same env) to confirm determinism.
+
+Change History Triage (Read-Only)
+
+Summarize recent commit history (git log --stat --max-count 50) focusing on files in the failure path.
+
+If necessary, use git bisect without committing to identify the first bad commit; log each step and result.
+
+Resource & Concurrency Checks
+
+Observe steady-state CPU/memory while reproducing.
+
+Look for file descriptor limits, network socket exhaustion, rate limits, and deadlocks (symptoms only).
+
+Synthesis (Facts Only)
+
+Cross-reference logs, call flow, dependency matrix, and env snapshot.
+
+State the exact failing condition (component, function, version/build, input, and preconditions).
+
+Quantify scope/impact (which features/users, data at risk, blast radius).
+
+Propose Solutions (After Understanding)
+
+In root_cause_report.md, list fix options with pros/cons, risk, and required changes (files/modules/versions affected).
+
+Do not implement or modify code; provide a clear validation_plan.md with objective checks (tests, commands, expected outputs) to confirm the fix.
+
+Acceptance Criteria
+
+A single, testable root cause identified with reproducible steps.
+
+All claims backed by artifacts in analysis/ (no speculative language).
+
+Clear, low-risk fix options and a validation plan ready for execution.

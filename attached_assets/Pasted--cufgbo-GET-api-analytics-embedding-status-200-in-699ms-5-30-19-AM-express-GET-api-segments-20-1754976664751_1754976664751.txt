@@ -1,0 +1,49 @@
+[cufgbo] GET /api/analytics/embedding-status 200 in 699ms
+5:30:19 AM [express] GET /api/segments 200 in 248ms :: []
+[xk0a] GET /api/segments 200 in 248ms
+[AI Segment API] Generating segment suggestions...
+[AI Segment API] User info: {
+  id: 'e8b61dcf-efad-4790-8ef0-6c391c37ce0b',
+  email: 'jeffry@think.web.id',
+  firstName: 'Jeff',
+  lastName: 'Rhtm',
+  role: 'admin',
+  isActive: true
+}
+[AI Segment API] Request headers: Authorization header present
+[AI Segment API] About to call aiSegmentService.generateSegmentSuggestions...
+[AI Segment Service] Starting segment analysis...
+[AI Segment Service] Analyzing customer base...
+[AI Segment Service] Error generating suggestions: error: column "unmapped_fields" does not exist
+    at file:///home/runner/workspace/node_modules/@neondatabase/serverless/index.mjs:1345:74
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async NeonPreparedQuery.execute (/home/runner/workspace/node_modules/src/neon-serverless/session.ts:102:18)
+    at async Promise.all (index 0)
+    at async DatabaseStorage.getCustomers (/home/runner/workspace/server/storage.ts:304:44)
+    at async AiSegmentService.analyzeCustomerBase (/home/runner/workspace/server/services/ai-segment-service.ts:145:36)
+    at async AiSegmentService.generateSegmentSuggestions (/home/runner/workspace/server/services/ai-segment-service.ts:78:28)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:685:27) {
+  length: 116,
+  severity: 'ERROR',
+  code: '42703',
+  detail: undefined,
+  hint: undefined,
+  position: '260',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_relation.c',
+  line: '3722',
+  routine: 'errorMissingColumn'
+}
+[AI Segment API] Error generating suggestions: Error: Failed to generate AI segment suggestions
+    at AiSegmentService.generateSegmentSuggestions (/home/runner/workspace/server/services/ai-segment-service.ts:126:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async <anonymous> (/home/runner/workspace/server/routes.ts:685:27)
+5:30:24 AM [express] POST /api/ai/segment-suggestions 500 in 2366ms :: {"error":"Failed to generate …
+[SLOW REQUEST] POST /api/ai/segment-suggestions - 2367ms - Status: 500
