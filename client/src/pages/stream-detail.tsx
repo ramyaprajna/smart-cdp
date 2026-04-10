@@ -445,7 +445,7 @@ function StreamInfoCard({ stream }: { stream: Stream }) {
 // ── StreamDetail Page ──────────────────────────────────────────────────────────
 
 export default memo(function StreamDetail() {
-  const [routeParams] = useRoute("/streams/:id");
+  const [, routeParams] = useRoute("/streams/:id");
   const streamId = routeParams?.id ?? "";
 
   const { data: stream, isLoading: streamLoading } = useQuery<Stream>({

@@ -31,6 +31,8 @@ export class IdentityClusterService {
         recordCount: 0,
         streamCount: 0,
         avgConfidence: 0,
+        firstSeenAt: new Date(),
+        lastSeenAt: new Date(),
         createdAt: new Date(),
         updatedAt: new Date(),
       })
@@ -142,13 +144,12 @@ export class IdentityClusterService {
         idempotencyKey: records.idempotencyKey,
         identityClusterId: records.identityClusterId,
         createdAt: records.createdAt,
-        updatedAt: records.updatedAt,
         streamName: dataStreams.name,
       })
       .from(records)
       .innerJoin(identityLinks, eq(identityLinks.recordId, records.id))
       .innerJoin(dataStreams, eq(dataStreams.id, records.streamId))
-      .where(eq(identityLinks.clusterId, clusterId))
+      .where(eq(identityLinks.identityClusterId, clusterId))
       .orderBy(desc(records.createdAt));
 
     return { cluster, records: linkedRecords };
@@ -176,33 +177,31 @@ export class IdentityClusterService {
         .insert(identityLinks)
         .values({
           recordId: params.recordId,
-          clusterId: params.clusterId,
+          identityClusterId: params.clusterId,
           linkType: params.linkType,
-          confidence: params.confidence,
+          linkConfidence: params.confidence,
           matchedIdentifierType: params.matchedIdentifierType ?? null,
           matchedIdentifierValue: params.matchedIdentifierValue ?? null,
-          linkedBy: params.linkedBy ?? null,
-          notes: params.notes ?? null,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          linkedBy: params.linkedBy ?? 'system',
+          linkNotes: params.notes ?? null,
         })
         .onConflictDoUpdate({
-          target: [identityLinks.recordId, identityLinks.clusterId],
+          target: [identityLinks.recordId],
           set: {
+            identityClusterId: params.clusterId,
             linkType: params.linkType,
-            confidence: params.confidence,
+            linkConfidence: params.confidence,
             matchedIdentifierType: params.matchedIdentifierType ?? null,
             matchedIdentifierValue: params.matchedIdentifierValue ?? null,
-            linkedBy: params.linkedBy ?? null,
-            notes: params.notes ?? null,
-            updatedAt: new Date(),
+            linkedBy: params.linkedBy ?? 'system',
+            linkNotes: params.notes ?? null,
           },
         });
 
       // Set the denormalized FK on the record itself
       await tx
         .update(records)
-        .set({ identityClusterId: params.clusterId, updatedAt: new Date() })
+        .set({ identityClusterId: params.clusterId })
         .where(eq(records.id, params.recordId));
     });
 
@@ -216,7 +215,7 @@ export class IdentityClusterService {
   async unlinkRecord(recordId: string): Promise<void> {
     // Find the current cluster for stats refresh later
     const [existingLink] = await db
-      .select({ clusterId: identityLinks.clusterId })
+      .select({ identityClusterId: identityLinks.identityClusterId })
       .from(identityLinks)
       .where(eq(identityLinks.recordId, recordId))
       .limit(1);
@@ -228,12 +227,12 @@ export class IdentityClusterService {
 
       await tx
         .update(records)
-        .set({ identityClusterId: null, updatedAt: new Date() })
+        .set({ identityClusterId: sql`null` })
         .where(eq(records.id, recordId));
     });
 
     if (existingLink) {
-      await this.updateClusterStats(existingLink.clusterId);
+      await this.updateClusterStats(existingLink.identityClusterId);
     }
   }
 
@@ -274,13 +273,13 @@ export class IdentityClusterService {
       // 1. Move all identity links from B → A (update or skip duplicates)
       await tx
         .update(identityLinks)
-        .set({ clusterId: clusterAId, updatedAt: new Date() })
-        .where(eq(identityLinks.clusterId, clusterBId));
+        .set({ identityClusterId: clusterAId })
+        .where(eq(identityLinks.identityClusterId, clusterBId));
 
       // 2. Update denormalized FK on records
       await tx
         .update(records)
-        .set({ identityClusterId: clusterAId, updatedAt: new Date() })
+        .set({ identityClusterId: clusterAId })
         .where(eq(records.identityClusterId, clusterBId));
 
       // 3. Merge identifiers (deduplicate)
@@ -294,11 +293,12 @@ export class IdentityClusterService {
 
       // 4. Append to merge_history
       const historyEntry: MergeHistoryEntry = {
+        action: 'merged',
+        at: new Date().toISOString(),
+        by: mergedBy,
         mergedClusterId: clusterBId,
-        mergedAt: new Date().toISOString(),
-        mergedBy,
-        reason: reason ?? null,
-        recordCountAtMerge: clusterB.recordCount ?? 0,
+        recordCount: clusterB.recordCount ?? 0,
+        reason: reason ?? undefined,
       };
       const existingHistory: MergeHistoryEntry[] = (clusterA.mergeHistory as MergeHistoryEntry[]) ?? [];
 
@@ -341,7 +341,7 @@ export class IdentityClusterService {
       .select({ attributes: records.attributes })
       .from(records)
       .innerJoin(identityLinks, eq(identityLinks.recordId, records.id))
-      .where(eq(identityLinks.clusterId, clusterId))
+      .where(eq(identityLinks.identityClusterId, clusterId))
       .limit(20); // Sample first 20 records
 
     let label: string | null = null;
@@ -398,7 +398,7 @@ export class IdentityClusterService {
     const [recordCountRow] = await db
       .select({ value: count() })
       .from(identityLinks)
-      .where(eq(identityLinks.clusterId, clusterId));
+      .where(eq(identityLinks.identityClusterId, clusterId));
 
     // Distinct streams
     const [streamCountRow] = await db
@@ -407,15 +407,15 @@ export class IdentityClusterService {
       })
       .from(identityLinks)
       .innerJoin(records, eq(records.id, identityLinks.recordId))
-      .where(eq(identityLinks.clusterId, clusterId));
+      .where(eq(identityLinks.identityClusterId, clusterId));
 
     // Average confidence
     const [avgConfRow] = await db
       .select({
-        value: sql<number>`AVG(${identityLinks.confidence})`,
+        value: sql<number>`AVG(${identityLinks.linkConfidence})`,
       })
       .from(identityLinks)
-      .where(eq(identityLinks.clusterId, clusterId));
+      .where(eq(identityLinks.identityClusterId, clusterId));
 
     await db
       .update(identityClusters)

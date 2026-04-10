@@ -758,7 +758,7 @@ function ActivateStep({
 // ── Main StreamSetup Page ──────────────────────────────────────────────────────
 
 export default memo(function StreamSetup() {
-  const [params] = useRoute("/streams/:id/setup");
+  const [, params] = useRoute("/streams/:id/setup");
   const streamId = params?.id ?? "";
   const [, navigate] = useLocation();
 

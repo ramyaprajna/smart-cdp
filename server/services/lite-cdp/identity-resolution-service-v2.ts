@@ -98,7 +98,6 @@ export class IdentityResolutionServiceV2 {
       .update(dataStreams)
       .set({
         identifiedRecords: sql`${dataStreams.identifiedRecords} + ${totalLinked}`,
-        updatedAt: new Date(),
       })
       .where(eq(dataStreams.id, streamId));
 
@@ -169,18 +168,18 @@ export class IdentityResolutionServiceV2 {
     const result: Array<{ type: IdentifierType; value: string; originalValue: string }> = [];
 
     for (const field of identityFields) {
-      const rawValue = attributes[field.fieldName];
+      const rawValue = attributes[field.key];
 
       if (rawValue === null || rawValue === undefined || rawValue === '') {
         continue;
       }
 
       const originalValue = String(rawValue);
-      const normalized = this.normalizeIdentifier(field.type as IdentifierType, originalValue);
+      const normalized = this.normalizeIdentifier(field.identifierType as IdentifierType, originalValue);
 
       if (normalized.length > 0) {
         result.push({
-          type: field.type as IdentifierType,
+          type: field.identifierType as IdentifierType,
           value: normalized,
           originalValue,
         });
@@ -251,7 +250,7 @@ export class IdentityResolutionServiceV2 {
       .values({
         projectId,
         identifiers,
-        label: label ?? null,
+        primaryLabel: label ?? null,
         recordCount: 0,
         streamCount: 0,
         firstSeenAt: new Date(),
@@ -288,17 +287,18 @@ export class IdentityResolutionServiceV2 {
       // 1. Insert identity link
       await tx.insert(identityLinks).values({
         recordId,
-        clusterId,
-        matchedType,
-        matchedValue,
-        streamId,
-        linkedAt: new Date(),
+        identityClusterId: clusterId,
+        linkType: 'auto_matched',
+        linkConfidence: 1.0,
+        matchedIdentifierType: matchedType,
+        matchedIdentifierValue: matchedValue,
+        linkedBy: 'system',
       });
 
       // 2. Update record
       await tx
         .update(records)
-        .set({ identityClusterId: clusterId, updatedAt: new Date() })
+        .set({ identityClusterId: clusterId })
         .where(eq(records.id, recordId));
 
       // 3. Update cluster stats
@@ -313,10 +313,11 @@ export class IdentityResolutionServiceV2 {
       // Count distinct streams for this cluster
       const [{ streamCount }] = await tx
         .select({
-          streamCount: sql<number>`count(distinct ${identityLinks.streamId})::int`,
+          streamCount: sql<number>`count(distinct ${records.streamId})::int`,
         })
         .from(identityLinks)
-        .where(eq(identityLinks.clusterId, clusterId));
+        .innerJoin(records, eq(records.id, identityLinks.recordId))
+        .where(eq(identityLinks.identityClusterId, clusterId));
 
       // 4. Merge new identifiers (deduplicate by type+value)
       const existingIdentifiers: ClusterIdentifier[] =
@@ -337,7 +338,7 @@ export class IdentityResolutionServiceV2 {
         .set({
           lastSeenAt: new Date(),
           recordCount: sql`${identityClusters.recordCount} + 1`,
-          streamCount: streamCount + 1,
+          streamCount,
           identifiers: mergedIdentifiers,
           updatedAt: new Date(),
         })
@@ -408,15 +409,15 @@ export class IdentityResolutionServiceV2 {
       for (const absorbedId of absorbedIds) {
         await tx
           .update(identityLinks)
-          .set({ clusterId: primary.id })
-          .where(eq(identityLinks.clusterId, absorbedId));
+          .set({ identityClusterId: primary.id })
+          .where(eq(identityLinks.identityClusterId, absorbedId));
       }
 
       // 4. Re-point records
       for (const absorbedId of absorbedIds) {
         await tx
           .update(records)
-          .set({ identityClusterId: primary.id, updatedAt: new Date() })
+          .set({ identityClusterId: primary.id })
           .where(eq(records.identityClusterId, absorbedId));
       }
 
@@ -442,9 +443,10 @@ export class IdentityResolutionServiceV2 {
         .where(eq(records.identityClusterId, primary.id));
 
       const [{ streamCount }] = await tx
-        .select({ streamCount: sql<number>`count(distinct ${identityLinks.streamId})::int` })
+        .select({ streamCount: sql<number>`count(distinct ${records.streamId})::int` })
         .from(identityLinks)
-        .where(eq(identityLinks.clusterId, primary.id));
+        .innerJoin(records, eq(records.id, identityLinks.recordId))
+        .where(eq(identityLinks.identityClusterId, primary.id));
 
       await tx
         .update(identityClusters)
@@ -573,6 +575,8 @@ export class IdentityResolutionServiceV2 {
         const clusterIdentifiers: ClusterIdentifier[] = extracted.map(({ type, value }) => ({
           type,
           value,
+          sourceStreamId: stream.id,
+          firstSeenAt: new Date().toISOString(),
         }));
 
         let targetClusterId: string;
@@ -615,7 +619,7 @@ export class IdentityResolutionServiceV2 {
           if (label && label !== targetClusterId) {
             await db
               .update(identityClusters)
-              .set({ label, updatedAt: new Date() })
+              .set({ primaryLabel: label, updatedAt: new Date() })
               .where(eq(identityClusters.id, targetClusterId));
           }
         }

@@ -58,7 +58,6 @@ export class RecordService {
           originalSourceData: r.originalSourceData ?? null,
           idempotencyKey: r.idempotencyKey ?? null,
           createdAt: new Date(),
-          updatedAt: new Date(),
         }));
 
         // Use onConflictDoNothing for idempotency on idempotency_key
@@ -203,14 +202,13 @@ export class RecordService {
         idempotencyKey: records.idempotencyKey,
         identityClusterId: records.identityClusterId,
         createdAt: records.createdAt,
-        updatedAt: records.updatedAt,
         // Join stream name
         streamName: dataStreams.name,
       })
       .from(records)
       .innerJoin(identityLinks, eq(identityLinks.recordId, records.id))
       .innerJoin(dataStreams, eq(dataStreams.id, records.streamId))
-      .where(eq(identityLinks.clusterId, clusterId))
+      .where(eq(identityLinks.identityClusterId, clusterId))
       .orderBy(desc(records.createdAt));
 
     return rows;

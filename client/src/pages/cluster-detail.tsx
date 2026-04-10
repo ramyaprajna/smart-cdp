@@ -153,7 +153,7 @@ function StatCard({
 // ─── Page ────────────────────────────────────────────────────────────────────
 
 export default memo(function ClusterDetail() {
-  const [params] = useRoute("/clusters/:id");
+  const [, params] = useRoute("/clusters/:id");
   const clusterId = params?.id;
   const [showLinkDialog, setShowLinkDialog] = useState(false);
   const [showMergeDialog, setShowMergeDialog] = useState(false);
