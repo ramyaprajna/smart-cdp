@@ -268,7 +268,7 @@ export class StreamDeployService {
 
     const createdIndexes: string[] = [];
 
-    for (const fieldKey of keysToIndex) {
+    for (const fieldKey of Array.from(keysToIndex)) {
       const safeKey = sanitiseKey(fieldKey);
 
       // Skip fields whose keys become empty after sanitisation

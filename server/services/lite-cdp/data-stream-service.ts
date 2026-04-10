@@ -33,7 +33,6 @@ export class DataStreamService {
         totalRecords: 0,
         identifiedRecords: 0,
         createdAt: new Date(),
-        updatedAt: new Date(),
       })
       .returning();
 
@@ -99,9 +98,7 @@ export class DataStreamService {
       );
     }
 
-    const updates: Partial<typeof dataStreams.$inferInsert> = {
-      updatedAt: new Date(),
-    };
+    const updates: Partial<typeof dataStreams.$inferInsert> = {};
 
     if (params.entityType !== undefined) updates.entityType = params.entityType;
     if (params.schemaDefinition !== undefined) updates.schemaDefinition = params.schemaDefinition;
@@ -139,7 +136,7 @@ export class DataStreamService {
 
     const [updated] = await db
       .update(dataStreams)
-      .set({ status: 'active', activatedAt: new Date(), updatedAt: new Date() })
+      .set({ status: 'active', activatedAt: new Date() })
       .where(eq(dataStreams.id, streamId))
       .returning();
 
@@ -162,7 +159,7 @@ export class DataStreamService {
 
     const [updated] = await db
       .update(dataStreams)
-      .set({ status: 'archived', updatedAt: new Date() })
+      .set({ status: 'archived', archivedAt: new Date() })
       .where(eq(dataStreams.id, streamId))
       .returning();
 
@@ -205,7 +202,7 @@ export class DataStreamService {
 
     // Count distinct clusters linked to records in this stream
     const [clusterRow] = await db
-      .select({ value: sql<number>`COUNT(DISTINCT ${identityLinks.clusterId})` })
+      .select({ value: sql<number>`COUNT(DISTINCT ${identityLinks.identityClusterId})` })
       .from(identityLinks)
       .innerJoin(records, eq(identityLinks.recordId, records.id))
       .where(eq(records.streamId, streamId));
@@ -248,7 +245,6 @@ export class DataStreamService {
       .set({
         totalRecords: Number(totalRow?.value ?? 0),
         identifiedRecords: Number(identifiedRow?.value ?? 0),
-        updatedAt: new Date(),
       })
       .where(eq(dataStreams.id, streamId));
   }
