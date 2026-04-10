@@ -44,6 +44,11 @@ import LoginPage from "@/pages/login";
 import SignupPage from "@/pages/signup";
 import { ActivatePage } from "@/pages/activate-page";
 import NotFound from "@/pages/not-found";
+import Streams from "@/pages/streams";
+import StreamSetup from "@/pages/stream-setup";
+import StreamDetail from "@/pages/stream-detail";
+import IdentityClusters from "@/pages/identity-clusters";
+import ClusterDetail from "@/pages/cluster-detail";
 import Sidebar from "@/components/layout/sidebar";
 import { AuthProvider, useAuth } from "@/contexts/auth-context";
 import { ProtectedRoute } from "@/components/auth/protected-route";
@@ -122,6 +127,11 @@ const ProtectedApp = memo(function ProtectedApp() {
                 <Waba />
               </ProtectedRoute>
             </Route>
+            <Route path="/streams" component={Streams} />
+            <Route path="/streams/:id/setup" component={StreamSetup} />
+            <Route path="/streams/:id" component={StreamDetail} />
+            <Route path="/clusters" component={IdentityClusters} />
+            <Route path="/clusters/:id" component={ClusterDetail} />
             <Route path="/help" component={HelpPage} />
             <Route path="/quick-tips-demo" component={QuickTipsDemoPage} />
             <Route path="/import-history" component={ImportHistory} />
