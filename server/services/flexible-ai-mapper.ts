@@ -1,5 +1,10 @@
 /**
- * Flexible AI Column Mapper Service
+ * Flexible AI Column Mapper Service — MAIN ENTRY POINT
+ *
+ * HIERARCHY:
+ *   ai-column-mapper.ts   ← BASE TYPES & single-column analysis
+ *   flexible-ai-mapper.ts ← YOU ARE HERE (extends with schema registry + catch-all)
+ *   bulk-ai-mapper.ts     ← BATCH WRAPPER (delegates to ai-column-mapper in parallel)
  *
  * Purpose: Enhanced AI-powered column mapping with industry-specific schema support
  *

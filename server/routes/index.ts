@@ -61,7 +61,6 @@ import flexibleCdpRoutes from "./flexible-cdp-routes";
 import archiveRoutes from "./archive-routes";
 import validationRoutes from "./validation-routes";
 import duplicateDetectionRoutes from "./duplicate-detection-routes";
-import { testAiMappingRoutes } from "./test-ai-mapping";
 import { nullRecordRoutes } from "./null-record-routes";
 import importErrorRoutes from "./import-error-routes";
 import fileUploadRoutes from "./file-upload-routes";
@@ -234,9 +233,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Archive Management Logging Routes
   app.use("/api/admin/logs", archiveLoggingRoutes);
 
-  // Test AI mapping functionality
-  app.use("/api/test-ai-mapping", testAiMappingRoutes);
-
   // NULL record diagnosis and fixing
   app.use("/api/null-records", nullRecordRoutes);
 
@@ -355,6 +351,10 @@ Disallow: /
 
   const { setupIngestRoutes } = await import('./ingest-routes');
   setupIngestRoutes(app);
+
+  // Universal Data Landing Zone — accepts ANY data without customer anchor
+  const { setupRawIngestRoutes } = await import('./raw-ingest-routes');
+  setupRawIngestRoutes(app);
 
   // CDP Phase 2A: Consent & Suppression routes
   const { setupConsentRoutes } = await import('./consent-routes');
