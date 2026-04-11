@@ -244,7 +244,9 @@ export class ScoringEngine {
       .where(gte(eventStore.eventTimestamp, lookbackCutoff))
       .limit(10000); // Safety cap
 
-    const profileIds = activeProfileRows.map(r => r.profileId);
+    const profileIds = activeProfileRows
+      .map(r => r.profileId)
+      .filter((id): id is string => id !== null);  // Exclude anonymous events
 
     secureLogger.info('Scoring batch started', {
       profileCount: profileIds.length,

@@ -585,7 +585,7 @@ export const customerIdentity = pgTable("customer_identity", {
 // CDP Phase 1A: Event Store (immutable event log for CDP pipeline)
 export const eventStore = pgTable("event_store", {
   id: uuid("id").primaryKey().defaultRandom(),
-  profileId: uuid("profile_id").notNull(),
+  profileId: uuid("profile_id"),  // NULLABLE — supports anonymous events (no customer anchor required)
   eventType: text("event_type").notNull(),
   eventTimestamp: timestamp("event_timestamp", { withTimezone: true }).defaultNow(),
   source: text("source"),

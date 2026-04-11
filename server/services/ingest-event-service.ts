@@ -30,8 +30,9 @@ export interface IngestEventInput {
 export interface IngestEventResult {
   status: 'created' | 'already_processed';
   eventId: string;
-  profileId: string;
+  profileId: string | null;  // null for anonymous events
   isNewProfile?: boolean;
+  isAnonymous?: boolean;
 }
 
 export class IngestEventService {
@@ -61,26 +62,35 @@ export class IngestEventService {
     }
 
     // 2. Identity resolution (skip if profileId already known)
-    let resolvedProfileId = input.profileId;
+    let resolvedProfileId: string | null = input.profileId ?? null;
     let isNewProfile = false;
+    let isAnonymous = false;
 
     if (!resolvedProfileId) {
-      if (!input.identifiers || input.identifiers.length === 0) {
-        throw new Error('Either profileId or identifiers must be provided');
+      if (input.identifiers && input.identifiers.length > 0) {
+        // Has identifiers — resolve to profile
+        const resolveResult = await identityResolutionService.resolve(
+          input.identifiers.map(id => ({
+            type: id.type === 'wa_id' ? 'whatsapp' : id.type,
+            value: id.value,
+            sourceSystem: id.sourceSystem ?? input.source,
+          }))
+        );
+        resolvedProfileId = resolveResult.profileId;
+        isNewProfile = resolveResult.isNew;
+      } else {
+        // No identifiers, no profileId — anonymous event
+        // Store with profileId = null; can be linked later via Late Binding
+        isAnonymous = true;
+        secureLogger.info('Anonymous event ingested (no identifiers)', {
+          eventType: input.eventType,
+          source: input.source,
+          idempotencyKey: input.idempotencyKey,
+        }, 'INGEST');
       }
-
-      const resolveResult = await identityResolutionService.resolve(
-        input.identifiers.map(id => ({
-          type: id.type === 'wa_id' ? 'whatsapp' : id.type,
-          value: id.value,
-          sourceSystem: id.sourceSystem ?? input.source,
-        }))
-      );
-      resolvedProfileId = resolveResult.profileId;
-      isNewProfile = resolveResult.isNew;
     }
 
-    // 3. Insert event
+    // 3. Insert event (profileId may be null for anonymous events)
     const inserted = await db
       .insert(eventStore)
       .values({
@@ -130,6 +140,7 @@ export class IngestEventService {
       eventId: event.id,
       profileId: resolvedProfileId,
       isNewProfile,
+      isAnonymous,
     };
   }
 }

@@ -6,6 +6,15 @@ import type { EventStoreEntry } from "@shared/schema";
 
 class AttributeProcessor {
   async processEvent(event: EventStoreEntry): Promise<void> {
+    // Anonymous events (no profileId) — skip attribute enrichment
+    if (!event.profileId) {
+      secureLogger.info("Attribute processor: skipping anonymous event", {
+        eventId: event.id,
+        eventType: event.eventType,
+      });
+      return;
+    }
+
     const totalEventsResult = await db
       .select({ total: count() })
       .from(eventStore)
