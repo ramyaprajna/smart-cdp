@@ -12,7 +12,7 @@
  * @dependencies
  * - enhanced-error-handler - Centralized error handling with correlation IDs
  * - file-preview-service - Generates data previews for validation
- * - simple-file-processor - Handles actual data processing and import
+ * - unified-file-processor - Handles actual data processing and import
  * - upload-middleware - Multer-based file upload handling
  * - performance-middleware - Cache invalidation after successful imports
  *
@@ -309,8 +309,8 @@ router.post("/upload", async (req, res) => {
           duplicateOptions: duplicateOptions
         });
 
-        const { simpleFileProcessor } = await import('../simple-file-processor');
-        const result = await simpleFileProcessor.processFile(
+        const { unifiedFileProcessor } = await import('../unified-file-processor');
+        const result = await unifiedFileProcessor.processFile(
           req.file.path,
           req.file.originalname,
           false,

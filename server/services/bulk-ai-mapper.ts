@@ -1,5 +1,10 @@
 /**
- * Bulk AI Column Mapping Service
+ * Bulk AI Column Mapping Service — BATCH WRAPPER
+ *
+ * HIERARCHY:
+ *   ai-column-mapper.ts   ← BASE TYPES & single-column analysis
+ *   flexible-ai-mapper.ts ← MAIN ENTRY POINT (extends with schema registry + catch-all)
+ *   bulk-ai-mapper.ts     ← YOU ARE HERE (delegates to ai-column-mapper in parallel)
  *
  * Purpose: Handle multiple file analysis and bulk AI mapping operations
  *

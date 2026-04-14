@@ -1,5 +1,16 @@
 /**
- * AI-Powered Column Mapping Service
+ * AI-Powered Column Mapping Service — BASE TYPES & SINGLE-COLUMN MAPPER
+ *
+ * HIERARCHY:
+ *   ai-column-mapper.ts   ← YOU ARE HERE (base types + single-column analysis)
+ *   flexible-ai-mapper.ts ← MAIN ENTRY POINT (extends with schema registry + catch-all)
+ *   bulk-ai-mapper.ts     ← BATCH WRAPPER (delegates to ai-column-mapper in parallel)
+ *
+ * This file provides:
+ *   - Core interfaces: ColumnAnalysis, AIColumnMappingResult
+ *   - Single-column AI analysis via aiColumnMapper.analyzeFileColumns()
+ *   - Used directly by: ai-mapping-routes, null-record-fixer, schema-mapper
+ *   - Used as type source by: flexible-ai-mapper, bulk-ai-mapper
  *
  * Purpose: Intelligent file column analysis and mapping using AI
  *
