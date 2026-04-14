@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { useLocation } from 'wouter';
 import { useAuth } from '@/contexts/auth-context';
 import { useOnboarding } from '@/contexts/onboarding-context';
-import { Database, BarChart3, Users, Search, Layers, Upload, Settings, AlertTriangle, History, Archive, FileText, Activity, Megaphone, Star, ShieldCheck, MessageSquare, BookOpen } from 'lucide-react';
+import { Database, BarChart3, Users, Search, Layers, Upload, Settings, AlertTriangle, History, Archive, FileText, Activity, Megaphone, Star, ShieldCheck, MessageSquare, BookOpen, Radio, Fingerprint } from 'lucide-react';
 
 interface NavigationItem {
   name: string;
@@ -81,6 +81,20 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
     tooltip: "Manage customer consent preferences per channel and maintain the global suppression list for compliance.",
     roles: ['admin'],
     group: "Compliance",
+  },
+  {
+    name: "Data Streams",
+    href: "/streams",
+    icon: Radio,
+    tooltip: "Manage data streams from any source — upload CSV/Excel, let AI analyze the structure, and activate streams with auto-configured schema.",
+    group: "Lite CDP",
+  },
+  {
+    name: "Identity Clusters",
+    href: "/clusters",
+    icon: Fingerprint,
+    tooltip: "View unified identity profiles formed by linking records across multiple data streams through shared identifiers.",
+    group: "Lite CDP",
   },
   {
     name: "Data Import",

@@ -17,7 +17,7 @@
  */
 
 import { db } from '../db';
-import { dataImports, customers, applicationLogs } from '@shared/schema';
+import { dataImports, customers, applicationLogs, customerEmbeddings } from '@shared/schema';
 import { eq, and, or, ilike, isNotNull, inArray } from 'drizzle-orm';
 import { nanoid } from 'nanoid';
 import crypto from 'node:crypto';
@@ -704,6 +704,10 @@ export class DuplicateDetectionService {
             await db.update(customers)
               .set(finalUpdateData as any)
               .where(eq(customers.id, customerId));
+
+            // Invalidate stale embedding so next embedding job regenerates it
+            await db.delete(customerEmbeddings)
+              .where(eq(customerEmbeddings.customerId, customerId));
 
             return { success: true, customerId };
           } catch (error) {

@@ -72,6 +72,8 @@ import enhancedJsonImportRoutes from "./enhanced-json-import-routes";
 import archiveLoggingRoutes from "./archive-logging-routes";
 import { mappingReviewRoutes } from "./mapping-review-routes";
 import templateRoutes from "./template-routes";
+import liteCdpRoutes from "./lite-cdp-routes";
+import liteCdpUploadRoutes from "./lite-cdp-upload-routes";
 import { applicationLogger } from "../services/application-logger";
 import { aiSegmentService } from "../services/ai-segment-service";
 
@@ -290,6 +292,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Data Lineage and Import Management Routes
   app.use("/api/data-lineage", dataLineageRoutes);
   app.use("/api/imports", importProgressRoutes);
+
+  // Lite CDP v2 — Data-First Architecture routes
+  app.use("/api/lite-cdp", liteCdpRoutes);
+  app.use("/api/lite-cdp", liteCdpUploadRoutes);
 
 
 

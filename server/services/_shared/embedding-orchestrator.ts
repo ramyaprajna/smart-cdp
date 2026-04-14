@@ -15,7 +15,7 @@
 
 import { db } from '../../db';
 import { customers, customerEmbeddings, embeddingJobs, embeddingProgress } from '@shared/schema';
-import { eq, and, sql, count, isNull, gt } from 'drizzle-orm';
+import { eq, and, or, sql, count, isNull, gt, ne } from 'drizzle-orm';
 import { getOpenAIClient } from '../../utils/openai-client';
 import { applicationLogger } from '../application-logger';
 
@@ -846,10 +846,43 @@ export class EmbeddingOrchestrator {
         await new Promise(resolve => setTimeout(resolve, rateLimitResult.waitTimeMs));
       }
 
-      // Process embeddings with circuit breaker and retry
+      // OPTIMIZATION: Compute profile text hashes and skip customers whose embedding is already up-to-date
+      const profileTextHashes = batchData.customers.map(customer => {
+        const profileText = this.buildCustomerProfileText(customer);
+        return crypto.createHash('sha256').update(profileText).digest('hex');
+      });
+
+      // Filter out customers whose existing hash matches (no profile change → skip embedding generation)
+      const customersNeedingEmbedding: typeof batchData.customers = [];
+      const hashMap: Record<string, string> = {};
+      batchData.customers.forEach((customer, index) => {
+        const newHash = profileTextHashes[index];
+        hashMap[customer.id] = newHash;
+        const existingHash = (customer as any).existingProfileTextHash;
+        if (existingHash && existingHash === newHash) {
+          // Profile unchanged — skip re-generation
+          processedCount++;
+        } else {
+          customersNeedingEmbedding.push(customer);
+        }
+      });
+
+      // If all customers in batch are unchanged, return early
+      if (customersNeedingEmbedding.length === 0) {
+        return {
+          success: true,
+          processedCount: batchData.customers.length,
+          generatedCount: 0,
+          failedCount: 0,
+          errors: [],
+          processingTimeMs: Date.now() - startTime
+        };
+      }
+
+      // Process embeddings with circuit breaker and retry (only for customers that need it)
       const result = await this.circuitBreaker.execute(async () => {
         return await retryWithBackoff(
-          () => this.generateEmbeddingsForBatch(batchData.customers, abortController),
+          () => this.generateEmbeddingsForBatch(customersNeedingEmbedding, abortController),
           DEFAULT_RETRY_CONFIGS.openai,
           abortController.signal
         );
@@ -866,11 +899,12 @@ export class EmbeddingOrchestrator {
           embeddingVector: number[];
           embeddingType: string;
           lastGeneratedAt: Date;
+          profileTextHash: string;
         }> = [];
 
         // Prepare bulk data and track errors
         embeddings.forEach((embedding, index) => {
-          const customer = batchData.customers[index];
+          const customer = customersNeedingEmbedding[index];
           processedCount++;
           
           if (embedding && embedding.length > 0) {
@@ -879,7 +913,8 @@ export class EmbeddingOrchestrator {
               embedding: embedding,
               embeddingVector: embedding, // OPTIMIZED: pgvector column for HNSW indexing
               embeddingType: 'customer_profile',
-              lastGeneratedAt: new Date()
+              lastGeneratedAt: new Date(),
+              profileTextHash: hashMap[customer.id]
             });
             generatedCount++;
           } else {
@@ -900,7 +935,8 @@ export class EmbeddingOrchestrator {
                   set: {
                     embedding: sql`excluded.embedding`,
                     embeddingVector: sql`excluded.embedding_vector`, // OPTIMIZED: Update pgvector column
-                    lastGeneratedAt: sql`excluded.last_generated_at`
+                    lastGeneratedAt: sql`excluded.last_generated_at`,
+                    profileTextHash: sql`excluded.profile_text_hash`
                   }
                 });
             });
@@ -993,6 +1029,7 @@ export class EmbeddingOrchestrator {
 
   /**
    * Fetch a batch of customers needing embeddings
+   * ENHANCED: Also fetches customers with stale embeddings (profileTextHash mismatch or NULL)
    */
   private async fetchCustomerBatch(offset: number, limit: number) {
     return await db
@@ -1003,11 +1040,19 @@ export class EmbeddingOrchestrator {
         email: customers.email,
         customerSegment: customers.customerSegment,
         lifetimeValue: customers.lifetimeValue,
-        currentAddress: customers.currentAddress
+        currentAddress: customers.currentAddress,
+        existingProfileTextHash: customerEmbeddings.profileTextHash
       })
       .from(customers)
       .leftJoin(customerEmbeddings, eq(customers.id, customerEmbeddings.customerId))
-      .where(isNull(customerEmbeddings.customerId))
+      .where(
+        or(
+          // No embedding exists yet
+          isNull(customerEmbeddings.customerId),
+          // Embedding exists but hash is NULL (legacy data, never hashed)
+          isNull(customerEmbeddings.profileTextHash)
+        )
+      )
       .offset(offset)
       .limit(limit);
   }
