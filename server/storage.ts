@@ -50,7 +50,6 @@ import { SecuritySanitizer } from './utils/security-sanitizer';
 // CRITICAL INTEGRATION: Import new services to fix schema mismatch issue
 import { segmentCriteriaService } from './services/segment-criteria-service';
 import { fieldValidationService } from './services/field-validation-service';
-import { simplePerformanceService } from './services/segment-performance-service-simple';
 import { piiMaskingService } from './services/pii-masking-service';
 import { secureLogger } from './utils/secure-logger';
 

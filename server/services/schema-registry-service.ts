@@ -25,6 +25,7 @@ import { db } from '../db';
 import { dataSourceSchemas } from '../../shared/schema';
 import { eq } from 'drizzle-orm';
 import { secureLogger } from '../utils/secure-logger';
+import { getOpenAIClient } from '../utils/openai-client';
 import {
   ServiceOperation,
   ResponseFormatter
@@ -63,6 +64,14 @@ export interface SchemaTemplate {
     dataPatterns: string[];
     businessFocus: string[];
   };
+}
+
+export interface GeneratedSchemaResult {
+  schema: SchemaTemplate;
+  confidence: number;
+  detectedIndustry: string;
+  fieldCount: number;
+  sampleAnalysis: string;
 }
 
 class SchemaRegistryService {
@@ -414,6 +423,147 @@ class SchemaRegistryService {
     } catch (error) {
       secureLogger.error(`❌ Failed to validate field:`, { error: String(error) });
       return false;
+    }
+  }
+
+  /**
+   * Generate a new schema dynamically from sample data using AI.
+   *
+   * Unlike suggestSchema() which matches against hardcoded templates,
+   * this method analyzes actual sample data (headers + rows) and creates
+   * a brand-new schema definition with field types, categories, and
+   * validation rules — even for industries not in the predefined list.
+   */
+  async generateSchemaFromSample(
+    headers: string[],
+    sampleRows: Record<string, unknown>[],
+    options?: { sourceName?: string; hint?: string }
+  ): Promise<GeneratedSchemaResult> {
+    const openai = getOpenAIClient();
+
+    // Build a compact sample for the AI prompt
+    const samplePreview = sampleRows.slice(0, 5).map(row => {
+      const preview: Record<string, unknown> = {};
+      for (const h of headers.slice(0, 30)) {
+        preview[h] = row[h] ?? null;
+      }
+      return preview;
+    });
+
+    const prompt = `You are a data schema architect for a Customer Data Platform.
+
+Analyze these CSV/data headers and sample rows, then generate a complete schema definition.
+
+Headers: ${JSON.stringify(headers)}
+
+Sample rows (up to 5):
+${JSON.stringify(samplePreview, null, 2)}
+
+${options?.hint ? `Context hint: ${options.hint}` : ''}
+
+Respond with ONLY valid JSON (no markdown, no code blocks) in this exact structure:
+{
+  "detectedIndustry": "string — the detected industry/domain",
+  "sourceName": "string — snake_case identifier, e.g. fitness_studio",
+  "displayName": "string — human-readable name",
+  "description": "string — one-line description",
+  "confidence": number between 0 and 100,
+  "fieldDefinitions": {
+    "field_name": {
+      "name": "field_name",
+      "type": "text|number|date|boolean|array|object",
+      "category": "demographics|preferences|behaviors|engagement|technical",
+      "description": "what this field represents",
+      "required": boolean,
+      "examples": ["example1", "example2"]
+    }
+  },
+  "mappingTemplates": {
+    "ORIGINAL_HEADER": "field_name"
+  },
+  "validationRules": {
+    "requiredFields": [],
+    "businessRules": []
+  },
+  "industryContext": {
+    "commonTerms": [],
+    "dataPatterns": [],
+    "businessFocus": []
+  },
+  "sampleAnalysis": "string — brief analysis of the data quality and patterns observed"
+}`;
+
+    try {
+      const response = await openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.2,
+        max_tokens: 4000,
+      });
+
+      const content = response.choices[0]?.message?.content?.trim();
+      if (!content) {
+        throw new Error('Empty AI response for schema generation');
+      }
+
+      const parsed = JSON.parse(content);
+
+      const sourceName = options?.sourceName ?? parsed.sourceName ?? `custom_${Date.now()}`;
+
+      const schema: SchemaTemplate = {
+        sourceName,
+        displayName: parsed.displayName ?? sourceName,
+        description: parsed.description ?? 'AI-generated schema from sample data',
+        fieldDefinitions: parsed.fieldDefinitions ?? {},
+        mappingTemplates: parsed.mappingTemplates ?? {},
+        validationRules: parsed.validationRules ?? { requiredFields: [], businessRules: [] },
+        industryContext: parsed.industryContext ?? { commonTerms: [], dataPatterns: [], businessFocus: [] },
+      };
+
+      // Persist the generated schema to database
+      const existing = await db
+        .select()
+        .from(dataSourceSchemas)
+        .where(eq(dataSourceSchemas.sourceName, sourceName))
+        .limit(1);
+
+      if (existing.length === 0) {
+        await db.insert(dataSourceSchemas).values({
+          sourceName: schema.sourceName,
+          displayName: schema.displayName,
+          description: schema.description,
+          schemaVersion: '1.0',
+          fieldDefinitions: schema.fieldDefinitions,
+          mappingTemplates: schema.mappingTemplates,
+          validationRules: schema.validationRules,
+          industryContext: schema.industryContext,
+        });
+        secureLogger.info('AI-generated schema saved', { sourceName, fieldCount: Object.keys(schema.fieldDefinitions).length });
+      } else {
+        // Update existing schema
+        await db.update(dataSourceSchemas)
+          .set({
+            displayName: schema.displayName,
+            description: schema.description,
+            fieldDefinitions: schema.fieldDefinitions,
+            mappingTemplates: schema.mappingTemplates,
+            validationRules: schema.validationRules,
+            industryContext: schema.industryContext,
+          })
+          .where(eq(dataSourceSchemas.sourceName, sourceName));
+        secureLogger.info('AI-generated schema updated', { sourceName });
+      }
+
+      return {
+        schema,
+        confidence: parsed.confidence ?? 50,
+        detectedIndustry: parsed.detectedIndustry ?? 'unknown',
+        fieldCount: Object.keys(schema.fieldDefinitions).length,
+        sampleAnalysis: parsed.sampleAnalysis ?? '',
+      };
+    } catch (error) {
+      secureLogger.error('AI schema generation failed', { error: String(error) });
+      throw new Error(`Failed to generate schema from sample data: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 

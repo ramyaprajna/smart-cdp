@@ -583,9 +583,11 @@ export const customerIdentity = pgTable("customer_identity", {
 }));
 
 // CDP Phase 1A: Event Store (immutable event log for CDP pipeline)
+// profileId is nullable to support anonymous events (web visitors, IoT sensors, etc.)
+// Anonymous events use anonymousId/sessionId for tracking and can be linked later
 export const eventStore = pgTable("event_store", {
   id: uuid("id").primaryKey().defaultRandom(),
-  profileId: uuid("profile_id").notNull(),
+  profileId: uuid("profile_id"),  // NULLABLE — supports anonymous events (no customer anchor required)
   eventType: text("event_type").notNull(),
   eventTimestamp: timestamp("event_timestamp", { withTimezone: true }).defaultNow(),
   source: text("source"),
@@ -594,9 +596,12 @@ export const eventStore = pgTable("event_store", {
   eventProperties: jsonb("event_properties"),
   rawPayload: jsonb("raw_payload"),
   processedAt: timestamp("processed_at", { withTimezone: true }),
+  linkedAt: timestamp("linked_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 }, (table) => ({
   profileIdIdx: index("event_store_profile_id_idx").on(table.profileId),
+  anonymousIdIdx: index("event_store_anonymous_id_idx").on(table.anonymousId),
+  sessionIdIdx: index("event_store_session_id_idx").on(table.sessionId),
   eventTypeIdx: index("event_store_event_type_idx").on(table.eventType),
   timestampIdx: index("event_store_timestamp_idx").on(table.eventTimestamp),
   profileTimestampIdx: index("event_store_profile_timestamp_idx").on(table.profileId, table.eventTimestamp),
@@ -898,6 +903,7 @@ export const customerIdentityRelations = relations(customerIdentity, ({ one }) =
 }));
 
 export const eventStoreRelations = relations(eventStore, ({ one }) => ({
+  // Optional relation — anonymous events have profileId = null until linked
   profile: one(customerProfile, { fields: [eventStore.profileId], references: [customerProfile.id] }),
 }));
 
@@ -1186,3 +1192,63 @@ export type InsertCampaign = z.infer<typeof insertCampaignSchema>;
 
 export type CampaignMessage = typeof campaignMessage.$inferSelect;
 export type InsertCampaignMessage = z.infer<typeof insertCampaignMessageSchema>;
+
+// ═══════════════════════════════════════════════════════════════════════
+// UNIVERSAL DATA LANDING ZONE — Raw Entities
+//
+// Purpose: Accept ANY data without requiring a customer/profile anchor.
+// Solves two CDP gaps:
+//   1. "No Default Schema" — data lands as-is; AI classifies later
+//   2. "Smart Terima Semua Data" — no FK to customer required
+//
+// Lifecycle: pending → classified → resolved → archived
+//   - pending:    just ingested, not yet analyzed
+//   - classified: AI has determined entityType & suggested schema
+//   - resolved:   linked to a profile (if applicable) or routed to domain table
+//   - archived:   processed & no longer needed in hot path
+// ═══════════════════════════════════════════════════════════════════════
+
+export const rawEntities = pgTable("raw_entities", {
+  id: uuid("id").primaryKey().defaultRandom(),
+
+  // AI-determined entity classification
+  entityType: text("entity_type").notNull().default("unknown"),
+  // Examples: 'customer', 'transaction', 'event', 'product', 'feedback', 'unknown'
+
+  // Source tracking
+  sourceId: text("source_id"),              // import session ID, API key, webhook ID
+  sourceSystem: text("source_system"),      // 'csv_upload', 'api_ingest', 'waba', 'webhook', etc.
+  sourceFileName: text("source_file_name"), // original filename for file uploads
+  sourceRowNumber: integer("source_row_number"), // row number within source file
+
+  // The actual data — stored as-is, zero transformation
+  data: jsonb("data").notNull(),
+
+  // AI analysis results
+  aiClassification: jsonb("ai_classification"),
+  // Shape: { entityType, confidence, suggestedSchema, fieldMappings, reasoning }
+
+  // Optional link to a customer profile (nullable = anonymous/unresolved data)
+  profileId: uuid("profile_id"),
+
+  // Processing status
+  status: text("status").notNull().default("pending"),
+  // 'pending' | 'classified' | 'resolved' | 'archived' | 'failed'
+
+  processedAt: timestamp("processed_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+}, (table) => ({
+  entityTypeIdx: index("raw_entities_entity_type_idx").on(table.entityType),
+  statusIdx: index("raw_entities_status_idx").on(table.status),
+  sourceIdIdx: index("raw_entities_source_id_idx").on(table.sourceId),
+  profileIdIdx: index("raw_entities_profile_id_idx").on(table.profileId),
+  createdAtIdx: index("raw_entities_created_at_idx").on(table.createdAt),
+}));
+
+export const insertRawEntitySchema = createInsertSchema(rawEntities).omit({
+  id: true,
+  createdAt: true,
+});
+
+export type RawEntity = typeof rawEntities.$inferSelect;
+export type InsertRawEntity = z.infer<typeof insertRawEntitySchema>;

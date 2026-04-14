@@ -61,7 +61,6 @@ import flexibleCdpRoutes from "./flexible-cdp-routes";
 import archiveRoutes from "./archive-routes";
 import validationRoutes from "./validation-routes";
 import duplicateDetectionRoutes from "./duplicate-detection-routes";
-import { testAiMappingRoutes } from "./test-ai-mapping";
 import { nullRecordRoutes } from "./null-record-routes";
 import importErrorRoutes from "./import-error-routes";
 import fileUploadRoutes from "./file-upload-routes";
@@ -72,6 +71,8 @@ import enhancedJsonImportRoutes from "./enhanced-json-import-routes";
 import archiveLoggingRoutes from "./archive-logging-routes";
 import { mappingReviewRoutes } from "./mapping-review-routes";
 import templateRoutes from "./template-routes";
+import liteCdpRoutes from "./lite-cdp-routes";
+import liteCdpUploadRoutes from "./lite-cdp-upload-routes";
 import { applicationLogger } from "../services/application-logger";
 import { aiSegmentService } from "../services/ai-segment-service";
 
@@ -234,9 +235,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Archive Management Logging Routes
   app.use("/api/admin/logs", archiveLoggingRoutes);
 
-  // Test AI mapping functionality
-  app.use("/api/test-ai-mapping", testAiMappingRoutes);
-
   // NULL record diagnosis and fixing
   app.use("/api/null-records", nullRecordRoutes);
 
@@ -290,6 +288,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Data Lineage and Import Management Routes
   app.use("/api/data-lineage", dataLineageRoutes);
   app.use("/api/imports", importProgressRoutes);
+
+  // Lite CDP v2 — Data-First Architecture routes
+  app.use("/api/lite-cdp", liteCdpRoutes);
+  app.use("/api/lite-cdp", liteCdpUploadRoutes);
 
 
 
@@ -355,6 +357,14 @@ Disallow: /
 
   const { setupIngestRoutes } = await import('./ingest-routes');
   setupIngestRoutes(app);
+
+  // Universal Data Landing Zone — accepts ANY data without customer anchor
+  const { setupRawIngestRoutes } = await import('./raw-ingest-routes');
+  setupRawIngestRoutes(app);
+
+  // AI Schema Proposer, Dynamic Tables, Late Binding, Anonymous Analytics
+  const { setupSchemaRoutes } = await import('./schema-routes');
+  setupSchemaRoutes(app);
 
   // CDP Phase 2A: Consent & Suppression routes
   const { setupConsentRoutes } = await import('./consent-routes');

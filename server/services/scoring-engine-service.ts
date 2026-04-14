@@ -20,7 +20,7 @@
  */
 import { db } from '../db';
 import { customerProfile, eventStore, campaignMessage, pointLedger } from '@shared/schema';
-import { eq, desc, sql, and, gte, count } from 'drizzle-orm';
+import { eq, desc, sql, and, gte, count, isNotNull } from 'drizzle-orm';
 import { secureLogger } from '../utils/secure-logger';
 
 // -------------------------------------------------------
@@ -241,10 +241,12 @@ export class ScoringEngine {
     const activeProfileRows = await db
       .selectDistinct({ profileId: eventStore.profileId })
       .from(eventStore)
-      .where(gte(eventStore.eventTimestamp, lookbackCutoff))
+      .where(and(gte(eventStore.eventTimestamp, lookbackCutoff), isNotNull(eventStore.profileId)))
       .limit(10000); // Safety cap
 
-    const profileIds = activeProfileRows.map(r => r.profileId);
+    const profileIds = activeProfileRows
+      .map(r => r.profileId)
+      .filter((id): id is string => id !== null);  // Exclude anonymous events
 
     secureLogger.info('Scoring batch started', {
       profileCount: profileIds.length,

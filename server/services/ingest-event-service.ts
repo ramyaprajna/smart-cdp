@@ -5,10 +5,17 @@
  * resolution, event_store insert, attribute processing) so it can be
  * reused by both the HTTP ingest route and internal system services
  * (e.g., ConsentService audit logging) without duplicating pipeline behavior.
+ *
+ * Supports three ingestion modes:
+ *   1. Identified   — profileId provided directly
+ *   2. Resolvable   — identifiers provided → identity resolution finds/creates profile
+ *   3. Anonymous     — no profileId, no identifiers → stored with anonymousId/sessionId
+ *                      for later linking via identity resolution
  */
+import { randomUUID } from 'crypto';
 import { db } from '../db';
 import { eventStore } from '@shared/schema';
-import { eq } from 'drizzle-orm';
+import { eq, and, isNull } from 'drizzle-orm';
 import { identityResolutionService } from './identity-resolution-service';
 import { attributeProcessor } from './attribute-processor';
 import { secureLogger } from '../utils/secure-logger';
@@ -18,6 +25,10 @@ export interface IngestEventInput {
   profileId?: string;
   /** Identifiers used for identity resolution when profileId is not known */
   identifiers?: { type: string; value: string; sourceSystem?: string }[];
+  /** Anonymous visitor/device ID — used when no identifiers are available */
+  anonymousId?: string;
+  /** Browser/device session ID — groups anonymous events into sessions */
+  sessionId?: string;
   eventType: string;
   eventTimestamp?: Date;
   source: string;
@@ -30,24 +41,26 @@ export interface IngestEventInput {
 export interface IngestEventResult {
   status: 'created' | 'already_processed';
   eventId: string;
-  profileId: string;
+  profileId: string | null;  // null for anonymous events
   isNewProfile?: boolean;
+  isAnonymous?: boolean;
 }
 
 export class IngestEventService {
   /**
    * Ingest a single event through the CDP pipeline.
    *
-   * Behaviour mirrors the HTTP ingest route:
+   * Behaviour:
    *  1. Idempotency check — return existing event if already processed
-   *  2. Identity resolution — resolve profileId from identifiers (if needed)
+   *  2. Identity resolution — resolve profileId from identifiers (if provided)
+   *     OR accept anonymous events without any identifier
    *  3. Insert into event_store with ON CONFLICT DO NOTHING
-   *  4. Trigger attribute processing for downstream enrichment
+   *  4. Trigger attribute processing for downstream enrichment (identified only)
    */
   async ingest(input: IngestEventInput): Promise<IngestEventResult> {
     // 1. Idempotency check
     const existing = await db
-      .select({ id: eventStore.id, profileId: eventStore.profileId })
+      .select({ id: eventStore.id, profileId: eventStore.profileId, anonymousId: eventStore.anonymousId })
       .from(eventStore)
       .where(eq(eventStore.idempotencyKey, input.idempotencyKey))
       .limit(1);
@@ -57,34 +70,47 @@ export class IngestEventService {
         status: 'already_processed',
         eventId: existing[0].id,
         profileId: existing[0].profileId,
+        anonymousId: existing[0].anonymousId,
+        isAnonymous: !existing[0].profileId,
       };
     }
 
     // 2. Identity resolution (skip if profileId already known)
-    let resolvedProfileId = input.profileId;
+    let resolvedProfileId: string | null = input.profileId ?? null;
     let isNewProfile = false;
+    let isAnonymous = false;
 
     if (!resolvedProfileId) {
-      if (!input.identifiers || input.identifiers.length === 0) {
-        throw new Error('Either profileId or identifiers must be provided');
+      if (input.identifiers && input.identifiers.length > 0) {
+        // Has identifiers — resolve to profile
+        const resolveResult = await identityResolutionService.resolve(
+          input.identifiers.map(id => ({
+            type: id.type === 'wa_id' ? 'whatsapp' : id.type,
+            value: id.value,
+            sourceSystem: id.sourceSystem ?? input.source,
+          }))
+        );
+        resolvedProfileId = resolveResult.profileId;
+        isNewProfile = resolveResult.isNew;
+      } else {
+        // No identifiers, no profileId — anonymous event
+        // Store with profileId = null; can be linked later via Late Binding
+        isAnonymous = true;
+        secureLogger.info('Anonymous event ingested (no identifiers)', {
+          eventType: input.eventType,
+          source: input.source,
+          idempotencyKey: input.idempotencyKey,
+        }, 'INGEST');
       }
-
-      const resolveResult = await identityResolutionService.resolve(
-        input.identifiers.map(id => ({
-          type: id.type === 'wa_id' ? 'whatsapp' : id.type,
-          value: id.value,
-          sourceSystem: id.sourceSystem ?? input.source,
-        }))
-      );
-      resolvedProfileId = resolveResult.profileId;
-      isNewProfile = resolveResult.isNew;
     }
 
-    // 3. Insert event
+    // 3. Insert event (profileId may be null for anonymous events)
     const inserted = await db
       .insert(eventStore)
       .values({
         profileId: resolvedProfileId,
+        anonymousId,
+        sessionId,
         eventType: input.eventType,
         eventTimestamp: input.eventTimestamp ?? new Date(),
         source: input.source,
@@ -109,27 +135,34 @@ export class IngestEventService {
         status: 'already_processed',
         eventId: dup[0]?.id ?? 'unknown',
         profileId: resolvedProfileId,
+        anonymousId,
+        isAnonymous: !resolvedProfileId,
       };
     }
 
     const event = inserted[0];
 
-    // 4. Attribute processing
-    try {
-      await attributeProcessor.processEvent(event);
-    } catch (err) {
-      secureLogger.warn('Attribute processing failed for ingest event', {
-        eventId: event.id,
-        eventType: input.eventType,
-        error: String(err),
-      }, 'INGEST');
+    // 4. Attribute processing (only for identified events)
+    if (resolvedProfileId) {
+      try {
+        await attributeProcessor.processEvent(event);
+      } catch (err) {
+        secureLogger.warn('Attribute processing failed for ingest event', {
+          eventId: event.id,
+          eventType: input.eventType,
+          error: String(err),
+        }, 'INGEST');
+      }
     }
 
     return {
       status: 'created',
       eventId: event.id,
       profileId: resolvedProfileId,
+      anonymousId,
+      sessionId,
       isNewProfile,
+      isAnonymous,
     };
   }
 }

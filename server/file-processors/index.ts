@@ -46,11 +46,6 @@ export function detectFileType(fileName: string): string {
  */
 export function createFileProcessor(fileType: string, maxRows: number = 10): BaseFileProcessor {
 
-  // CRITICAL DISCOVERY - CREATE FILE PROCESSOR CALLED
-  secureLogger.error('🔥🔥🔥🔥🔥 CREATE FILE PROCESSOR CALLED 🔥🔥🔥🔥🔥');
-  secureLogger.error('💥💥💥 [CREATE PROCESSOR DEBUG]:', { fileType, maxRows });
-  secureLogger.error('🔥🔥🔥🔥🔥 CREATE PROCESSOR ENTRY 🔥🔥🔥🔥🔥');
-
   switch (fileType) {
     case 'excel':
       return new ExcelProcessor(maxRows);
