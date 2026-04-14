@@ -41,17 +41,9 @@ export interface IngestEventInput {
 export interface IngestEventResult {
   status: 'created' | 'already_processed';
   eventId: string;
-  profileId: string | null;
-  anonymousId?: string | null;
-  sessionId?: string | null;
+  profileId: string | null;  // null for anonymous events
   isNewProfile?: boolean;
-  isAnonymous: boolean;
-}
-
-export interface LinkAnonymousResult {
-  linked: number;
-  profileId: string;
-  anonymousId: string;
+  isAnonymous?: boolean;
 }
 
 export class IngestEventService {
@@ -83,37 +75,36 @@ export class IngestEventService {
       };
     }
 
-    // 2. Identity resolution (three modes)
+    // 2. Identity resolution (skip if profileId already known)
     let resolvedProfileId: string | null = input.profileId ?? null;
     let isNewProfile = false;
-    let anonymousId = input.anonymousId ?? null;
-    const sessionId = input.sessionId ?? null;
+    let isAnonymous = false;
 
-    if (!resolvedProfileId && input.identifiers && input.identifiers.length > 0) {
-      // Mode 2: Resolvable — identifiers provided
-      const resolveResult = await identityResolutionService.resolve(
-        input.identifiers.map(id => ({
-          type: id.type === 'wa_id' ? 'whatsapp' : id.type,
-          value: id.value,
-          sourceSystem: id.sourceSystem ?? input.source,
-        }))
-      );
-      resolvedProfileId = resolveResult.profileId;
-      isNewProfile = resolveResult.isNew;
-    } else if (!resolvedProfileId) {
-      // Mode 3: Anonymous — generate anonymousId if not provided
-      if (!anonymousId) {
-        anonymousId = `anon_${randomUUID()}`;
+    if (!resolvedProfileId) {
+      if (input.identifiers && input.identifiers.length > 0) {
+        // Has identifiers — resolve to profile
+        const resolveResult = await identityResolutionService.resolve(
+          input.identifiers.map(id => ({
+            type: id.type === 'wa_id' ? 'whatsapp' : id.type,
+            value: id.value,
+            sourceSystem: id.sourceSystem ?? input.source,
+          }))
+        );
+        resolvedProfileId = resolveResult.profileId;
+        isNewProfile = resolveResult.isNew;
+      } else {
+        // No identifiers, no profileId — anonymous event
+        // Store with profileId = null; can be linked later via Late Binding
+        isAnonymous = true;
+        secureLogger.info('Anonymous event ingested (no identifiers)', {
+          eventType: input.eventType,
+          source: input.source,
+          idempotencyKey: input.idempotencyKey,
+        }, 'INGEST');
       }
-      secureLogger.info('Anonymous event ingestion', {
-        anonymousId,
-        sessionId,
-        eventType: input.eventType,
-        source: input.source,
-      }, 'INGEST');
     }
 
-    // 3. Insert event
+    // 3. Insert event (profileId may be null for anonymous events)
     const inserted = await db
       .insert(eventStore)
       .values({
@@ -171,64 +162,7 @@ export class IngestEventService {
       anonymousId,
       sessionId,
       isNewProfile,
-      isAnonymous: !resolvedProfileId,
-    };
-  }
-
-  /**
-   * Link anonymous events to an identified profile.
-   *
-   * Called when an anonymous visitor later identifies themselves (e.g., login,
-   * form submission, WhatsApp message with phone number). All events with the
-   * given anonymousId are bound to the resolved profileId.
-   */
-  async linkAnonymousEvents(
-    anonymousId: string,
-    profileId: string
-  ): Promise<LinkAnonymousResult> {
-    const updated = await db
-      .update(eventStore)
-      .set({
-        profileId,
-        linkedAt: new Date(),
-      })
-      .where(
-        and(
-          eq(eventStore.anonymousId, anonymousId),
-          isNull(eventStore.profileId)
-        )
-      )
-      .returning({ id: eventStore.id });
-
-    secureLogger.info('Anonymous events linked to profile', {
-      anonymousId,
-      profileId,
-      linkedCount: updated.length,
-    }, 'INGEST');
-
-    // Trigger attribute processing for the newly linked events
-    for (const event of updated) {
-      try {
-        const fullEvent = await db
-          .select()
-          .from(eventStore)
-          .where(eq(eventStore.id, event.id))
-          .limit(1);
-        if (fullEvent[0]) {
-          await attributeProcessor.processEvent(fullEvent[0]);
-        }
-      } catch (err) {
-        secureLogger.warn('Attribute processing failed for linked event', {
-          eventId: event.id,
-          error: String(err),
-        }, 'INGEST');
-      }
-    }
-
-    return {
-      linked: updated.length,
-      profileId,
-      anonymousId,
+      isAnonymous,
     };
   }
 }

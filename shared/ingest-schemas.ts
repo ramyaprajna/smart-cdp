@@ -1,10 +1,10 @@
 import { z } from "zod";
 
-export const sourceChannels = ["waba", "wa_flow", "crm"] as const;
+export const sourceChannels = ["waba", "wa_flow", "crm", "web", "iot", "api", "webhook"] as const;
 export type SourceChannel = (typeof sourceChannels)[number];
 
 const identifierSchema = z.object({
-  type: z.enum(["email", "phone", "national_id", "wa_id", "external_id"]),
+  type: z.enum(["email", "phone", "national_id", "wa_id", "external_id", "device_id", "session_id", "cookie_id"]),
   value: z.string().min(1),
 });
 
@@ -13,7 +13,7 @@ const baseIngestPayloadSchema = z.object({
   idempotencyKey: z.string().min(1).max(256),
   eventType: z.string().min(1).max(128),
   eventTimestamp: z.string().datetime().optional(),
-  identifiers: z.array(identifierSchema).min(1),
+  identifiers: z.array(identifierSchema).optional().default([]),  // Optional — anonymous events allowed
   properties: z.record(z.unknown()).optional().default({}),
 });
 

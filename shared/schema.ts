@@ -587,9 +587,7 @@ export const customerIdentity = pgTable("customer_identity", {
 // Anonymous events use anonymousId/sessionId for tracking and can be linked later
 export const eventStore = pgTable("event_store", {
   id: uuid("id").primaryKey().defaultRandom(),
-  profileId: uuid("profile_id"),
-  anonymousId: text("anonymous_id"),
-  sessionId: text("session_id"),
+  profileId: uuid("profile_id"),  // NULLABLE — supports anonymous events (no customer anchor required)
   eventType: text("event_type").notNull(),
   eventTimestamp: timestamp("event_timestamp", { withTimezone: true }).defaultNow(),
   source: text("source"),

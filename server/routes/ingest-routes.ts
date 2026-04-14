@@ -64,9 +64,12 @@ export function setupIngestRoutes(app: Express): void {
       }
 
       const payload = parsed.data;
-      const normalizedIdentifiers = payload.identifiers.map(normalizeIdentifier);
+      const identifiers = payload.identifiers ?? [];
+      const normalizedIdentifiers = identifiers.map(normalizeIdentifier);
       const idempotencyKey = payload.idempotencyKey;
+      const isAnonymous = normalizedIdentifiers.length === 0;
 
+      // Idempotency check
       const existing = await db
         .select({ id: eventStore.id })
         .from(eventStore)
@@ -81,13 +84,21 @@ export function setupIngestRoutes(app: Express): void {
         });
       }
 
-      const resolveResult = await identityResolutionService.resolve(
-        normalizedIdentifiers.map((id) => ({
-          type: id.type === "wa_id" ? "whatsapp" : id.type,
-          value: id.value,
-          sourceSystem: payload.sourceChannel,
-        }))
-      );
+      // Identity resolution — only if identifiers are provided
+      let resolvedProfileId: string | null = null;
+      let isNewProfile = false;
+
+      if (!isAnonymous) {
+        const resolveResult = await identityResolutionService.resolve(
+          normalizedIdentifiers.map((id) => ({
+            type: id.type === "wa_id" ? "whatsapp" : id.type,
+            value: id.value,
+            sourceSystem: payload.sourceChannel,
+          }))
+        );
+        resolvedProfileId = resolveResult.profileId;
+        isNewProfile = resolveResult.isNew;
+      }
 
       const eventProperties = buildEventProperties(payload);
 
@@ -96,7 +107,7 @@ export function setupIngestRoutes(app: Express): void {
         const inserted = await db
           .insert(eventStore)
           .values({
-            profileId: resolveResult.profileId,
+            profileId: resolvedProfileId,  // null for anonymous events
             eventType: payload.eventType,
             eventTimestamp: payload.eventTimestamp
               ? new Date(payload.eventTimestamp)
@@ -143,12 +154,14 @@ export function setupIngestRoutes(app: Express): void {
         throw insertError;
       }
 
+      // Attribute processing (skips internally if profileId is null)
       await attributeProcessor.processEvent(event);
 
       return res.status(201).json({
         status: "created",
         event,
-        isNewProfile: resolveResult.isNew,
+        isNewProfile,
+        isAnonymous,
       });
     } catch (error) {
       secureLogger.error("Ingest pipeline error", {

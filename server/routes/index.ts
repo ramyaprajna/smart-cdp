@@ -362,6 +362,10 @@ Disallow: /
   const { setupRawIngestRoutes } = await import('./raw-ingest-routes');
   setupRawIngestRoutes(app);
 
+  // AI Schema Proposer, Dynamic Tables, Late Binding, Anonymous Analytics
+  const { setupSchemaRoutes } = await import('./schema-routes');
+  setupSchemaRoutes(app);
+
   // CDP Phase 2A: Consent & Suppression routes
   const { setupConsentRoutes } = await import('./consent-routes');
   setupConsentRoutes(app);
