@@ -12,6 +12,7 @@
  *   PATCH  /api/campaigns/:id                      Update campaign (admin/marketing)
  *   POST   /api/campaigns/:id/schedule             Schedule campaign (admin/marketing)
  *   POST   /api/campaigns/:id/execute              Execute campaign (admin/marketing)
+ *   POST   /api/campaigns/:id/dispatch             Dispatch campaign to channel broadcaster (admin/marketing)
  *   POST   /api/campaigns/:id/cancel               Cancel campaign (admin/marketing)
  *   POST   /api/campaigns/:id/complete             Mark sending complete (admin/marketing)
  *   GET    /api/campaigns/:id/analytics            Campaign analytics (all staff)
@@ -23,6 +24,7 @@ import type { Express, Request, Response } from 'express';
 import { z } from 'zod';
 import { requireAuth, requireRole } from '../jwt-utils';
 import { campaignService } from '../services/campaign-service';
+import { campaignDispatcher } from '../services/campaign-dispatcher';
 import { secureLogger } from '../utils/secure-logger';
 
 const CAMPAIGN_READ_ROLES = ['admin', 'marketing', 'analyst'];
@@ -64,6 +66,12 @@ const deliveryStatusSchema = z.object({
   status: z.enum(['sent', 'delivered', 'read', 'failed']),
   failureReason: z.string().optional(),
   timestamp: z.string().datetime().optional().transform(v => v ? new Date(v) : undefined),
+});
+
+const dispatchSchema = z.object({
+  concurrency: z.number().int().min(1).max(50).optional(),
+  batchDelayMs: z.number().int().min(0).max(10000).optional(),
+  autoComplete: z.boolean().optional(),
 });
 
 const listQuerySchema = z.object({
@@ -202,6 +210,30 @@ export function setupCampaignRoutes(app: Express): void {
       } catch (err) {
         const msg = err instanceof Error ? err.message : 'Failed to execute campaign';
         if (msg.includes('not found')) return res.status(404).json({ error: msg });
+        return res.status(400).json({ error: msg });
+      }
+    }
+  );
+
+  // POST /api/campaigns/:id/dispatch — dispatch campaign to channel broadcaster
+  app.post(
+    '/api/campaigns/:id/dispatch',
+    requireAuth,
+    requireRole(CAMPAIGN_WRITE_ROLES),
+    async (req: Request, res: Response) => {
+      try {
+        const parsed = dispatchSchema.safeParse(req.body || {});
+        if (!parsed.success) {
+          return res.status(400).json({ error: 'Validation failed', details: parsed.error.format() });
+        }
+
+        const result = await campaignDispatcher.dispatch(req.params.id, parsed.data);
+        return res.json(result);
+      } catch (err) {
+        const msg = err instanceof Error ? err.message : 'Failed to dispatch campaign';
+        secureLogger.error('Campaign dispatch failed', { error: msg, campaignId: req.params.id }, 'CAMPAIGN');
+        if (msg.includes('not found')) return res.status(404).json({ error: msg });
+        if (msg.includes('cannot dispatch')) return res.status(409).json({ error: msg });
         return res.status(400).json({ error: msg });
       }
     }
