@@ -249,7 +249,10 @@ class FlexibleAIMapper {
   }
 
   /**
-   * Detect best matching schema for the given headers
+   * Detect best matching schema for the given headers.
+   * If no predefined schema matches with sufficient confidence,
+   * returns null — callers should consider using
+   * schemaRegistryService.generateSchemaFromSample() for unknown data.
    */
   private async detectBestSchema(headers: string[]) {
     const schemaMatch = await schemaRegistryService.suggestSchema(headers);
@@ -510,9 +513,10 @@ Guidelines:
 1. Map to "core" fields (firstName, lastName, email, phoneNumber, etc.) when data clearly matches
 2. Map to "attributes" for industry-specific or custom data that doesn't fit core schema
 3. Use "events" for time-series or activity data
-4. Consider data source context when available
-5. Provide high confidence (80+) for clear matches, lower for ambiguous data
-6. Include transformation rules for data that needs cleaning or conversion
+4. NEVER use "skip" — all data must be preserved. Unknown fields go to "attributes" as dynamic_attributes
+5. Consider data source context when available
+6. Provide high confidence (80+) for clear matches, lower for ambiguous data
+7. Include transformation rules for data that needs cleaning or conversion
 `;
   }
 
@@ -614,7 +618,11 @@ Guidelines:
   }
 
   /**
-   * Create fallback analysis when AI fails
+   * Create fallback analysis when AI fails.
+   *
+   * Catch-all mode: fields that don't match core schema are ALWAYS stored
+   * as 'attributes' (never skipped), ensuring zero data loss. Unrecognized
+   * fields go to dynamic_attributes/custom attributes storage.
    */
   private createFallbackAnalysis(
     columnName: string,
@@ -626,6 +634,7 @@ Guidelines:
     let suggestedField = null;
     let targetSystem: 'core' | 'attributes' | 'events' | 'skip' = 'attributes';
     let confidence = 30;
+    let attributeCategory: 'demographics' | 'preferences' | 'behaviors' | 'engagement' | 'technical' = 'technical';
 
     // Check for core field matches using comprehensive aliases
     for (const field of coreFields) {
@@ -643,6 +652,20 @@ Guidelines:
       }
     }
 
+    // Catch-all: if not core, store as attributes (never skip unknown data)
+    // Infer category from data patterns
+    if (targetSystem === 'attributes') {
+      if (patterns.format === 'email' || patterns.format === 'phone') {
+        attributeCategory = 'demographics';
+      } else if (patterns.format === 'date') {
+        attributeCategory = 'behaviors';
+      } else if (patterns.format === 'boolean') {
+        attributeCategory = 'preferences';
+      } else if (patterns.format === 'number' || patterns.format === 'decimal') {
+        attributeCategory = 'engagement';
+      }
+    }
+
     return {
       columnName,
       originalName: columnName,
@@ -650,11 +673,13 @@ Guidelines:
       confidence,
       dataType: patterns.format as any,
       patterns,
-      reasoning: 'Fallback rule-based analysis due to AI processing error',
-      warnings: ['AI analysis failed, using basic rule-based mapping'],
+      reasoning: targetSystem === 'core'
+        ? 'Fallback rule-based analysis matched core field'
+        : 'Catch-all: stored as dynamic attribute to preserve data (zero data loss policy)',
+      warnings: ['AI analysis failed, using rule-based mapping with catch-all preservation'],
       shouldExclude: false,
       targetSystem,
-      attributeCategory: 'demographics',
+      attributeCategory,
       transformationRules: [],
     };
   }

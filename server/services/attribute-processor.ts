@@ -6,6 +6,11 @@ import type { EventStoreEntry } from "@shared/schema";
 
 class AttributeProcessor {
   async processEvent(event: EventStoreEntry): Promise<void> {
+    // Skip processing for anonymous events (no profileId)
+    if (!event.profileId) {
+      return;
+    }
+
     const totalEventsResult = await db
       .select({ total: count() })
       .from(eventStore)

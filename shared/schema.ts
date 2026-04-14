@@ -583,9 +583,13 @@ export const customerIdentity = pgTable("customer_identity", {
 }));
 
 // CDP Phase 1A: Event Store (immutable event log for CDP pipeline)
+// profileId is nullable to support anonymous events (web visitors, IoT sensors, etc.)
+// Anonymous events use anonymousId/sessionId for tracking and can be linked later
 export const eventStore = pgTable("event_store", {
   id: uuid("id").primaryKey().defaultRandom(),
-  profileId: uuid("profile_id").notNull(),
+  profileId: uuid("profile_id"),
+  anonymousId: text("anonymous_id"),
+  sessionId: text("session_id"),
   eventType: text("event_type").notNull(),
   eventTimestamp: timestamp("event_timestamp", { withTimezone: true }).defaultNow(),
   source: text("source"),
@@ -594,9 +598,12 @@ export const eventStore = pgTable("event_store", {
   eventProperties: jsonb("event_properties"),
   rawPayload: jsonb("raw_payload"),
   processedAt: timestamp("processed_at", { withTimezone: true }),
+  linkedAt: timestamp("linked_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 }, (table) => ({
   profileIdIdx: index("event_store_profile_id_idx").on(table.profileId),
+  anonymousIdIdx: index("event_store_anonymous_id_idx").on(table.anonymousId),
+  sessionIdIdx: index("event_store_session_id_idx").on(table.sessionId),
   eventTypeIdx: index("event_store_event_type_idx").on(table.eventType),
   timestampIdx: index("event_store_timestamp_idx").on(table.eventTimestamp),
   profileTimestampIdx: index("event_store_profile_timestamp_idx").on(table.profileId, table.eventTimestamp),
@@ -898,6 +905,7 @@ export const customerIdentityRelations = relations(customerIdentity, ({ one }) =
 }));
 
 export const eventStoreRelations = relations(eventStore, ({ one }) => ({
+  // Optional relation — anonymous events have profileId = null until linked
   profile: one(customerProfile, { fields: [eventStore.profileId], references: [customerProfile.id] }),
 }));
 
